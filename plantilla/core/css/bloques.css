@@ -1,0 +1,140 @@
+/* bloques.css — el catálogo de bloques. Sirve igual en presentación y divulgación. */
+
+/* ── Bloque genérico: definición, teorema, ejemplo, etc. ───────────────── */
+.bloque {
+  --c: var(--tinta-tenue); --cf: var(--tinta-suave); --ct: var(--superficie);
+  position: relative; display: grid; gap: 0.45em;
+  padding: 0.7em 0.95em 0.75em 1.05em;
+  background: var(--ct);
+  border: 1px solid color-mix(in srgb, var(--c) 30%, var(--linea));
+  border-left: 0.14em solid var(--c);
+  border-radius: var(--radio);
+}
+.bloque__rotulo {
+  font-family: var(--mono); font-size: 0.52em; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--cf);
+}
+.bloque__rotulo span { color: var(--tinta-apagada); text-transform: none; letter-spacing: 0.02em; font-weight: 500; }
+
+/* Color por significado. Se puede forzar otro con data-color en el bloque. */
+.bloque--definicion:not([data-color]) { --c: var(--azul); --cf: var(--azul-fuerte); --ct: var(--azul-tinte); }
+.bloque--teorema:not([data-color]), .bloque--lema:not([data-color]),
+.bloque--proposicion:not([data-color]), .bloque--corolario:not([data-color]) { --c: var(--morado); --cf: var(--morado-fuerte); --ct: var(--morado-tinte); }
+.bloque--ejemplo:not([data-color]) { --c: var(--verde); --cf: var(--verde-fuerte); --ct: var(--verde-tinte); }
+.bloque--observacion:not([data-color]), .bloque--advertencia:not([data-color]) { --c: var(--amarillo); --cf: var(--amarillo-fuerte); --ct: var(--amarillo-tinte); }
+
+/* Demostración: neutra, sin caja, con línea lateral y símbolo de cierre. */
+.bloque--demostracion {
+  background: none; border: 0; border-left: 0.1em solid var(--linea-fuerte); border-radius: 0;
+  padding: 0.1em 0 0.1em 1em;
+}
+.bloque--demostracion > :last-child::after { content: "\220E"; float: right; margin-left: 0.6em; color: var(--tinta-apagada); }
+
+/* ── Cita e idea destacada ─────────────────────────────────────────────── */
+.cita {
+  margin: 0; padding-left: 0.9em; border-left: 0.12em solid var(--c, var(--acento));
+  font-style: italic; font-weight: 500; font-size: 1.25em; line-height: 1.35; display: grid; gap: 0.5em;
+}
+.cita footer, .cita cite { font-style: normal; font-family: var(--mono); font-size: 0.42em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-apagada); }
+.idea { font-weight: 500; line-height: 1.1; letter-spacing: -0.03em; text-wrap: balance; }
+
+.cita footer cite[data-ref] { font-size: 1em; vertical-align: baseline; }
+
+/* ── Cifra destacada ───────────────────────────────────────────────────── */
+.cifras { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 1em; align-items: center; }
+.cifra { display: grid; gap: 0.1em; align-content: start; padding-top: 0.8em; border-top: 0.1em solid var(--c, var(--acento)); }
+.cifra__numero { font-size: 3.2em; font-weight: 700; line-height: 1; letter-spacing: -0.04em; color: var(--cf, var(--tinta)); font-variant-numeric: tabular-nums; }
+.cifra__texto { font-size: 0.72em; color: var(--tinta-apagada); }
+
+/* ── Columnas y comparación ────────────────────────────────────────────── */
+.columnas { display: grid; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); gap: 1.2em; align-items: start; }
+.columnas[data-cols="3"] { --cols: 3; }
+.columnas[data-proporcion="2-1"] { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.columnas[data-proporcion="1-2"] { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.columnas[data-proporcion="3-2"] { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+.columnas > * { min-width: 0; min-height: 0; }
+.columnas > div { display: grid; gap: 0.6em; align-content: start; }
+.columnas.estirar { align-items: stretch; }
+
+.comparacion { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0.9em; align-items: stretch; }
+.comparacion > * {
+  display: grid; gap: 0.5em; align-content: start; padding: 0.8em 0.9em;
+  background: var(--superficie); border: 1px solid var(--linea); border-top: 0.16em solid var(--c, var(--tinta-tenue)); border-radius: var(--radio);
+}
+.comparacion h3 { font-size: 1.1em; color: var(--cf, var(--tinta)); }
+.comparacion ul { font-size: 0.82em; }
+
+/* ── Línea de tiempo ───────────────────────────────────────────────────── */
+.linea-tiempo { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0; counter-reset: none; }
+.linea-tiempo > li { padding: 1.1em 0.8em 0 0; border-top: 0.1em solid var(--linea-fuerte); display: grid; gap: 0.25em; align-content: start; }
+.linea-tiempo > li::before {
+  content: ""; left: 0; top: -0.36em; width: 0.6em; height: 0.6em; border-radius: 50%;
+  background: var(--fondo); border: 0.14em solid var(--c, var(--acento));
+}
+.linea-tiempo > li.actual::before { background: var(--c, var(--acento)); }
+.linea-tiempo .fecha { font-family: var(--mono); font-size: 0.55em; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cf, var(--acento-fuerte)); }
+.linea-tiempo h3 { font-size: 0.95em; }
+.linea-tiempo p { font-size: 0.7em; color: var(--tinta-apagada); }
+
+/* ── Código ────────────────────────────────────────────────────────────── */
+pre {
+  margin: 0; padding: 0.9em 1.1em; overflow: auto;
+  font-size: 0.78em; line-height: 1.5; tab-size: 4; font-variant-ligatures: none;
+  background: var(--superficie-hundida); color: var(--tinta-suave);
+  border: 1px solid var(--linea); border-radius: var(--radio);
+}
+pre code { display: block; counter-reset: linea; }
+pre .linea { display: block; margin: 0 -1.1em; padding: 0 1.1em; border-left: 0.2em solid transparent; min-height: 1.5em; transition: opacity var(--t-transicion), background var(--t-transicion); }
+pre[data-numeros] .linea { counter-increment: linea; padding-left: 3.4em; position: relative; }
+pre[data-numeros] .linea::before { content: counter(linea); position: absolute; left: 0.7em; width: 1.8em; text-align: right; color: var(--tinta-tenue); font-size: 0.85em; }
+pre .linea.resaltada { background: color-mix(in srgb, var(--amarillo) 22%, transparent); border-left-color: var(--amarillo); }
+pre.con-foco .linea:not(.resaltada) { opacity: 0.4; }
+pre.salida { background: var(--superficie); color: var(--tinta-apagada); border-style: dashed; }
+pre.salida::before { content: "salida"; display: block; font-size: 0.7em; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tinta-tenue); margin-bottom: 0.4em; }
+
+/* Tema de resaltado con la paleta */
+.hljs-keyword, .hljs-literal, .hljs-selector-tag, .hljs-meta .hljs-keyword { color: var(--morado-fuerte); font-weight: 600; }
+.hljs-string, .hljs-regexp, .hljs-addition, .hljs-char.escape_ { color: var(--verde-fuerte); }
+.hljs-number, .hljs-symbol, .hljs-bullet, .hljs-attr, .hljs-attribute { color: var(--amarillo-fuerte); }
+.hljs-title, .hljs-title.function_, .hljs-title.class_, .hljs-section, .hljs-name { color: var(--azul-fuerte); font-weight: 600; }
+.hljs-built_in, .hljs-type, .hljs-params .hljs-built_in, .hljs-variable.language_ { color: var(--azul-fuerte); }
+.hljs-comment, .hljs-quote, .hljs-meta, .hljs-deletion { color: var(--tinta-tenue); font-style: italic; }
+.hljs-operator, .hljs-punctuation { color: var(--tinta-apagada); }
+
+/* Pseudocódigo: estilo de libro, en serif */
+.pseudocodigo { font-family: var(--serif); font-size: 0.92em; line-height: 1.45; background: var(--superficie); white-space: pre; }
+.pseudocodigo b { font-weight: 700; color: var(--tinta); }
+.pseudocodigo i, .pseudocodigo .comentario { color: var(--tinta-tenue); font-style: italic; }
+.pseudocodigo .nombre { font-variant: small-caps; letter-spacing: 0.04em; font-weight: 600; color: var(--azul-fuerte); }
+
+/* ── Gráficos y diagramas ──────────────────────────────────────────────── */
+.grafico { position: relative; min-height: 8em; overflow: hidden; }
+.grafico__lienzo { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.diagrama { display: block; width: 100%; height: 100%; min-height: 0; overflow: visible; }
+.diagrama text { font-family: var(--serif); fill: var(--tinta); }
+.diagrama .mono { font-family: var(--mono); fill: var(--tinta-apagada); }
+.diagrama .trazo { fill: none; stroke: var(--tinta-apagada); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.diagrama .caja { fill: var(--superficie); stroke: var(--linea-fuerte); stroke-width: 1.5; }
+.diagrama .f-morado { fill: var(--morado-tinte); stroke: var(--morado); }
+.diagrama .f-verde { fill: var(--verde-tinte); stroke: var(--verde); }
+.diagrama .f-amarillo { fill: var(--amarillo-tinte); stroke: var(--amarillo); }
+.diagrama .f-azul { fill: var(--azul-tinte); stroke: var(--azul); }
+.diagrama .t-morado { stroke: var(--morado); } .diagrama .t-verde { stroke: var(--verde); }
+.diagrama .t-amarillo { stroke: var(--amarillo); } .diagrama .t-azul { stroke: var(--azul); }
+
+/* ── Referencias ───────────────────────────────────────────────────────── */
+cite[data-ref] { font-style: normal; font-family: var(--mono); font-size: 0.62em; font-weight: 600; color: var(--azul-fuerte); vertical-align: 0.25em; white-space: nowrap; }
+cite[data-ref] a { color: inherit; text-decoration: none; }
+.bibliografia { display: grid; gap: 0.7em; }
+.bibliografia > li { padding-left: 2.4em; font-size: 0.8em; line-height: 1.35; }
+.bibliografia > li::before { content: "[" attr(data-n) "]"; position: absolute; left: 0; top: 0.2em; font-family: var(--mono); font-size: 0.78em; font-weight: 600; color: var(--azul-fuerte); background: none; width: auto; height: auto; }
+.bibliografia .fuente { color: var(--tinta-apagada); font-style: italic; }
+
+/* ── Nota de uso: la franja que explica cada bloque en el catálogo ─────── */
+.uso {
+  font-family: var(--mono); font-size: 0.5em; line-height: 1.5; color: var(--tinta-apagada);
+  padding: 0.7em 1em; border: 1px dashed var(--linea-fuerte); border-radius: var(--radio-s);
+  background: color-mix(in srgb, var(--superficie) 70%, transparent);
+}
+.uso b { color: var(--tinta-suave); font-weight: 600; }
+.uso code { background: none; padding: 0; font-size: 1em; color: var(--morado-fuerte); }

@@ -1,0 +1,57 @@
+/* animaciones.css — efectos y transiciones. Todo es opcional.
+
+   Niveles (atributo data-animacion en <html>):
+   ninguna   cortes secos; los pasos aparecen de golpe.
+   sutil     fundido entre diapositivas y aparición suave de los pasos.
+   completa  además: transiciones propias, movimiento entre diapositivas,
+             trazos que se dibujan y contadores. */
+
+/* Nivel "ninguna": se apaga todo de una vez */
+[data-animacion="ninguna"] *, [data-animacion="ninguna"] *::before, [data-animacion="ninguna"] *::after {
+  animation-duration: 0s !important; animation-delay: 0s !important;
+  transition-duration: 0s !important; transition-delay: 0s !important;
+}
+[data-animacion="ninguna"]::view-transition-group(*),
+[data-animacion="ninguna"]::view-transition-old(*),
+[data-animacion="ninguna"]::view-transition-new(*) { animation: none !important; }
+
+/* ── Aparición de un paso ──────────────────────────────────────────────── */
+@keyframes aparecer { from { opacity: 0; } }
+@keyframes subir { from { opacity: 0; transform: translateY(calc(16 * var(--u, 1px))); } }
+@keyframes dibujar { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+[data-paso].recien { animation: subir var(--t-paso) var(--curva) both; }
+[data-paso].recien[data-efecto="aparecer"] { animation-name: aparecer; }
+[data-paso].recien[data-efecto="resaltar"], [data-paso].recien[data-mover-a], [data-paso].recien[data-efecto="contar"] { animation: none; }
+svg [data-paso].recien[data-efecto="dibujar"] { animation: dibujar calc(var(--t-paso) * 2.4) var(--curva) both; }
+[data-efecto="resaltar"] { transition: background var(--t-paso) var(--curva), box-shadow var(--t-paso) var(--curva); }
+.diapositiva[data-atenuar] [data-paso] { transition: opacity var(--t-paso) var(--curva); }
+
+/* Varios elementos del mismo paso entran escalonados: style="--orden: 1" */
+[data-paso].recien { animation-delay: calc(var(--orden, 0) * var(--t-escalon)); }
+
+/* ── Transiciones entre diapositivas (API de transiciones de vista) ────── */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: var(--t-transicion); animation-timing-function: var(--curva); }
+::view-transition-group(*) { animation-duration: var(--t-mover); animation-timing-function: var(--curva); }
+
+@keyframes sale-izq { to { transform: translateX(-6%); opacity: 0; } }
+@keyframes entra-der { from { transform: translateX(6%); opacity: 0; } }
+@keyframes sale-der { to { transform: translateX(6%); opacity: 0; } }
+@keyframes entra-izq { from { transform: translateX(-6%); opacity: 0; } }
+@keyframes sale-lejos { to { transform: scale(1.06); opacity: 0; } }
+@keyframes entra-cerca { from { transform: scale(0.94); opacity: 0; } }
+
+[data-transicion="deslizar"]::view-transition-old(root) { animation: sale-izq 450ms var(--curva) both; }
+[data-transicion="deslizar"]::view-transition-new(root) { animation: entra-der 450ms var(--curva) both; }
+[data-transicion="deslizar"][data-direccion="atras"]::view-transition-old(root) { animation-name: sale-der; }
+[data-transicion="deslizar"][data-direccion="atras"]::view-transition-new(root) { animation-name: entra-izq; }
+[data-transicion="acercar"]::view-transition-old(root) { animation: sale-lejos 500ms var(--curva) both; }
+[data-transicion="acercar"]::view-transition-new(root) { animation: entra-cerca 500ms var(--curva) both; }
+[data-transicion="corte"]::view-transition-old(root), [data-transicion="corte"]::view-transition-new(root) { animation: none; }
+
+/* Movimiento entre diapositivas: dos elementos con el mismo data-enlace */
+[data-animacion="completa"] .vista-escenario [data-enlace],
+[data-animacion="completa"].vista-escenario [data-enlace] { view-transition-name: var(--enlace); }
+
+/* Navegadores sin la API: fundido simple de la diapositiva que entra */
+.sin-transiciones-de-vista .diapositiva.entra { animation: aparecer var(--t-transicion) var(--curva) both; }

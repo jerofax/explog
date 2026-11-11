@@ -1,0 +1,178 @@
+/* presentacion.css — el lienzo 16:9 y sus vistas.
+
+   Idea central: cada diapositiva mide 1920 × 1080 "unidades". La variable --u
+   dice cuántos píxeles reales vale una unidad en la vista actual, y todos los
+   tamaños se escriben como calc(N * var(--u)). Así la diapositiva se ve
+   proporcionalmente igual en un proyector, una ventana chica o un PDF. */
+
+[data-modo="presentacion"] body { min-height: 100vh; }
+
+.diapositiva {
+  --u: calc(min(100vw - 24px, 1100px) / 1920);
+  position: relative; overflow: hidden;
+  width: calc(1920 * var(--u)); height: calc(1080 * var(--u));
+  margin: calc(28 * var(--u)) auto;
+  padding: calc(80 * var(--u)) calc(96 * var(--u)) calc(96 * var(--u));
+  display: flex; flex-direction: column; gap: calc(28 * var(--u));
+  background: var(--fondo); color: var(--tinta);
+  font-size: calc(36 * var(--u)); line-height: 1.35;
+  border: 1px solid var(--linea); border-radius: calc(20 * var(--u)); box-shadow: var(--sombra);
+  --radio: calc(18 * var(--u)); --radio-s: calc(10 * var(--u)); --radio-l: calc(28 * var(--u));
+}
+
+/* ── Escala tipográfica del lienzo ─────────────────────────────────────── */
+.diapositiva > h2, .diapositiva > header > h2 { font-size: calc(64 * var(--u)); }
+.diapositiva h3 { font-size: 1.1em; letter-spacing: -0.015em; }
+.diapositiva .etiqueta { font-size: calc(22 * var(--u)); }
+.diapositiva .subtitulo { font-size: calc(40 * var(--u)); color: var(--tinta-apagada); line-height: 1.25; }
+.diapositiva > header { display: grid; gap: calc(20 * var(--u)); }
+.diapositiva .idea { font-size: calc(88 * var(--u)); }
+
+/* Densidades */
+.diapositiva[data-densidad="amplia"] { font-size: calc(48 * var(--u)); gap: calc(40 * var(--u)); }
+.diapositiva[data-densidad="amplia"] pre { font-size: 0.667em; }
+.diapositiva[data-densidad="densa"] { font-size: calc(28 * var(--u)); gap: calc(22 * var(--u)); }
+.diapositiva[data-densidad="densa"] pre { font-size: 0.857em; }
+.diapositiva[data-densidad="visual"] { padding: calc(56 * var(--u)) calc(64 * var(--u)) calc(72 * var(--u)); gap: calc(16 * var(--u)); }
+.diapositiva[data-densidad="visual"] > h2 { font-size: calc(44 * var(--u)); }
+
+/* Ayudas de composición */
+.diapositiva .crece { flex: 1 1 0; min-height: 0; }
+.diapositiva.centrada { justify-content: center; }
+.diapositiva.al-fondo { justify-content: flex-end; }
+.diapositiva .empuja { margin-top: auto; }
+.diapositiva .columnas.crece > * { align-content: stretch; }
+.diapositiva .columnas.crece > .medio, .diapositiva .medio { align-content: center; }
+.diapositiva > .grafico, .diapositiva > .diagrama { flex: 1 1 0; min-height: 0; }
+.diapositiva .columnas .grafico, .diapositiva .columnas .diagrama { height: 100%; }
+.diapositiva pre { overflow: hidden; }
+
+/* A sangre: la imagen o el gráfico ocupan todo el lienzo */
+.diapositiva.sangre { padding: 0; }
+.diapositiva.sangre > img, .diapositiva.sangre > svg, .diapositiva.sangre > figure { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+.diapositiva.sangre > .pie-imagen {
+  position: absolute; left: calc(64 * var(--u)); bottom: calc(56 * var(--u)); max-width: 60%;
+  padding: 0.5em 0.8em; background: color-mix(in srgb, var(--fondo) 90%, transparent); border-radius: var(--radio-s); font-size: 0.8em;
+}
+
+/* ── Portada, sección, cierre ──────────────────────────────────────────── */
+.diapositiva.portada, .diapositiva.cierre { justify-content: center; gap: calc(36 * var(--u)); padding-left: calc(140 * var(--u)); padding-right: calc(140 * var(--u)); }
+.diapositiva.portada h1 { font-size: calc(120 * var(--u)); line-height: 1; letter-spacing: -0.035em; }
+.diapositiva.cierre h1, .diapositiva.cierre h2 { font-size: calc(104 * var(--u)); letter-spacing: -0.035em; }
+.diapositiva.portada .datos, .diapositiva.cierre .datos {
+  display: flex; flex-wrap: wrap; gap: 0.4em 2em; margin-top: calc(40 * var(--u));
+  font-family: var(--mono); font-size: calc(22 * var(--u)); letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-apagada);
+}
+.puntos { display: flex; gap: calc(14 * var(--u)); }
+.puntos i { width: calc(18 * var(--u)); height: calc(18 * var(--u)); border-radius: 50%; background: var(--c); }
+
+.diapositiva.seccion { justify-content: center; gap: calc(24 * var(--u)); padding-left: calc(140 * var(--u)); }
+.diapositiva.seccion .numero { font-family: var(--mono); font-size: calc(200 * var(--u)); font-weight: 800; line-height: 0.9; letter-spacing: -0.06em; color: var(--c, var(--acento)); opacity: 0.9; }
+.diapositiva.seccion h2 { font-size: calc(96 * var(--u)); letter-spacing: -0.035em; }
+
+.indice { gap: 0; font-size: 1.15em; }
+.indice > li { padding: 0.5em 0 0.5em 2.4em; border-bottom: 1px solid var(--linea); color: var(--tinta-apagada); }
+.indice > li::before { top: 0.95em; }
+.indice > li.actual { color: var(--tinta); font-weight: 600; }
+
+/* ── Número de página y pie de referencias ─────────────────────────────── */
+.diapositiva::after {
+  content: attr(data-n); position: absolute; right: calc(96 * var(--u)); bottom: calc(40 * var(--u));
+  font-family: var(--mono); font-size: calc(20 * var(--u)); color: var(--tinta-tenue); letter-spacing: 0.06em;
+}
+.diapositiva.portada::after, .diapositiva.seccion::after, .diapositiva.cierre::after,
+.diapositiva.sangre::after, .diapositiva[data-sin-numero]::after { content: none; }
+.pie-referencias {
+  position: absolute; left: calc(96 * var(--u)); right: calc(260 * var(--u)); bottom: calc(36 * var(--u));
+  font-size: calc(20 * var(--u)); line-height: 1.3; color: var(--tinta-apagada);
+  display: flex; flex-wrap: wrap; gap: 0 1.6em;
+}
+.pie-referencias b { font-family: var(--mono); font-weight: 600; font-size: 0.9em; color: var(--azul-fuerte); }
+
+/* Las notas del orador nunca se ven en la diapositiva */
+.diapositiva .notas { display: none; }
+
+/* ── Vista escenario: una diapositiva a la vez, ajustada a la ventana ──── */
+.vista-escenario body { overflow: hidden; height: 100vh; }
+.vista-escenario .diapositiva {
+  --u: calc(min(100vw, 100vh * 16 / 9) / 1920);
+  position: fixed; left: 50%; top: 50%; translate: -50% -50%;
+  margin: 0; border: 0; border-radius: 0; box-shadow: none; display: none;
+}
+.vista-escenario .diapositiva.activa { display: flex; }
+
+/* Revelado por pasos: lo que aún no toca ocupa su lugar pero no se ve */
+.vista-escenario [data-paso]:not(.visible):not([data-mover-a]):not([data-efecto="resaltar"]) { visibility: hidden; }
+.vista-escenario .diapositiva[data-atenuar] [data-paso].visible:not(.actual) { opacity: 0.35; }
+[data-efecto="resaltar"].visible, .vista-lectura [data-efecto="resaltar"] {
+  background: color-mix(in srgb, var(--c, var(--amarillo)) 30%, transparent); border-radius: 0.2em;
+  box-shadow: 0 0 0 0.12em color-mix(in srgb, var(--c, var(--amarillo)) 30%, transparent);
+}
+[data-mover-a] { transition: transform var(--t-mover) var(--curva); }
+[data-mover-a].visible, .vista-lectura [data-mover-a] { transform: translate(calc(var(--mx, 0) * var(--u)), calc(var(--my, 0) * var(--u))); }
+svg [data-efecto="dibujar"] { stroke-dasharray: 1; stroke-dashoffset: 0; }
+
+/* ── Controles flotantes ───────────────────────────────────────────────── */
+.progreso { position: fixed; left: 0; bottom: 0; height: 3px; width: 0; background: var(--acento); z-index: 20; transition: width var(--t-transicion) var(--curva); }
+.sin-progreso .progreso, .vista-lectura .progreso { display: none; }
+
+.aviso {
+  position: fixed; left: 50%; bottom: 28px; translate: -50% 0; z-index: 40;
+  padding: 8px 16px; border-radius: 999px; background: var(--tinta); color: var(--fondo);
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; opacity: 0; pointer-events: none; transition: opacity 200ms;
+}
+.aviso.visible { opacity: 1; }
+
+.panel {
+  position: fixed; inset: 0; z-index: 50; display: none; place-items: center;
+  background: color-mix(in srgb, var(--tinta) 35%, transparent);
+}
+.panel.abierto { display: grid; }
+.panel__caja {
+  width: min(92vw, 560px); max-height: 86vh; overflow: auto; padding: 24px 28px;
+  background: var(--superficie); border: 1px solid var(--linea-fuerte); border-radius: 16px; box-shadow: var(--sombra);
+  font-size: 16px; line-height: 1.5; display: grid; gap: 14px;
+}
+.panel__caja h2 { font-size: 22px; }
+.panel__caja dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; align-items: baseline; }
+.panel__caja dt { white-space: nowrap; }
+.panel__caja dd { margin: 0; color: var(--tinta-suave); }
+.panel__caja input { font: inherit; font-family: var(--mono); padding: 8px 12px; width: 100%; border: 1px solid var(--linea-fuerte); border-radius: 8px; background: var(--fondo); color: var(--tinta); }
+
+.boton-presentar {
+  position: fixed; right: 14px; bottom: 14px; z-index: 30; display: none;
+  font: 600 13px var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 10px 16px; border-radius: 999px; border: 1px solid var(--linea-fuerte);
+  background: var(--tinta); color: var(--fondo); cursor: pointer;
+}
+.vista-lectura .boton-presentar { display: block; }
+
+/* ── Vista del orador ──────────────────────────────────────────────────── */
+.vista-orador body { overflow: hidden; height: 100vh; background: var(--superficie-hundida); }
+.vista-orador .diapositiva { position: fixed; margin: 0; display: none; border-radius: 6px; }
+.vista-orador .diapositiva.orador-actual { display: flex; --u: calc(60vw / 1920); left: 2vw; top: 4vw; }
+.vista-orador .diapositiva.orador-siguiente { display: flex; --u: calc(33vw / 1920); left: 65vw; top: 4vw; opacity: 0.85; }
+.vista-orador [data-paso]:not(.visible):not([data-mover-a]):not([data-efecto="resaltar"]) { visibility: hidden; }
+.vista-orador .orador-siguiente [data-paso] { visibility: visible !important; }
+.orador { display: none; }
+.vista-orador .orador { display: block; font-family: var(--serif); color: var(--tinta); }
+.orador__rotulo { position: fixed; top: 1.6vw; font: 600 max(11px, 0.85vw) var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--tinta-apagada); }
+.orador__rotulo--actual { left: 2vw; }
+.orador__rotulo--siguiente { left: 65vw; }
+.orador__reloj {
+  position: fixed; left: 65vw; width: 33vw; top: calc(4vw + 33vw * 9 / 16 + 1.5vw);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1vw; align-items: end;
+}
+.orador__reloj div { display: grid; gap: 0.2vw; }
+.orador__reloj small { font: 600 max(10px, 0.75vw) var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--tinta-apagada); }
+.orador__reloj b { font: 700 max(22px, 2.6vw) var(--mono); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.orador__botones { grid-column: 1 / -1; display: flex; gap: 0.6vw; }
+.orador__botones button { font: 600 max(11px, 0.8vw) var(--mono); padding: 0.5vw 1vw; border-radius: 999px; border: 1px solid var(--linea-fuerte); background: var(--superficie); color: var(--tinta); cursor: pointer; }
+.orador__notas {
+  position: fixed; left: 2vw; width: 60vw; top: calc(4vw + 60vw * 9 / 16 + 1.5vw); bottom: 2vw; overflow: auto;
+  padding: 1.2vw 1.5vw; background: var(--superficie); border: 1px solid var(--linea); border-radius: 10px;
+  font-size: clamp(16px, 1.7vw, 30px); line-height: 1.45;
+}
+.orador__notas:empty::before { content: "Sin notas para esta diapositiva."; color: var(--tinta-tenue); font-style: italic; }
+.orador__fin { position: fixed; left: 65vw; top: 4vw; width: 33vw; aspect-ratio: 16 / 9; display: none; place-items: center; border: 1px dashed var(--linea-fuerte); border-radius: 6px; font: 600 1vw var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--tinta-tenue); }
+.orador--final .orador__fin { display: grid; }

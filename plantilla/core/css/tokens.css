@@ -1,0 +1,84 @@
+/* tokens.css — la única fuente de verdad: colores, fuentes, formas y tiempos.
+   Para cambiar la identidad de todo, se cambia aquí. */
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fuentes/newsreader-normal.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fuentes/newsreader-italic.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fuentes/jetbrains-mono.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Fondos */
+  --fondo: #faf6ee;
+  --superficie: #fffdf8;
+  --superficie-hundida: #f1ecdf;
+
+  /* Texto y líneas */
+  --tinta: #0b1220;
+  --tinta-suave: #243042;
+  --tinta-apagada: #4f5d70;
+  --tinta-tenue: #7a8698;
+  --linea: #0f172a1a;
+  --linea-fuerte: #0f172a38;
+
+  /* Marca: base (rellenos), fuerte (texto), tinte (fondos) */
+  --morado: #8b5cf6;
+  --morado-fuerte: #6d28d9;
+  --morado-tinte: color-mix(in srgb, var(--morado) 12%, var(--fondo));
+  --verde: #22c55e;
+  --verde-fuerte: #15803d;
+  --verde-tinte: color-mix(in srgb, var(--verde) 12%, var(--fondo));
+  --amarillo: #eab308;
+  --amarillo-fuerte: #a16207;
+  --amarillo-tinte: color-mix(in srgb, var(--amarillo) 12%, var(--fondo));
+  --azul: #3b82f6;
+  --azul-fuerte: #1d4ed8;
+  --azul-tinte: color-mix(in srgb, var(--azul) 12%, var(--fondo));
+
+  /* Acento general (el verde del portafolio) */
+  --acento: var(--verde);
+  --acento-fuerte: var(--verde-fuerte);
+
+  /* Tipografía */
+  --serif: "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Formas */
+  --radio-s: 0.5rem;
+  --radio: 0.9rem;
+  --radio-l: 1.4rem;
+  --sombra: 0 10px 30px -12px #0f172a38;
+
+  /* Tiempos */
+  --curva: cubic-bezier(.22, 1, .36, 1);
+  --t-transicion: 300ms;
+  --t-paso: 400ms;
+  --t-mover: 600ms;
+  --t-escalon: 70ms;
+}
+
+/* Juegos de color: fijan --c (base), --cf (fuerte) y --ct (tinte) para
+   cualquier elemento. Los usan los bloques y las utilidades de color. */
+.c-morado, [data-color="morado"] { --c: var(--morado); --cf: var(--morado-fuerte); --ct: var(--morado-tinte); }
+.c-verde, [data-color="verde"] { --c: var(--verde); --cf: var(--verde-fuerte); --ct: var(--verde-tinte); }
+.c-amarillo, [data-color="amarillo"] { --c: var(--amarillo); --cf: var(--amarillo-fuerte); --ct: var(--amarillo-tinte); }
+.c-azul, [data-color="azul"] { --c: var(--azul); --cf: var(--azul-fuerte); --ct: var(--azul-tinte); }
+.c-neutro, [data-color="neutro"] { --c: var(--tinta-tenue); --cf: var(--tinta-suave); --ct: var(--superficie); }

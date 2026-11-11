@@ -1,0 +1,954 @@
+<!doctype html>
+<!-- Guía de divulgación: Teorema de Erdős–Kac.
+     Texto: "Guía Erdős–Kac" (PDF). Datos: cuaderno Erdos_Kac.ipynb, recalculados con
+     su mismo código hasta 10^9 y embebidos en el bloque #datos (no se calcula nada pesado
+     en el navegador). Este archivo es la fuente: index.html se genera con
+     construir.py, que pega los datos en {"M":0.2614972128476428,"S":{"x":[10,13,18,24,32,42,56,75,100,133,178,237,316,422,562,750,1000,1334,1778,2371,3162,4217,5623,7499,10000,13335,17783,23714,31623,42170,56234,74989,100000,133352,177828,237137,316228,421697,562341,749894,1000000,1333521,1778279,2371374,3162278,4216965,5623413,7498942,10000000,13335214,17782794,23713737,31622777,42169650,56234133,74989421,100000000,133352143,177827941,237137371,316227766,421696503,562341325,749894209,1000000000],"S1":[1.176190476190476,1.344022644022644,1.4028461734344086,1.4989560132513422,1.565696836388161,1.617114107317627,1.680514441544098,1.75656554702299,1.8028172010488708,1.8653041963875021,1.9174044038667266,1.971321660418446,2.022523059752116,2.0684772115405425,2.1099656071739656,2.156570265569057,2.1980801271750874,2.2403247147632257,2.2776376670650276,2.3144495719009885,2.3492698901926774,2.3851762213947625,2.4183868643408926,2.4509139779012594,2.483059947233561,2.513580840378935,2.543167354742869,2.572136973672069,2.5999696400523,2.627456042364689,2.6539938244256684,2.6799557583803675,2.7052721790472645,2.7299099220669807,2.753858334311161,2.777415691024579,2.800364864424899,2.82283551197133,2.844802123555902,2.8662848865475348,2.8873280995676733,2.9079616372655046,2.9281394629844573,2.947950705303641,2.967357710762869,2.98641251628853,3.0050950402809087,3.023443257929216,3.0414493812797114,3.059154720891295,3.0765466699666253,3.0936364571547945,3.1104435401438364,3.1269696643579845,3.143229955874772,3.1592294509602636,3.1749752299205256,3.190479886952652,3.2057480213481497,3.220783336697603,3.2355988249171466,3.2501966235479083,3.2645850897963773,3.278769274116408,3.2927557187989716],"S2":[0.42151927437641723,0.4357008969496482,0.43916110456210494,0.44382154683284,0.44605119020125944,0.44737653438879954,0.44872605937392707,0.44989087067631583,0.4504287882637524,0.4509911757865886,0.45133258931321674,0.45159906625392693,0.45178768498750727,0.4519127474255302,0.45199932583661606,0.45207222527649826,0.4521204302493045,0.45215712281605625,0.4521812616728867,0.4521992159698499,0.4522120599504687,0.4522219696574601,0.45222882552295635,0.452233874543017,0.4522376043399502,0.4522402542749188,0.452242182732909,0.45224359823654986,0.45224461922497683,0.4522453754746053,0.452245922672,0.45224632431618506,0.4522466177920538,0.45224683188242276,0.45224698808633124,0.4522471033489805,0.452247187513598,0.4522472493312952,0.4522472946335538,0.45224732785768107,0.45224735226537405,0.4522473702074323,0.45224738336409087,0.452247393051626,0.4522474001666113,0.45224740540548575,0.4522474092570064,0.4522474120934665,0.45224741418100894,0.45224741572029203,0.4522474168540254,0.45224741768945476,0.4522474183055693,0.45224741875986246,0.4522474190950567,0.4522474193423804,0.45224741952490666,0.4522474196596873,0.4522474197592128,0.4522474198327086,0.45224741988701755,0.45224741992714446,0.452247419956804,0.4522474199787297,0.4522474199949422]},"xs":[100,133,178,237,316,422,562,750,1000,1334,1778,2371,3162,4217,5623,7499,10000,13335,17783,23714,31623,42170,56234,74989,100000,133352,177828,237137,316228,421697,562341,749894,1000000,1333521,1778279,2371374,3162278,4216965,5623413,7498942,10000000,13335214,17782794,23713737,31622777,42169650,56234133,74989421,100000000,133352143,177827941,237137371,316227766,421696503,562341325,749894209,1000000000],"K":10,"conteo":[[1,35,56,8,0,0,0,0,0,0],[1,45,71,16,0,0,0,0,0,0],[1,54,98,25,0,0,0,0,0,0],[1,65,132,38,1,0,0,0,0,0],[1,82,170,62,1,0,0,0,0,0],[1,101,227,89,4,0,0,0,0,0],[1,123,299,132,7,0,0,0,0,0],[1,155,387,195,12,0,0,0,0,0],[1,193,508,275,23,0,0,0,0,0],[1,244,658,390,41,0,0,0,0,0],[1,304,857,551,65,0,0,0,0,0],[1,385,1109,771,104,1,0,0,0,0],[1,483,1448,1060,168,2,0,0,0,0],[1,617,1872,1463,260,4,0,0,0,0],[1,783,2435,1997,398,9,0,0,0,0],[1,998,3166,2712,605,17,0,0,0,0],[1,1280,4097,3695,894,33,0,0,0,0],[1,1640,5319,4999,1318,58,0,0,0,0],[1,2103,6919,6737,1920,103,0,0,0,0],[1,2705,8991,9069,2774,174,0,0,0,0],[1,3476,11726,12138,3995,286,1,0,0,0],[1,4489,15238,16301,5671,468,2,0,0,0],[1,5791,19872,21776,8046,742,6,0,0,0],[1,7491,25896,29093,11326,1170,12,0,0,0],[1,9700,33759,38844,15855,1816,25,0,0,0],[1,12566,44065,51761,22132,2778,49,0,0,0],[1,16276,57582,68904,30772,4201,92,0,0,0],[1,21136,75223,91707,42597,6308,165,0,0,0],[1,27450,98358,121937,58824,9365,293,0,0,0],[1,35695,128648,162068,80980,13797,508,0,0,0],[1,46437,168328,215387,111113,20226,848,1,0,0],[1,60445,220411,286039,152175,29420,1399,4,0,0],[1,78734,288726,379720,208034,42492,2285,8,0,0],[1,102655,378262,504131,283656,61146,3651,19,0,0],[1,133845,496001,668859,386280,87486,5764,43,0,0],[1,174670,650396,887562,525023,124623,9014,85,0,0],[1,228008,853269,1177538,712548,176823,13924,167,0,0],[1,297835,1119801,1561892,965953,249840,21334,309,0,0],[1,389131,1470233,2071492,1307763,351850,32383,560,0,0],[1,508695,1930814,2747243,1768514,493931,48749,995,0,0],[1,665134,2536838,3642766,2389433,691209,72902,1716,1,0],[1,870265,3333388,4830622,3225102,964611,108317,2905,3,0],[1,1138985,4381494,6405550,4349087,1342958,159854,4857,8,0],[1,1491083,5761221,8492865,5860985,1864860,234728,7974,20,0],[1,1952835,7576833,11261185,7891643,2584633,342651,12953,43,0],[1,2558288,9967640,14930758,10619862,3574200,498076,20729,96,0],[1,3352655,13115672,19796250,14282384,4933459,720666,32853,193,0],[1,4394972,17261887,26247558,19196826,6797872,1038392,51533,380,0],[1,5762859,22724609,34800362,25789580,9351293,1490458,80119,719,0],[1,7558979,29921058,46142783,34627984,12844967,2131508,123541,1322,0],[1,9917672,39404548,61182760,46474674,17618823,3038044,189047,2372,0],[1,13015025,51906687,81122853,62350992,24133350,4317153,287136,4173,1],[1,17084930,68385893,107567387,83615398,33017265,6116314,433360,7215,3],[1,22432523,90115248,142633243,112093120,45118215,8641788,650109,12246,10],[1,29461332,118769992,189133980,150220533,61585895,12179513,969528,20527,24],[1,38701256,156562862,250803475,201250481,83980135,17123455,1438595,33888,61],[1,50851223,206415108,332590117,269536378,114407511,24020091,2124141,55292,138]],"media":[1.71,1.7669172932330828,1.8258426966292136,1.8860759493670884,1.9367088607594938,1.985781990521327,2.0373665480427046,2.082666666666667,2.1260000000000003,2.169415292353823,2.2109111361079865,2.250948966680726,2.2900063251106895,2.3262983163386295,2.361906455628668,2.396452860381384,2.43,2.46246719160105,2.493786200303661,2.524247280087712,2.55377415172501,2.5824994071614893,2.6103958459295087,2.6375601754924056,2.6639999999999997,2.6898059271701964,2.7149661470634543,2.7394333233531674,2.7633732623297114,2.786711785950576,2.8095603912928278,2.8318749049865715,2.853708,2.875069084026423,2.895979202363634,2.9164669933970773,2.936547640656514,2.956223729625453,2.9755226941361057,2.9944520173645826,3.0130317,3.031269764399732,3.0491804606182806,3.0667754306290904,3.084065450671837,3.1010600514825235,3.11776996721902,3.134204850041448,3.15037281,3.1662830195387257,3.181943314521085,3.197361663421663,3.2125450521002,3.2275009214387533,3.2422356101963516,3.2567561166484484,3.271067968],"varianza":[0.38590000000000035,0.4343942563174852,0.4359613685140764,0.4553757410671375,0.4770068899214861,0.49742817996001865,0.5092798976710018,0.529166222222222,0.5481239999999978,0.5724978590165204,0.5848753228118699,0.6055189223217905,0.6233599620093289,0.6428772863927064,0.6616610995546264,0.6812035799554819,0.7002999999999995,0.7187825143904254,0.7375056725599478,0.7557796160052943,0.7744460378519316,0.7923520171326812,0.810491207960836,0.8285514943486127,0.8462240000000021,0.8638177318480045,0.8809157674618486,0.8981710363629132,0.9151045905916222,0.931932686653572,0.9484555481893215,0.9648209753926373,0.9809646507360004,0.9969702458833698,1.0127412182761084,1.0283232901212696,1.0436799137483472,1.0588970430534896,1.0738970793639133,1.0887230734322841,1.1033552747951099,1.1178202203738685,1.1321026629043178,1.1462083955589133,1.1601467143460127,1.1739136254054436,1.1875177977805436,1.2009563842965871,1.2142360880127043,1.2273587576841116,1.2403278904650854,1.2531437559433378,1.2658136839305687,1.278336587410676,1.2907186407552693,1.3029586198034195,1.3150629307243502],"D":[0.3248379586960722,0.3130418298072439,0.30186839564049595,0.31285689874799505,0.3122255605084162,0.3177834328899225,0.3246217545087884,0.32385495117676943,0.32532127236551256,0.3238621749024209,0.3248971135121498,0.32315858083120547,0.3229797389678587,0.32010750327796317,0.3183247846031439,0.3160659612564368,0.31312552842685554,0.3104849357222478,0.3078967238458449,0.3050949807893921,0.3025482492484079,0.29960278267492413,0.2969185348590302,0.29409494481746434,0.291309716070367,0.28861389796110537,0.2860579380371992,0.2833847308095973,0.2808203992053838,0.27825916452352656,0.27576848336809817,0.27333514325802366,0.2709433845232607,0.26857117136031156,0.2662889240514178,0.2640249875410107,0.2618246782251511,0.2596553383480014,0.2575471152078612,0.25547363173576076,0.25345627773027557,0.2514619026931647,0.24951397454600277,0.24761110342367204,0.24574213260452585,0.24391377410475756,0.24211921400794092,0.2403606095347726,0.23863804365652824,0.23694613126274017,0.23560137814665094,0.23566902475749657,0.2357090721142141,0.23571539152037102,0.2356928222887758,0.23564460975393292,0.23557185524360785],"c_var6":-1.6448272637400105,"w64":{"n":3000,"conteo":[0,81,337,668,800,644,335,103,28,4,0,0],"media":4.056666666666667,"var":2.064788888888889,"L":3.7923701627780075,"pred_media":4.05386737562565,"pred_var":2.147542899037997}}. -->
+<html lang="es" data-modo="divulgacion">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teorema de Erdős–Kac</title>
+  <link rel="stylesheet" href="../plantilla/core/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../plantilla/core/css/plantilla.css">
+  <script src="../plantilla/core/vendor/katex/katex.min.js"></script>
+  <script src="../plantilla/core/vendor/katex/auto-render.min.js"></script>
+  <script src="../plantilla/core/vendor/highlight/highlight.min.js"></script>
+  <script src="../plantilla/core/vendor/echarts/echarts.min.js"></script>
+  <script src="../plantilla/core/js/referencias.js"></script>
+  <script src="../plantilla/core/js/contenido.js"></script>
+  <script src="../plantilla/core/js/interactivos.js"></script>
+  <script src="../plantilla/core/js/presentacion.js"></script>
+  <style>
+    /* Estilos propios de esta guía (no tocan core/) */
+    .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.1em 0; }
+    .katex { text-transform: none; letter-spacing: 0; }
+    /* Los hijos de una rejilla no deben ensancharla (fórmulas largas y código en el celular) */
+    .bloque, .pestanas > section, .tablero { grid-template-columns: minmax(0, 1fr); }
+    .bloque > *, .pestanas > section > *, .tablero > * { min-width: 0; }
+    main h3 .num { font-family: var(--mono); font-size: 0.72em; font-weight: 600; color: var(--tinta-apagada); margin-right: 0.5em; letter-spacing: 0; }
+    .tabla-criba { font-size: 0.86em; width: auto; margin: 0 auto; }
+    .tabla-criba th, .tabla-criba td { padding: 0.25em 0.55em; text-align: center; }
+    .tabla-criba th:first-child, .tabla-criba td:first-child { text-align: left; white-space: nowrap; }
+    .tabla-criba-envoltura { overflow-x: auto; }
+    th .katex { text-transform: none; font-size: 1.5em; }
+
+    /* Paneles de gráficas */
+    .tablero { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 0.9em 1em 0.6em; gap: 0.5em; }
+    .tablero__titulo { font-family: var(--mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tinta-apagada); }
+    .tablero .grafico { height: clamp(280px, 46vw, 420px); }
+    .tablero .controles output { font-family: var(--mono); font-weight: 600; color: var(--cf); min-width: 9.5em; font-variant-numeric: tabular-nums; }
+    .tablero .controles input[type="range"] { flex: 1 1 10em; }
+    .tablero .lectura { font-size: 0.8em; color: var(--tinta-suave); line-height: 1.4; }
+    .interactivo button[aria-pressed] { display: inline-flex; align-items: center; gap: 0.5em; }
+    .interactivo button[aria-pressed]::before { content: ""; width: 0.9em; height: 0.22em; border-radius: 1em; background: var(--c); opacity: 0.35; }
+    .interactivo button[aria-pressed="true"] { background: var(--ct); border-color: var(--c); color: var(--cf); }
+    .interactivo button[aria-pressed="true"]::before { opacity: 1; }
+    .c-gris { --c: var(--tinta-tenue); --cf: var(--tinta-suave); --ct: var(--superficie-hundida); }
+    .interactivo button.revelar { border-style: dashed; }
+
+    /* Histogramas en SVG propio */
+    .hist { position: relative; }
+    .hist svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .hist .cuadricula { stroke: var(--linea); stroke-width: 1; }
+    .hist .eje { stroke: var(--linea-fuerte); stroke-width: 1; }
+    .hist .marca { font-family: var(--mono); font-size: 12px; fill: var(--tinta-apagada); }
+    .hist .nombre-eje { font-family: var(--serif); font-style: italic; font-size: 14px; fill: var(--tinta-apagada); }
+    .hist .barra { transition: opacity 120ms; }
+    .hist .barra.foco { opacity: 0.7; }
+    .hist .curva { fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+    .hist .vertical { stroke-width: 2; }
+    .hist .rotulo-vertical { font-family: var(--mono); font-size: 12px; font-weight: 600; }
+    .hist__tip {
+      position: absolute; pointer-events: none; z-index: 3; max-width: 17em;
+      background: var(--superficie); border: 1px solid var(--linea-fuerte); border-radius: 0.5em;
+      padding: 0.35em 0.6em; font-size: 0.78rem; line-height: 1.35; color: var(--tinta); box-shadow: var(--sombra);
+    }
+    .hist__tip b { font-family: var(--mono); font-weight: 600; }
+    .leyenda { display: flex; flex-wrap: wrap; gap: 0.3em 1.2em; font-size: 0.78rem; color: var(--tinta-suave); }
+    .leyenda span { display: inline-flex; align-items: center; gap: 0.45em; }
+    .leyenda i { display: inline-block; width: 1.3em; height: 0.6em; border-radius: 0.2em; background: var(--c); }
+    .leyenda i.linea { height: 0.2em; border-radius: 1em; }
+    .leyenda i.punteada { height: 0; border-radius: 0; background: none; border-top: 0.18em dashed var(--c); }
+
+    /* Criba paso a paso */
+    [data-algoritmo="criba"] .algoritmo__vis { height: auto; min-height: 12em; place-items: start stretch; }
+    .criba { display: grid; grid-template-columns: repeat(auto-fill, minmax(2.25em, 1fr)); gap: 0.75em 0.3em; width: 100%; padding-top: 0.45em; }
+    .criba__celda {
+      position: relative; display: grid; justify-items: center; padding: 0.1em 0 0.15em;
+      border: 1px solid var(--linea-fuerte); border-radius: 0.45em; background: var(--superficie-hundida);
+      font-family: var(--mono); line-height: 1.2; transition: background 200ms, border-color 200ms;
+    }
+    .criba__celda small { font-size: 0.5em; color: var(--tinta-tenue); }
+    .criba__celda b { font-size: 0.78em; font-weight: 600; color: var(--tinta); }
+    .criba__celda.recibe { background: var(--morado-tinte); border-color: var(--morado); }
+    .criba__celda.recibe b { color: var(--morado-fuerte); }
+    .criba__celda i {
+      position: absolute; top: -0.65em; right: -0.25em; font-style: normal; font-size: 0.48em; font-weight: 700;
+      color: var(--fondo); background: var(--morado-fuerte); border-radius: 999px; padding: 0 0.35em;
+    }
+    .criba__celda.primo small { color: var(--verde-fuerte); font-weight: 700; }
+    .criba__celda.primo { border-bottom: 0.18em solid var(--verde); }
+    .criba__celda.tenue { opacity: 0.5; }
+    .criba__leyenda { grid-column: 1 / -1; font-family: var(--mono); font-size: 0.5em; color: var(--tinta-apagada); padding-top: 0.4em; }
+
+    /* Comparación de tiempos */
+    .tiempos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1em; }
+    .tiempos .cifra__texto { font-size: 0.78em; }
+    @media (max-width: 720px) { .tiempos { grid-template-columns: minmax(0, 1fr); } }
+    .nota-fuente { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--tinta-apagada); }
+
+    /* Tabla de 64 bits */
+    .tabla-64 { font-size: 0.92em; }
+    .tabla-64 caption { caption-side: bottom; text-align: left; font-size: 0.78em; color: var(--tinta-apagada); padding-top: 0.6em; line-height: 1.4; }
+    .marcador { font-family: var(--mono); font-size: 0.85em; background: var(--amarillo-tinte); border: 1px dashed var(--amarillo); border-radius: 0.3em; padding: 0 0.3em; }
+    .bibliografia a { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+<main>
+
+  <header class="cabecera">
+    <p class="etiqueta">Matemáticas Experimentales</p>
+    <h1>Teorema de <span class="morado">Erdős–Kac</span></h1>
+    <p class="entrada">¿Cuántos factores primos distintos tiene un número natural?</p>
+    <div class="puntos"><i class="c-morado"></i><i class="c-amarillo"></i><i class="c-verde"></i><i class="c-azul"></i></div>
+    <p class="datos"><span>Jerónimo Restrepo Ramírez</span><span>Matemáticas Experimentales</span></p>
+  </header>
+
+  <!-- ───────────────────────── Introducción ───────────────────────── -->
+  <p>Desde Aristóteles, la tradición filosófica occidental parte de dos observaciones sobre el ser humano:</p>
+  <ol>
+    <li>el ser humano piensa;</li>
+    <li>todos los hombres desean por naturaleza saber (<i>Metafísica</i>, A.1, 980a21) <cite data-ref><a href="#ref-1">[1]</a></cite>.</li>
+  </ol>
+  <p>De la segunda se sigue que el conocimiento se construye preguntando. Este texto intenta seguir esos dos principios: cada resultado aparece como respuesta a una pregunta formulada de antemano, y el recorrido, pregunta tras pregunta, termina en la formulación del teorema de Erdős–Kac.</p>
+  <p>Empezamos por un resultado cuyos ingredientes se remontan a Euclides (c. 300 a. C., <i>Elementos</i>, libro VII) <cite data-ref><a href="#ref-2">[2]</a></cite> y que Carl Friedrich Gauss enunció y demostró de forma explícita en 1801 (<i>Disquisitiones Arithmeticae</i>, art. 16) <cite data-ref><a href="#ref-3">[3]</a></cite>: el teorema fundamental de la aritmética.</p>
+
+  <div class="bloque bloque--teorema" data-sin-numero data-nombre="Teorema fundamental de la aritmética">
+    <p>Todo entero \(n \ge 2\) se escribe como producto de primos, y esa escritura es única salvo el orden de los factores:</p>
+    \[ n = p_1^{a_1}\cdots p_k^{a_k}, \qquad p_1 < \cdots < p_k \text{ primos}, \quad a_i \ge 1. \]
+  </div>
+
+  <p>Desde Euclides han pasado más de dos mil años, y el teorema fundamental sigue siendo la fuente de preguntas muy naturales sobre los números. Una de ellas es la que seguiremos en este texto: dado un entero, ¿cuántos primos distintos lo dividen?</p>
+
+  <!-- ───────────────────────── 1 ───────────────────────── -->
+  <p class="etiqueta">Sección 1</p>
+  <h2>¿Cuántos factores primos distintos tiene un número natural?</h2>
+
+  <p>Por el teorema fundamental de la aritmética, cada \(n \ge 2\) se escribe de forma única como \(n = p_1^{a_1}\cdots p_k^{a_k}\). El número \(k\) de primos distintos que aparecen está entonces bien determinado por \(n\), y lo llamamos \(\omega(n)\):</p>
+  \[ \omega(n) = \#\{\, p \text{ primo} : p \mid n \,\}, \qquad \omega : \mathbb{N} \to \mathbb{N}_0. \]
+  <p>Por ejemplo,</p>
+  \[ \omega(12) = 2 \ \ (12 = 2^2\cdot 3), \qquad \omega(30) = 3, \qquad \omega(97) = 1, \qquad \omega(1) = 0. \]
+  <p>Nótese que \(\omega\) no cuenta multiplicidades: \(\omega(12) = 2\) aunque 2 aparece dos veces.</p>
+
+  <!-- ───────────────────────── 2 ───────────────────────── -->
+  <p class="etiqueta">Sección 2</p>
+  <h2>¿Cómo calcular \(\omega(n)\) para todo \(n \le N\)?</h2>
+
+  <p>Para \(n\) grande, factorizar cada número uno por uno es lento. Es más barato invertir el orden: en lugar de preguntar, para cada \(n\), qué primos lo dividen, recorremos cada primo \(p\) y le sumamos 1 a todos sus múltiplos. Supongamos que ya tenemos la lista de los primos \(p \le N\) (por ejemplo, con la criba de Eratóstenes).</p>
+
+  <pre><code class="language-plaintext">
+    w = [0] * (N + 1)
+    para cada primo p <= N:
+        para m en p, 2p, 3p, ... <= N:
+            w[m] += 1
+  </code></pre>
+
+  <p>Aquí <code>w</code> es una lista cuya posición \(n\) guarda \(\omega(n)\) al terminar, para todos los \(n \le N\) a la vez; se crea con \(N + 1\) ceros para que exista la posición \(N\). El algoritmo es correcto porque cada \(m\) recibe exactamente un \(+1\) por cada primo que lo divide, que es la definición de \(\omega(m)\).</p>
+  <p>Por ejemplo, con \(N = 10\) la lista evoluciona así:</p>
+
+  <div class="tabla-criba-envoltura">
+    <table class="tabla-criba">
+      <thead><tr><th>\(n\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr></thead>
+      <tbody>
+        <tr><td>inicio</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>tras \(p = 2\)</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>tras \(p = 3\)</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>2</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>tras \(p = 5\)</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>2</td><td>0</td><td>1</td><td>1</td><td>2</td></tr>
+        <tr><td>tras \(p = 7\)</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>2</td><td>1</td><td>1</td><td>1</td><td>2</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ancho" data-algoritmo="criba"></div>
+
+  <p class="nota-fuente">Del cuaderno: factorizar uno por uno frente a la criba</p>
+  <div class="pestanas">
+    <section data-titulo="Uno por uno">
+      <pre><code class="language-python">
+        def factorizar(n):
+            # división de prueba hasta √n: el 2 y luego solo impares
+            f, d = {}, 2
+            while d * d <= n:
+                while n % d == 0:
+                    f[d] = f.get(d, 0) + 1
+                    n //= d
+                d += 1 if d == 2 else 2
+            if n > 1:                    # lo que sobra es un primo
+                f[n] = f.get(n, 0) + 1
+            return f
+
+        def omega(n):
+            return len(factorizar(n))    # primos distintos, sin multiplicidad
+      </code></pre>
+    </section>
+    <section data-titulo="Criba">
+      <pre><code class="language-python">
+        def primos_hasta(N):
+            # criba de Eratóstenes: tacha los múltiplos de cada p ≤ √N
+            es_primo = np.ones(N + 1, dtype=bool)
+            es_primo[:2] = False
+            for p in range(2, math.isqrt(N) + 1):
+                if es_primo[p]:
+                    es_primo[p*p::p] = False
+            return np.flatnonzero(es_primo)
+
+        def criba_omega(N, primos=None):
+            if primos is None:
+                primos = primos_hasta(N)
+            w = np.zeros(N + 1, dtype=np.uint8)
+            T = max(math.isqrt(N), N // 10_000)
+            # primos pequeños: +1 a w[p], w[2p], w[3p], ...
+            for p in primos[primos <= T]:
+                w[p::p] += 1
+            # primos grandes: tienen pocos múltiplos j·p ≤ N (j ≤ N/T);
+            # para cada j se suma +1 de una vez a todos los p con j·p ≤ N
+            grandes = primos[primos > T]
+            for j in range(1, N // T + 1):
+                m = np.searchsorted(grandes, N // j, side='right')
+                if m == 0:
+                    break
+                w[grandes[:m] * j] += 1
+            return w
+      </code></pre>
+    </section>
+    <section data-titulo="Medir los tiempos">
+      <pre><code class="language-python">
+        N0 = 20_000_000
+
+        # criba: ω(n) para los 20 millones de números a la vez
+        t = time.perf_counter(); w0 = criba_omega(N0); t_criba = time.perf_counter() - t
+
+        # factorización: solo 2000 números al azar, uno por uno
+        muestra = [random.randrange(2, N0 + 1) for _ in range(2000)]
+        t = time.perf_counter(); fact = [omega(n) for n in muestra]; t_fact = time.perf_counter() - t
+
+        # se compara el tiempo por número: t_criba / N0 frente a t_fact / 2000
+        iguales = sum(int(w0[n]) == f for n, f in zip(muestra, fact))
+      </code></pre>
+    </section>
+  </div>
+  <div class="tiempos">
+    <div class="cifra c-amarillo"><span class="cifra__numero">43 756 ns</span><span class="cifra__texto">por número factorizando uno por uno: 0,09 s para 2000 números al azar \(\le 2\cdot 10^7\)</span></div>
+    <div class="cifra c-verde"><span class="cifra__numero">59 ns</span><span class="cifra__texto">por número con la criba: 1,17 s para los 20 000 000 números \(\le 2\cdot 10^7\)</span></div>
+  </div>
+  <p class="nota-fuente">Las dos formas coinciden en 2000 de 2000 números aleatorios \(\le 2\cdot 10^7\).</p>
+
+  <h3><span class="num">2.1</span>El costo</h3>
+  <p>El costo del algoritmo es el número de veces que se ejecuta <code>w[m] += 1</code>. El primo \(p\) lo ejecuta una vez por cada múltiplo de \(p\) en \(\{1,\dots,N\}\), es decir, \(\lfloor N/p \rfloor\) veces. Por lo tanto</p>
+  \[ \text{costo} = \sum_{p \le N} \left\lfloor \frac{N}{p} \right\rfloor \;\le\; N \sum_{p \le N} \frac{1}{p}. \]
+  <p>Como al terminar cada posición \(m\) contiene \(\omega(m)\), el costo es también la suma de la lista, \(\sum_{n \le N} \omega(n)\); volveremos sobre esta doble lectura más adelante.</p>
+  <p>Todo depende entonces de cuánto crece \(S(N) = \sum_{p \le N} 1/p\). Lo medimos.</p>
+
+  <div class="bloque bloque--ejemplo" data-rotulo="Experimento">
+    <p>Calculamos \(S(N)\) para \(N = 10^k\) y la comparamos con \(\log\log N\).</p>
+  </div>
+
+  <div class="interactivo tablero ancho c-amarillo" id="tablero-suma">
+    <p class="tablero__titulo">Diferencia \(S(N) - \log\log N\), con \(S(N) = \sum_{p\le N} 1/p\)</p>
+    <div class="controles">
+      <span class="rotulo">N máximo</span>
+      <input type="range" id="suma-k" min="1" max="8" step="1" value="8" aria-label="Exponente máximo de N">
+      <output id="suma-k-salida"></output>
+      <button type="button" id="suma-revelar" aria-pressed="false" class="c-morado revelar">Revelar a qué converge</button>
+    </div>
+    <div class="grafico" data-grafico="suma"></div>
+  </div>
+
+  <p>La suma crece como \(\log\log N\) y la diferencia \(S(N) - \log\log N\) se estabiliza en una constante, cerca de 0,2615. Es asombroso que una suma hecha con los primos, tan irregulares, tenga una constante tan precisa; y esa regularidad es un teorema.</p>
+
+  <div class="bloque bloque--teorema">
+    <p class="bloque__rotulo">Teorema <span>· Segundo teorema de Mertens 1874</span> <cite data-ref><a href="#ref-6">[6]</a></cite></p>
+    <p>Existe una constante \(M \approx 0{,}2615\) tal que</p>
+    \[ \sum_{p \le N} \frac{1}{p} = \log\log N + M + O\!\left(\frac{1}{\log N}\right). \]
+  </div>
+
+  <p>De aquí,</p>
+  \[ \text{costo} \;\le\; N\big(\log\log N + M\big) + o(N) = O(N \log\log N). \]
+  <p>Como \(\log\log N\) crece muy lentamente (para \(N = 10^8\) vale apenas 2,9), el algoritmo es casi lineal en \(N\).</p>
+
+  <div class="bloque bloque--observacion" data-rotulo="La lista de primos">
+    <p>La lista de primos que el algoritmo supone se obtiene con la criba de Eratóstenes, que tiene el mismo orden de costo: para cada primo \(p \le \sqrt{N}\) se tachan unos \(N/p\) múltiplos.</p>
+  </div>
+
+  <!-- ───────────────────────── 3 ───────────────────────── -->
+  <p class="etiqueta">Sección 3</p>
+  <h2>¿Cuál es la media de \(\omega(n)\)?</h2>
+
+  <div class="interactivo tablero ancho c-morado" id="tablero-media">
+    <p class="tablero__titulo">Media de \(\omega(n)\) para \(n \le x\)</p>
+    <div class="controles">
+      <span class="rotulo">Candidatas</span>
+      <button type="button" class="c-gris" data-curva="sen" aria-pressed="false">sen x</button>
+      <button type="button" class="c-amarillo" data-curva="raiz" aria-pressed="false">√x</button>
+      <button type="button" class="c-azul" data-curva="log" aria-pressed="false">log x</button>
+      <button type="button" class="c-verde revelar" data-curva="loglog" aria-pressed="false">Revelar</button>
+    </div>
+    <div class="grafico" data-grafico="media"></div>
+  </div>
+
+  <p>Elegimos \(n\) al azar, de forma uniforme, en \(\{1,\dots,x\}\). En ese conjunto hay \(\lfloor x/p \rfloor\) múltiplos de \(p\), así que</p>
+  \[ P(p \mid n) = \frac{\lfloor x/p \rfloor}{x} \approx \frac{1}{p}. \]
+  <p>Por ejemplo, con \(p = 3\) y \(x = 12\) los múltiplos son 3, 6, 9, 12 y \(P(3 \mid n) = 4/12 = 1/3\).</p>
+
+  <div class="bloque" data-rotulo="Doble conteo">
+    <p>Sea</p>
+    \[ \mathcal{A} = \{(p,n) \;:\; p \le x \text{ primo},\ n \le x,\ p \mid n\}. \]
+    <p>Como vimos al estudiar el costo de la criba, \(|\mathcal{A}|\) es el número de veces que se ejecuta <code>w[m] += 1</code>. Contamos \(|\mathcal{A}|\) de dos maneras.</p>
+    <p><i>Por \(n\).</i> Fijado \(n\), los pares son los primos que lo dividen: hay \(\omega(n)\). Entonces \(|\mathcal{A}| = \sum_{n \le x} \omega(n)\).</p>
+    <p><i>Por \(p\).</i> Fijado \(p\), los pares son sus múltiplos \(p, 2p, \dots, kp \le x\), con \(k = \lfloor x/p \rfloor\). Entonces \(|\mathcal{A}| = \sum_{p \le x} \lfloor x/p \rfloor\).</p>
+    <p>Igualando y dividiendo entre \(x\):</p>
+    \[ \frac{1}{x} \sum_{n \le x} \omega(n) = \frac{1}{x} \sum_{p \le x} \left\lfloor \frac{x}{p} \right\rfloor. \]
+  </div>
+
+  <p>El lado izquierdo es la media de \(\omega\) sobre \(n \le x\). Para el derecho, escribimos \(\lfloor x/p \rfloor = x/p - \theta_p\) con \(0 \le \theta_p < 1\); el error total es a lo sumo \(\pi(x)\), que dividido entre \(x\) es \(O(1/\log x)\). Entonces</p>
+  \[ \frac{1}{x} \sum_{n \le x} \omega(n) = \sum_{p \le x} \frac{1}{p} + O\!\left(\frac{1}{\log x}\right). \]
+  <p>Esta es justamente la suma que ya sabemos estimar. Por el teorema de Mertens de la sección anterior,</p>
+  \[ \frac{1}{x} \sum_{n \le x} \omega(n) = \log\log x + M + O\!\left(\frac{1}{\log x}\right). \]
+  <p>Es decir, en promedio un entero \(n \le x\) tiene unos \(\log\log x\) factores primos distintos.</p>
+
+  <!-- ───────────────────────── 4 ───────────────────────── -->
+  <p class="etiqueta">Sección 4</p>
+  <h2>¿Cómo se distribuye \(\omega(n)\)?</h2>
+
+  <h3><span class="num">4.1</span>La forma: una campana</h3>
+
+  <div class="interactivo tablero ancho c-morado" id="tablero-forma">
+    <p class="tablero__titulo">Histograma de \(\omega(n)\) para \(n \le x\)</p>
+    <div class="controles">
+      <span class="rotulo">x</span>
+      <input type="range" id="forma-x" aria-label="Valor de x">
+      <output id="forma-x-salida"></output>
+    </div>
+    <div class="hist" id="hist-forma"></div>
+    <p class="lectura" id="forma-lectura"></p>
+  </div>
+
+  <p>El histograma tiene forma de campana. Una explicación posible es que \(\omega(n)\) se puede escribir como una suma de indicadores, uno por cada primo:</p>
+  \[ \omega(n) = [\,2 \mid n\,] + [\,3 \mid n\,] + [\,5 \mid n\,] + [\,7 \mid n\,] + \cdots \]
+  <p>donde \([\,p \mid n\,]\) vale 1 si \(p\) divide a \(n\) y 0 si no. Sabemos que una suma de muchos términos independientes, cada uno con peso pequeño, tiene forma de campana (teorema central del límite). Los indicadores anteriores no son independientes, pero lo parecen: que 2 divida a \(n\) casi no dice nada sobre si 3 lo divide. Por eso probamos el siguiente modelo: reemplazar cada \([\,p \mid n\,]\) por una variable \(X_p\) que vale 1 con probabilidad \(1/p\) y 0 con probabilidad \(1 - 1/p\), todas independientes, y estudiar \(\sum_{p \le x} X_p\).</p>
+  <p>Una campana \(N(\mu, \sigma^2)\) queda determinada por dos números: el centro \(\mu\) (la media) y el ancho \(\sigma\) (la raíz de la varianza). La media ya la conocemos. Falta la varianza.</p>
+
+  <h3><span class="num">4.2</span>La varianza</h3>
+  <p>Una variable que vale 1 con probabilidad \(q\) y 0 con probabilidad \(1 - q\) tiene varianza \(q(1-q)\). Entonces</p>
+  \[ \operatorname{Var}(X_p) = \frac{1}{p}\Big(1 - \frac{1}{p}\Big). \]
+  <p>Para variables independientes las varianzas se suman, así que en el modelo</p>
+  \[ \operatorname{Var}\Big(\sum_{p \le x} X_p\Big) = \sum_{p \le x} \frac{1}{p}\Big(1 - \frac{1}{p}\Big) = \sum_{p \le x} \frac{1}{p} - \sum_{p \le x} \frac{1}{p^2} \approx \big(\log\log x + M\big) - 0{,}45 \approx \log\log x - 0{,}19. \]
+  <p>El primer sumando es el del teorema de Mertens. El segundo converge cuando \(x \to \infty\) (a 0,4522…), de modo que solo desplaza la constante: la varianza del modelo crece como \(\log\log x\), igual que la media.</p>
+
+  <h3><span class="num">4.3</span>Por qué falla: los primos grandes</h3>
+  <p>El modelo supone que los eventos \(\{p \mid n\}\) y \(\{q \mid n\}\), para primos distintos \(p \ne q\), son independientes, es decir,</p>
+  \[ P(p \mid n \text{ y } q \mid n) = \frac{1}{p} \cdot \frac{1}{q} = \frac{1}{pq}. \]
+  <p>Pero para primos distintos, \(p \mid n\) y \(q \mid n\) ocurren a la vez si y solo si \(pq \mid n\), así que la probabilidad real es</p>
+  \[ P(pq \mid n) = \frac{\lfloor x/(pq) \rfloor}{x}. \]
+  <p>Comparemos las dos expresiones:</p>
+  <ul>
+    <li>Si \(pq \ll x\), entonces \(\lfloor x/(pq) \rfloor \approx x/(pq)\) y la probabilidad real es \(\approx 1/(pq)\): la independencia funciona.</li>
+    <li>Si \(pq > x\), entonces \(\lfloor x/(pq) \rfloor = 0\) y la probabilidad real es exactamente 0, no \(1/(pq)\).</li>
+  </ul>
+  <p>Por ejemplo, con \(x = 100\), \(p = 11\) y \(q = 13\) tenemos \(pq = 143 > 100\), y ningún \(n \le 100\) es múltiplo de ambos.</p>
+
+  <div class="bloque bloque--observacion" data-rotulo="Consecuencia">
+    <p>Un \(n \le x\) no puede tener dos primos cuyo producto exceda \(x\); en particular, no puede tener dos primos mayores que \(\sqrt{x}\). Por tanto, los números con muchos factores primos grandes son más raros de lo que predice el modelo, y es plausible que la distribución real quede más “apretada” y su varianza sea menor que la del modelo. Lo medimos.</p>
+  </div>
+
+  <div class="bloque bloque--ejemplo" data-rotulo="Experimento">
+    <p>Calculamos la varianza de \(\omega(n)\) sobre \(n \le x\) para \(x = 10^k\) y la comparamos con la del modelo, \(\log\log x - 0{,}19\).</p>
+  </div>
+
+  <div class="interactivo tablero ancho c-morado" id="tablero-varianza">
+    <p class="tablero__titulo">Varianza de \(\omega(n)\) para \(n \le x\)</p>
+    <div class="controles">
+      <button type="button" id="var-dif" aria-pressed="false" class="c-morado">Ver diferencia con log log x</button>
+    </div>
+    <div class="grafico" data-grafico="varianza"></div>
+  </div>
+
+  <p>La varianza real queda por debajo de la del modelo, como se esperaba, y su diferencia con \(\log\log x\) parece estabilizarse en una constante \(c \approx 1{,}7\): la varianza real es \(\log\log x - c\).</p>
+
+  <h3><span class="num">4.4</span>Estandarizar</h3>
+  <p>Cada \(x\) produce una campana distinta. Para compararlas todas con una sola, restamos el centro y dividimos por el ancho:</p>
+  \[ \frac{\omega(n) - \mu}{\sigma} \approx N(0,1). \]
+  <p>Nos quedamos solo con el término que crece, \(\mu = \log\log n\) y \(\sigma = \sqrt{\log\log n}\). Las constantes que quedaron afuera (por ejemplo, \(+0{,}26\) en la media y una constante negativa en la varianza) divididas entre \(\sqrt{\log\log n}\) tienden a 0 y no afectan el límite. Además, para todo \(n > \sqrt{x}\) los valores \(\log\log n\) y \(\log\log x\) difieren en a lo sumo \(\log 2\), y los \(n \le \sqrt{x}\) son una fracción despreciable, así que da igual escribir \(n\) o \(x\).</p>
+
+  <div class="interactivo tablero ancho c-verde" id="tablero-estandar">
+    <p class="tablero__titulo">Estandarizar: \((\omega(n) - \log\log x)/\sqrt{\log\log x}\)</p>
+    <div class="controles">
+      <span class="rotulo">x</span>
+      <input type="range" id="estandar-x" aria-label="Valor de x">
+      <output id="estandar-x-salida"></output>
+      <button type="button" id="estandar-boton" class="principal">Estandarizar</button>
+    </div>
+    <div class="hist" id="hist-estandar"></div>
+    <div class="leyenda"><span class="c-morado"><i></i>proporción de \(n \le x\) con cada valor de \(\omega(n)\)</span><span class="c-verde"><i class="linea"></i>\(N(0,1)\)</span></div>
+  </div>
+
+  <div class="bloque bloque--observacion" data-rotulo="Heurística">
+    <p>Si cada indicador \([\,p \mid n\,]\) fuera una variable de Bernoulli independiente de parámetro \(1/p\), el teorema central del límite daría</p>
+    \[ \omega(n) = \sum_{p \le x} [\,p \mid n\,] \approx N\big(\log\log x,\ \log\log x\big) \quad\Longleftrightarrow\quad \frac{\omega(n) - \log\log x}{\sqrt{\log\log x}} \approx N(0,1). \]
+  </div>
+  <p>Esa independencia es falsa para los primos grandes, como vimos, pero ¿esos primos cuánto aportan a \(\omega(n)\)?</p>
+
+  <h3><span class="num">4.5</span>¿Qué tan rápido converge la aproximación?</h3>
+  <p>Medimos la distancia entre la distribución de \(\big(\omega(n) - \log\log x\big)/\sqrt{\log\log x}\) y la normal estándar para valores crecientes de \(x\).</p>
+
+  <div class="interactivo tablero ancho c-morado" id="tablero-ks">
+    <p class="tablero__titulo">Distancia a la normal (Kolmogórov–Smirnov) y cociente \(\operatorname{Var}(\omega)/\log\log x\)</p>
+    <div class="grafico" data-grafico="ks"></div>
+  </div>
+
+  <p>La distancia baja, pero muy lentamente. La causa es la constante que los primos grandes introducen en la varianza: la varianza real es \(\log\log x - c\) con \(c \approx 1{,}7\) (subsección anterior), y al estandarizar solo se compara con \(\log\log x\), de modo que el cociente</p>
+  \[ \frac{\operatorname{Var}(\omega)}{\log\log x} = 1 - \frac{c}{\log\log x} \]
+  <p>tiende a 1 a la velocidad de \(1/\log\log x\). Como \(\log\log x\) casi no crece, la convergencia es muy lenta: para \(x = 10^9\) se tiene \(\log\log x \approx 3{,}03\) y el cociente es \(\approx 0{,}44\), todavía lejos de 1.</p>
+  <p>Nos queda la pregunta que dejamos abierta: cuánto aportan los primos grandes a \(\omega(n)\), y si de verdad se pueden olvidar. Eso es lo que resolvieron Erdős y Kac.</p>
+
+  <!-- ───────────────────────── 5 ───────────────────────── -->
+  <p class="etiqueta">Sección 5</p>
+  <h2>Erdős y Kac</h2>
+
+  <p>Nuestros experimentos dejan dos cosas claras: la distancia a la normal baja, pero muy lentamente, y el modelo de independencia que la motivó es falso para los primos grandes. Con computadora solo podemos mirar hasta cierto \(x\); ningún experimento decide si el límite es de verdad la campana. Esto lo resolvieron dos matemáticos en 1939.</p>
+
+  <div class="bloque" data-rotulo="Un poco de historia">
+    <p>En 1917, Hardy y Ramanujan <cite data-ref><a href="#ref-4">[4]</a></cite> demostraron que \(\omega(n)\) tiene orden normal \(\log\log n\): para casi todo \(n\), \(\omega(n)\) está cerca de \(\log\log n\). En 1934 Turán <cite data-ref><a href="#ref-5">[5]</a></cite> dio una demostración más corta, calculando la varianza. Paul Erdős (1913–1996), matemático húngaro que pasó su vida viajando de colaborador en colaborador, y Mark Kac (1914–1984), matemático polaco radicado en Estados Unidos y especialista en probabilidad, retomaron esa línea. Según el relato del propio Kac <cite data-ref><a href="#ref-9">[9]</a></cite>, él notó que la media y la varianza \(\log\log n\) eran exactamente lo que daría una suma de variables independientes, y conjeturó una ley gaussiana; Erdős aportó casi de inmediato la herramienta que faltaba, el tamiz de Brun, que da la casi-independencia de las divisibilidades. El resultado se anunció en 1939 <cite data-ref><a href="#ref-7">[7]</a></cite> y se publicó completo en 1940 <cite data-ref><a href="#ref-8">[8]</a></cite>.</p>
+  </div>
+
+  <div class="bloque bloque--teorema">
+    <p class="bloque__rotulo">Teorema <span>· Erdős–Kac, 1940</span> <cite data-ref><a href="#ref-8">[8]</a></cite></p>
+    <p>Para todo \(a < b\) fijos,</p>
+    \[ \lim_{x \to \infty} \frac{1}{x} \, \#\left\{ n \le x :\ a \le \frac{\omega(n) - \log\log n}{\sqrt{\log\log n}} \le b \right\} = \frac{1}{\sqrt{2\pi}} \int_a^b e^{-t^2/2} \, dt. \]
+  </div>
+
+  <div class="bloque bloque--demostracion" data-rotulo="Idea de la demostración">
+    <p>Se descartan los primos mayores que \(x^{\varepsilon}\), con \(\varepsilon \to 0\) despacio: cada \(n \le x\) tiene a lo sumo \(1/\varepsilon\) de ellos, una cantidad que desaparece al estandarizar. Con los primos restantes la independencia es casi exacta, porque \(\#\{n \le x : d \mid n\} = x/d + O(1)\), y el teorema central del límite da la campana. La demostración completa está en <cite data-ref><a href="#ref-8">8</a>, <a href="#ref-9">9</a>, <a href="#ref-10">10</a></cite>.</p>
+  </div>
+
+  <!-- ───────────────────────── 6 ───────────────────────── -->
+  <p class="etiqueta">Sección 6</p>
+  <h2>¿Para qué sirve esto?</h2>
+
+  <h3><span class="num">6.1</span>Predecir donde la criba no llega</h3>
+  <p>Supongamos que queremos saber cuántos factores primos distintos tiene, en promedio, un entero de 64 bits, es decir, un \(n\) de tamaño hasta \(2^{64} \approx 1{,}8 \times 10^{19}\). Cribar hasta ahí no es viable:</p>
+  <ul>
+    <li><i>memoria:</i> una casilla por número, \(\approx 1{,}8 \times 10^{19}\) bytes, cerca de 18 exabytes;</li>
+    <li><i>tiempo:</i> el costo es casi proporcional a \(N\); si \(N = 10^9\) tarda medio minuto, \(N = 2^{64}\) tardaría del orden de \(10^4\) años.</li>
+  </ul>
+  <p>En cambio, el teorema permite predecir sin cribar. Para \(n \approx 2^{64}\),</p>
+  \[ \log\log 2^{64} = \log(64 \log 2) \approx 3{,}792, \]
+  <p>así que esperamos una campana centrada alrededor de ese valor y con varianza del mismo orden. Para contrastarlo, en lugar de cribar <i>muestreamos</i>: se eligen al azar unos miles de enteros de 64 bits y se factoriza cada uno con el algoritmo de Pollard–Brent, que toma milisegundos.</p>
+
+  <h3>Algoritmo</h3>
+  <div class="pestanas">
+    <section data-titulo="Muestreo">
+      <pre><code class="language-python">
+        def primos_distintos(n):
+            ps = set()
+            # primero se quitan los primos pequeños por división
+            for p in (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47):
+                while n % p == 0:
+                    ps.add(p); n //= p
+            # lo que queda se parte hasta que cada pedazo sea primo
+            pila = [n] if n > 1 else []
+            while pila:
+                m = pila.pop()
+                if m == 1:
+                    continue
+                if es_primo(m):          # Miller–Rabin
+                    ps.add(m)
+                else:
+                    d = un_factor(m)     # Pollard–Brent
+                    pila += [d, m // d]
+            return ps
+
+        CUANTOS = 3000
+        random.seed(2026)
+        w64 = np.array([len(primos_distintos(random.randrange(2**63, 2**64)))
+                        for _ in range(CUANTOS)])
+
+        # predicción: log log 2⁶⁴, corregida con M (media) y con la
+        # diferencia varianza − log log x medida con la criba en x = 10⁶
+        L = math.log(math.log(2**64))
+        c_var = varianza[-1] - lam[-1]
+        pred_media, pred_var = L + M, L + c_var
+      </code></pre>
+    </section>
+    <section data-titulo="Pollard–Brent">
+      <pre><code class="language-python">
+        def un_factor(n):
+            """Pollard rho con la variante de Brent: un factor no trivial de n compuesto."""
+            if n % 2 == 0:
+                return 2
+            while True:
+                # sucesión y ↦ y² + c (mod n) con semilla y constante al azar
+                y, c, m = random.randrange(1, n), random.randrange(1, n), 128
+                g = r = q = 1
+                while g == 1:
+                    x = y
+                    for _ in range(r):          # Brent: x queda fijo, r se duplica
+                        y = (y * y + c) % n
+                    j = 0
+                    while j < r and g == 1:
+                        ys = y
+                        for _ in range(min(m, r - j)):
+                            y = (y * y + c) % n
+                            q = q * abs(x - y) % n   # se acumulan m diferencias
+                        g = math.gcd(q, n); j += m   # un solo mcd por bloque
+                    r *= 2
+                if g == n:                      # el bloque se pasó: se repite paso a paso
+                    g = 1
+                    while g == 1:
+                        ys = (ys * ys + c) % n
+                        g = math.gcd(abs(x - ys), n)
+                if g != n:
+                    return g                    # si g == n, otra semilla
+      </code></pre>
+    </section>
+    <section data-titulo="Miller–Rabin">
+      <pre><code class="language-python">
+        def es_primo(n):
+            """Miller–Rabin con bases fijas: exacto para n < 3,3·10²⁴."""
+            if n < 2:
+                return False
+            for p in (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37):
+                if n % p == 0:
+                    return n == p
+            d, s = n - 1, 0                     # n − 1 = d · 2ˢ con d impar
+            while d % 2 == 0:
+                d //= 2; s += 1
+            for a in (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37):
+                x = pow(a, d, n)
+                if x in (1, n - 1):
+                    continue
+                for _ in range(s - 1):          # se eleva al cuadrado hasta s − 1 veces
+                    x = x * x % n
+                    if x == n - 1:
+                        break
+                else:
+                    return False                # a es testigo: n es compuesto
+            return True
+      </code></pre>
+    </section>
+  </div>
+
+  <h3>Resultados</h3>
+  <div class="interactivo tablero ancho c-azul" id="tablero-64">
+    <p class="tablero__titulo">Predicción para enteros de 64 bits</p>
+    <div class="leyenda" id="leyenda-64"></div>
+    <div class="hist" id="hist-64"></div>
+  </div>
+
+  <table class="tabla-64" id="tabla-64">
+    <thead><tr><th></th><th class="num">teorema</th><th class="num">corregida</th><th class="num">observada</th></tr></thead>
+    <tbody></tbody>
+    <caption></caption>
+  </table>
+
+  <!-- ───────────────────────── Referencias ───────────────────────── -->
+  <p class="etiqueta">Bibliografía</p>
+  <h2>Referencias</h2>
+  <section>
+    <ol class="bibliografia">
+      <li id="ref-1" data-n="1">Aristóteles. <b>Metafísica</b>, A.1, 980a21 (trad. W. D. Ross). <a href="http://classics.mit.edu/Aristotle/metaphysics.1.i.html">classics.mit.edu/Aristotle/metaphysics.1.i.html</a></li>
+      <li id="ref-2" data-n="2">Euclides. <b>Elementos</b>, libro VII, proposiciones 30 a 32. Edición de Joyce: <a href="https://mathcs.clarku.edu/~djoyce/java/elements/">mathcs.clarku.edu/~djoyce/java/elements/</a>; traducción de Heath, vol. 2 (libros III–IX): <a href="https://www.math.mcgill.ca/alapierre/math228/books/%5BHeaII56%5D.pdf">math.mcgill.ca/alapierre/math228/books/[HeaII56].pdf</a></li>
+      <li id="ref-3" data-n="3">C. F. Gauss. <b>Disquisitiones Arithmeticae</b> (1801), art. 14–16. Latín: <a href="https://archive.org/details/disquisitionesa00gaus/">archive.org/details/disquisitionesa00gaus/</a>; traducción al inglés, segunda sección: <a href="https://en.wikisource.org/wiki/Translation:Disquisitiones_Arithmeticae/Second_Section">en.wikisource.org/wiki/Translation:Disquisitiones_Arithmeticae/Second_Section</a></li>
+      <li id="ref-4" data-n="4">G. H. Hardy y S. Ramanujan. <b>The normal number of prime factors of a number n</b>. <span class="fuente">Quarterly Journal of Mathematics 48 (1917), 76–92</span>. <a href="https://ramanujan.sirinudi.org/Volumes/published/ram35.pdf">ramanujan.sirinudi.org/Volumes/published/ram35.pdf</a></li>
+      <li id="ref-5" data-n="5">P. Turán. <b>On a theorem of Hardy and Ramanujan</b>. <span class="fuente">J. London Math. Soc. 9 (1934), 274–276</span>. <a href="https://doi.org/10.1112/jlms/s1-9.4.274">doi.org/10.1112/jlms/s1-9.4.274</a></li>
+      <li id="ref-6" data-n="6">F. Mertens. <b>Ein Beitrag zur analytischen Zahlentheorie</b>. <span class="fuente">J. reine angew. Math. 78 (1874), 46–62</span>. La constante \(M\) se llama de Meissel–Mertens; valor en <a href="https://oeis.org/A077761">oeis.org/A077761</a></li>
+      <li id="ref-7" data-n="7">P. Erdős y M. Kac. <b>On the Gaussian law of errors in the theory of additive functions</b>. <span class="fuente">Proc. Nat. Acad. Sci. USA 25 (1939), 206–207</span>. <a href="https://users.renyi.hu/~p_erdos/1939-09.pdf">users.renyi.hu/~p_erdos/1939-09.pdf</a></li>
+      <li id="ref-8" data-n="8">P. Erdős y M. Kac. <b>The Gaussian law of errors in the theory of additive number theoretic functions</b>. <span class="fuente">Amer. J. Math. 62 (1940), 738–742</span>. <a href="https://users.renyi.hu/~p_erdos/1940-12.pdf">users.renyi.hu/~p_erdos/1940-12.pdf</a>; <a href="https://doi.org/10.2307/2371483">doi:10.2307/2371483</a></li>
+      <li id="ref-9" data-n="9">A. Granville y K. Soundararajan. <b>Sieving and the Erdős–Kac theorem</b>. <span class="fuente">En Equidistribution in Number Theory, An Introduction, Springer (2007), 15–27</span>. <a href="https://arxiv.org/pdf/math/0606039">arxiv.org/pdf/math/0606039</a></li>
+      <li id="ref-10" data-n="10">P. Billingsley. <b>On the central limit theorem for the prime divisor functions</b>. <span class="fuente">Amer. Math. Monthly 76 (1969), 132–139</span>. <a href="https://doi.org/10.2307/2317259">doi.org/10.2307/2317259</a></li>
+    </ol>
+  </section>
+
+</main>
+
+<script type="application/json" id="datos">{"M":0.2614972128476428,"S":{"x":[10,13,18,24,32,42,56,75,100,133,178,237,316,422,562,750,1000,1334,1778,2371,3162,4217,5623,7499,10000,13335,17783,23714,31623,42170,56234,74989,100000,133352,177828,237137,316228,421697,562341,749894,1000000,1333521,1778279,2371374,3162278,4216965,5623413,7498942,10000000,13335214,17782794,23713737,31622777,42169650,56234133,74989421,100000000,133352143,177827941,237137371,316227766,421696503,562341325,749894209,1000000000],"S1":[1.176190476190476,1.344022644022644,1.4028461734344086,1.4989560132513422,1.565696836388161,1.617114107317627,1.680514441544098,1.75656554702299,1.8028172010488708,1.8653041963875021,1.9174044038667266,1.971321660418446,2.022523059752116,2.0684772115405425,2.1099656071739656,2.156570265569057,2.1980801271750874,2.2403247147632257,2.2776376670650276,2.3144495719009885,2.3492698901926774,2.3851762213947625,2.4183868643408926,2.4509139779012594,2.483059947233561,2.513580840378935,2.543167354742869,2.572136973672069,2.5999696400523,2.627456042364689,2.6539938244256684,2.6799557583803675,2.7052721790472645,2.7299099220669807,2.753858334311161,2.777415691024579,2.800364864424899,2.82283551197133,2.844802123555902,2.8662848865475348,2.8873280995676733,2.9079616372655046,2.9281394629844573,2.947950705303641,2.967357710762869,2.98641251628853,3.0050950402809087,3.023443257929216,3.0414493812797114,3.059154720891295,3.0765466699666253,3.0936364571547945,3.1104435401438364,3.1269696643579845,3.143229955874772,3.1592294509602636,3.1749752299205256,3.190479886952652,3.2057480213481497,3.220783336697603,3.2355988249171466,3.2501966235479083,3.2645850897963773,3.278769274116408,3.2927557187989716],"S2":[0.42151927437641723,0.4357008969496482,0.43916110456210494,0.44382154683284,0.44605119020125944,0.44737653438879954,0.44872605937392707,0.44989087067631583,0.4504287882637524,0.4509911757865886,0.45133258931321674,0.45159906625392693,0.45178768498750727,0.4519127474255302,0.45199932583661606,0.45207222527649826,0.4521204302493045,0.45215712281605625,0.4521812616728867,0.4521992159698499,0.4522120599504687,0.4522219696574601,0.45222882552295635,0.452233874543017,0.4522376043399502,0.4522402542749188,0.452242182732909,0.45224359823654986,0.45224461922497683,0.4522453754746053,0.452245922672,0.45224632431618506,0.4522466177920538,0.45224683188242276,0.45224698808633124,0.4522471033489805,0.452247187513598,0.4522472493312952,0.4522472946335538,0.45224732785768107,0.45224735226537405,0.4522473702074323,0.45224738336409087,0.452247393051626,0.4522474001666113,0.45224740540548575,0.4522474092570064,0.4522474120934665,0.45224741418100894,0.45224741572029203,0.4522474168540254,0.45224741768945476,0.4522474183055693,0.45224741875986246,0.4522474190950567,0.4522474193423804,0.45224741952490666,0.4522474196596873,0.4522474197592128,0.4522474198327086,0.45224741988701755,0.45224741992714446,0.452247419956804,0.4522474199787297,0.4522474199949422]},"xs":[100,133,178,237,316,422,562,750,1000,1334,1778,2371,3162,4217,5623,7499,10000,13335,17783,23714,31623,42170,56234,74989,100000,133352,177828,237137,316228,421697,562341,749894,1000000,1333521,1778279,2371374,3162278,4216965,5623413,7498942,10000000,13335214,17782794,23713737,31622777,42169650,56234133,74989421,100000000,133352143,177827941,237137371,316227766,421696503,562341325,749894209,1000000000],"K":10,"conteo":[[1,35,56,8,0,0,0,0,0,0],[1,45,71,16,0,0,0,0,0,0],[1,54,98,25,0,0,0,0,0,0],[1,65,132,38,1,0,0,0,0,0],[1,82,170,62,1,0,0,0,0,0],[1,101,227,89,4,0,0,0,0,0],[1,123,299,132,7,0,0,0,0,0],[1,155,387,195,12,0,0,0,0,0],[1,193,508,275,23,0,0,0,0,0],[1,244,658,390,41,0,0,0,0,0],[1,304,857,551,65,0,0,0,0,0],[1,385,1109,771,104,1,0,0,0,0],[1,483,1448,1060,168,2,0,0,0,0],[1,617,1872,1463,260,4,0,0,0,0],[1,783,2435,1997,398,9,0,0,0,0],[1,998,3166,2712,605,17,0,0,0,0],[1,1280,4097,3695,894,33,0,0,0,0],[1,1640,5319,4999,1318,58,0,0,0,0],[1,2103,6919,6737,1920,103,0,0,0,0],[1,2705,8991,9069,2774,174,0,0,0,0],[1,3476,11726,12138,3995,286,1,0,0,0],[1,4489,15238,16301,5671,468,2,0,0,0],[1,5791,19872,21776,8046,742,6,0,0,0],[1,7491,25896,29093,11326,1170,12,0,0,0],[1,9700,33759,38844,15855,1816,25,0,0,0],[1,12566,44065,51761,22132,2778,49,0,0,0],[1,16276,57582,68904,30772,4201,92,0,0,0],[1,21136,75223,91707,42597,6308,165,0,0,0],[1,27450,98358,121937,58824,9365,293,0,0,0],[1,35695,128648,162068,80980,13797,508,0,0,0],[1,46437,168328,215387,111113,20226,848,1,0,0],[1,60445,220411,286039,152175,29420,1399,4,0,0],[1,78734,288726,379720,208034,42492,2285,8,0,0],[1,102655,378262,504131,283656,61146,3651,19,0,0],[1,133845,496001,668859,386280,87486,5764,43,0,0],[1,174670,650396,887562,525023,124623,9014,85,0,0],[1,228008,853269,1177538,712548,176823,13924,167,0,0],[1,297835,1119801,1561892,965953,249840,21334,309,0,0],[1,389131,1470233,2071492,1307763,351850,32383,560,0,0],[1,508695,1930814,2747243,1768514,493931,48749,995,0,0],[1,665134,2536838,3642766,2389433,691209,72902,1716,1,0],[1,870265,3333388,4830622,3225102,964611,108317,2905,3,0],[1,1138985,4381494,6405550,4349087,1342958,159854,4857,8,0],[1,1491083,5761221,8492865,5860985,1864860,234728,7974,20,0],[1,1952835,7576833,11261185,7891643,2584633,342651,12953,43,0],[1,2558288,9967640,14930758,10619862,3574200,498076,20729,96,0],[1,3352655,13115672,19796250,14282384,4933459,720666,32853,193,0],[1,4394972,17261887,26247558,19196826,6797872,1038392,51533,380,0],[1,5762859,22724609,34800362,25789580,9351293,1490458,80119,719,0],[1,7558979,29921058,46142783,34627984,12844967,2131508,123541,1322,0],[1,9917672,39404548,61182760,46474674,17618823,3038044,189047,2372,0],[1,13015025,51906687,81122853,62350992,24133350,4317153,287136,4173,1],[1,17084930,68385893,107567387,83615398,33017265,6116314,433360,7215,3],[1,22432523,90115248,142633243,112093120,45118215,8641788,650109,12246,10],[1,29461332,118769992,189133980,150220533,61585895,12179513,969528,20527,24],[1,38701256,156562862,250803475,201250481,83980135,17123455,1438595,33888,61],[1,50851223,206415108,332590117,269536378,114407511,24020091,2124141,55292,138]],"media":[1.71,1.7669172932330828,1.8258426966292136,1.8860759493670884,1.9367088607594938,1.985781990521327,2.0373665480427046,2.082666666666667,2.1260000000000003,2.169415292353823,2.2109111361079865,2.250948966680726,2.2900063251106895,2.3262983163386295,2.361906455628668,2.396452860381384,2.43,2.46246719160105,2.493786200303661,2.524247280087712,2.55377415172501,2.5824994071614893,2.6103958459295087,2.6375601754924056,2.6639999999999997,2.6898059271701964,2.7149661470634543,2.7394333233531674,2.7633732623297114,2.786711785950576,2.8095603912928278,2.8318749049865715,2.853708,2.875069084026423,2.895979202363634,2.9164669933970773,2.936547640656514,2.956223729625453,2.9755226941361057,2.9944520173645826,3.0130317,3.031269764399732,3.0491804606182806,3.0667754306290904,3.084065450671837,3.1010600514825235,3.11776996721902,3.134204850041448,3.15037281,3.1662830195387257,3.181943314521085,3.197361663421663,3.2125450521002,3.2275009214387533,3.2422356101963516,3.2567561166484484,3.271067968],"varianza":[0.38590000000000035,0.4343942563174852,0.4359613685140764,0.4553757410671375,0.4770068899214861,0.49742817996001865,0.5092798976710018,0.529166222222222,0.5481239999999978,0.5724978590165204,0.5848753228118699,0.6055189223217905,0.6233599620093289,0.6428772863927064,0.6616610995546264,0.6812035799554819,0.7002999999999995,0.7187825143904254,0.7375056725599478,0.7557796160052943,0.7744460378519316,0.7923520171326812,0.810491207960836,0.8285514943486127,0.8462240000000021,0.8638177318480045,0.8809157674618486,0.8981710363629132,0.9151045905916222,0.931932686653572,0.9484555481893215,0.9648209753926373,0.9809646507360004,0.9969702458833698,1.0127412182761084,1.0283232901212696,1.0436799137483472,1.0588970430534896,1.0738970793639133,1.0887230734322841,1.1033552747951099,1.1178202203738685,1.1321026629043178,1.1462083955589133,1.1601467143460127,1.1739136254054436,1.1875177977805436,1.2009563842965871,1.2142360880127043,1.2273587576841116,1.2403278904650854,1.2531437559433378,1.2658136839305687,1.278336587410676,1.2907186407552693,1.3029586198034195,1.3150629307243502],"D":[0.3248379586960722,0.3130418298072439,0.30186839564049595,0.31285689874799505,0.3122255605084162,0.3177834328899225,0.3246217545087884,0.32385495117676943,0.32532127236551256,0.3238621749024209,0.3248971135121498,0.32315858083120547,0.3229797389678587,0.32010750327796317,0.3183247846031439,0.3160659612564368,0.31312552842685554,0.3104849357222478,0.3078967238458449,0.3050949807893921,0.3025482492484079,0.29960278267492413,0.2969185348590302,0.29409494481746434,0.291309716070367,0.28861389796110537,0.2860579380371992,0.2833847308095973,0.2808203992053838,0.27825916452352656,0.27576848336809817,0.27333514325802366,0.2709433845232607,0.26857117136031156,0.2662889240514178,0.2640249875410107,0.2618246782251511,0.2596553383480014,0.2575471152078612,0.25547363173576076,0.25345627773027557,0.2514619026931647,0.24951397454600277,0.24761110342367204,0.24574213260452585,0.24391377410475756,0.24211921400794092,0.2403606095347726,0.23863804365652824,0.23694613126274017,0.23560137814665094,0.23566902475749657,0.2357090721142141,0.23571539152037102,0.2356928222887758,0.23564460975393292,0.23557185524360785],"c_var6":-1.6448272637400105,"w64":{"n":3000,"conteo":[0,81,337,668,800,644,335,103,28,4,0,0],"media":4.056666666666667,"var":2.064788888888889,"L":3.7923701627780075,"pred_media":4.05386737562565,"pred_var":2.147542899037997}}</script>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════════
+   Datos embebidos (cuaderno Erdos_Kac.ipynb, mismo código, hasta 10^9):
+     S      : x, S1 = Σ1/p, S2 = Σ1/p²            (rejilla 10^1 … 10^9)
+     xs     : rejilla de x (8 por década, 10^2 … 10^9)
+     conteo : conteo[i][k] = #{n ≤ xs[i] : ω(n) = k}
+     media, varianza, D (distancia KS a N(0,1))     por cada x
+     w64    : histograma de ω para 3000 enteros de 64 bits (semilla 2026)
+   ════════════════════════════════════════════════════════════════════════ */
+const D = JSON.parse(document.getElementById('datos').textContent);
+const M = D.M;
+const LL = x => Math.log(Math.log(x));
+const coma = (v, d = 3) => v.toFixed(d).replace('.', ',').replace('-', '−');
+const miles = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const SUP = { 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹', '-': '⁻' };
+const pot = v => '10' + String(Math.round(Math.log10(v))).split('').map(c => SUP[c]).join('');
+const esPotencia = x => Math.abs(Math.log10(x) - Math.round(Math.log10(x))) < 1e-9;
+const nombreX = x => esPotencia(x) ? pot(x) : miles(x);
+const nombreXLargo = x => esPotencia(x) ? pot(x) : `${miles(x)} ≈ 10<sup>${coma(Math.log10(x), 2)}</sup>`;
+const pct = v => coma(100 * v, 1) + ' %';
+const normal = (z, mu, v) => Math.exp(-((z - mu) ** 2) / (2 * v)) / Math.sqrt(2 * Math.PI * v);
+const C = () => Plantilla.colores;
+const pmf = i => D.conteo[i].map(c => c / D.xs[i]);
+
+/* Etiqueta de un eje logarítmico: solo potencias de 10 */
+const ejeLog = (nombre, extra = {}) => ({
+  type: 'log', logBase: 10, name: nombre,
+  axisLabel: { formatter: v => esPotencia(v) ? pot(v) : '' },
+  minorTick: { show: false }, minorSplitLine: { show: false }, ...extra,
+});
+const numEje = v => String(Number(v.toPrecision(10))).replace('.', ',').replace('-', '−');
+const ejeValor = extra => ({ type: 'value', axisLabel: { formatter: numEje }, ...extra });
+const marcador = color => `<span style="display:inline-block;width:.7em;height:.7em;border-radius:50%;background:${color};margin-right:.4em"></span>`;
+
+/* Actualiza un gráfico ya dibujado: primero cierra el tooltip, que guarda
+   referencias a las series que se van a reemplazar */
+function refrescar(grafico, opciones) {
+  if (!grafico) return;
+  grafico.dispatchAction({ type: 'hideTip' });
+  grafico.dispatchAction({ type: 'updateAxisPointer', currTrigger: 'leave' });
+  grafico.setOption(opciones, { replaceMerge: ['series'] });
+}
+
+/* Botón que se enciende y apaga */
+function interruptor(boton, alCambiar) {
+  boton.addEventListener('click', () => {
+    const activo = boton.getAttribute('aria-pressed') !== 'true';
+    boton.setAttribute('aria-pressed', activo);
+    alCambiar(activo);
+  });
+}
+
+/* ── Sección 2 · Criba paso a paso ───────────────────────────────────── */
+const NMAX_CRIBA = 60;
+function primosHasta(N) {
+  const es = Array(N + 1).fill(true); es[0] = es[1] = false;
+  for (let p = 2; p * p <= N; p++) if (es[p]) for (let m = p * p; m <= N; m += p) es[m] = false;
+  return es.map((v, i) => v ? i : -1).filter(i => i > 0);
+}
+Interactivos.algoritmo('criba', {
+  lenguaje: 'plaintext',
+  entrada: '10',
+  leer: texto => {
+    const N = Number(String(texto).trim());
+    if (!Number.isInteger(N) || N < 2 || N > NMAX_CRIBA) throw new Error(`Escribe un entero N entre 2 y ${NMAX_CRIBA}.`);
+    return N;
+  },
+  aleatoria: () => String(12 + Math.floor(Math.random() * (NMAX_CRIBA - 11))),
+  codigo: `w = [0] * (N + 1)
+para cada primo p <= N:
+    para m en p, 2p, 3p, ... <= N:
+        w[m] += 1`,
+  dibujar(s, caja) {
+    if (!s.w) { caja.innerHTML = ''; return; }
+    const recibe = new Set(s.mult || []), hechos = new Set(s.hechos || []);
+    caja.innerHTML = `<div class="criba">${s.w.map((v, n) =>
+      `<div class="criba__celda${recibe.has(n) ? ' recibe' : ''}${hechos.has(n) ? ' primo' : ''}${n < 2 ? ' tenue' : ''}">` +
+      `<small>${n}</small><b>${v}</b>${recibe.has(n) ? '<i>+1</i>' : ''}</div>`).join('')}` +
+      `<p class="criba__leyenda">arriba: n · abajo: w[n] · morado: recibe +1 en este paso · borde verde: primo ya recorrido</p></div>`;
+  },
+  *pasos(N) {
+    const w = Array(N + 1).fill(0), hechos = [];
+    yield { linea: 1, w: [...w], variables: { N }, nota: `Se crea w con N + 1 = ${N + 1} ceros (posiciones 0 a ${N}).` };
+    for (const p of primosHasta(N)) {
+      const mult = [];
+      for (let m = p; m <= N; m += p) { w[m] += 1; mult.push(m); }
+      hechos.push(p);
+      const lista = mult.length > 6 ? `${mult.slice(0, 5).join(', ')}, …, ${mult[mult.length - 1]}` : mult.join(', ');
+      yield { linea: '2-4', w: [...w], mult, hechos: [...hechos], variables: { N, p, 'múltiplos': mult.length },
+        nota: `\\(p = ${p}\\): reciben \\(+1\\) sus \\(\\lfloor ${N}/${p} \\rfloor = ${mult.length}\\) múltiplos: ${lista}.` };
+    }
+    yield { linea: '', w: [...w], hechos: [...hechos], variables: { N, 'Σ w': w.reduce((a, b) => a + b, 0) },
+      nota: `Terminado: \\(w[n] = \\omega(n)\\) para todo \\(n \\le ${N}\\).` };
+  },
+});
+
+/* ── Sección 2 · S(N) y log log N ────────────────────────────────────── */
+let graficoSuma = null;
+const sumaK = document.getElementById('suma-k'), sumaRevelar = document.getElementById('suma-revelar');
+function opcionesSuma() {
+  const c = C(), k = Number(sumaK.value), revelada = sumaRevelar.getAttribute('aria-pressed') === 'true';
+  const idx = D.S.x.map((x, i) => i).filter(i => D.S.x[i] <= 10 ** k * 1.0001);
+  const df = idx.map(i => [D.S.x[i], D.S.S1[i] - LL(D.S.x[i])]);
+  // Una sola serie siempre; la recta de M solo aparece al revelarla
+  const series = [
+    { name: 'S(N) − log log N', type: 'line', data: df, color: c.amarillo, symbolSize: 6,
+      markLine: { symbol: 'none', silent: true, animation: false, lineStyle: { color: c.moradoFuerte, type: 'dashed', width: 1.6 },
+        label: { formatter: 'M ≈ 0,2615', color: c.moradoFuerte, fontFamily: 'JetBrains Mono, monospace', fontWeight: 600, position: 'insideEndTop' },
+        data: revelada ? [{ yAxis: 0.2615 }] : [] } },
+  ];
+  return {
+    legend: { show: false },
+    tooltip: { trigger: 'axis', formatter: ps => {
+      const x = ps[0].value[0], i = D.S.x.indexOf(x);
+      return `<b>N = ${nombreX(x)}</b><br>S(N) = ${coma(D.S.S1[i], 4)}<br>log log N = ${coma(LL(x), 4)}<br>${marcador(c.amarillo)}diferencia = <b>${coma(D.S.S1[i] - LL(x), 4)}</b>`;
+    } },
+    xAxis: ejeLog('N', { min: 10, max: 10 ** Math.max(k, 2) }),
+    yAxis: ejeValor({ name: 'S(N) − log log N', min: 0.24, max: 0.42, interval: 0.03 }),
+    series,
+  };
+}
+Plantilla.grafico('suma', ({ grafico }) => { graficoSuma = grafico; return opcionesSuma(); });
+function actualizarSuma() {
+  document.getElementById('suma-k-salida').innerHTML = `N ≤ ${pot(10 ** Number(sumaK.value))}`;
+  refrescar(graficoSuma, opcionesSuma());
+}
+sumaK.addEventListener('input', actualizarSuma);
+interruptor(sumaRevelar, activo => {
+  sumaRevelar.textContent = activo ? 'M ≈ 0,2615 · ocultar' : 'Revelar a qué converge';
+  actualizarSuma();
+});
+actualizarSuma();
+
+/* ── Sección 3 · media de ω(n) y curvas candidatas ───────────────────── */
+let graficoMedia = null;
+const candidatas = { sen: false, raiz: false, log: false, loglog: false };
+function opcionesMedia() {
+  const c = C(), xs = D.xs;
+  const curva = (nombre, f, color, extra = {}) => ({ name: nombre, type: 'line', symbol: 'none', color, data: xs.map(x => [x, f(x)]), ...extra });
+  const series = [{ name: 'media de ω(n), n ≤ x', type: 'line', color: c.morado, symbolSize: 6, data: xs.map((x, i) => [x, D.media[i]]), z: 5 }];
+  if (candidatas.sen) series.push(curva('sen x', Math.sin, c.tintaTenue, { lineStyle: { width: 1.4 } }));
+  if (candidatas.raiz) series.push(curva('√x', Math.sqrt, c.amarillo));
+  if (candidatas.log) series.push(curva('log x', Math.log, c.azul));
+  if (candidatas.loglog) series.push(curva('log log x', LL, c.verde, { lineStyle: { width: 3 } }));
+  return {
+    legend: { show: false },
+    tooltip: { trigger: 'axis', formatter: ps => {
+      const x = ps[0].value[0];
+      return `<b>x = ${nombreX(x)}</b><br>` + ps.map(p => `${marcador(p.color)}${p.seriesName}: <b>${coma(p.value[1], p.value[1] > 1000 ? 0 : 3)}</b>`).join('<br>');
+    } },
+    xAxis: ejeLog('x', { min: 100, max: 1e9 }),
+    yAxis: ejeValor({ name: 'media', min: candidatas.sen ? -1.5 : 0, max: v => Math.min(Math.ceil(v.max + 0.2), 25) }),
+    series,
+  };
+}
+Plantilla.grafico('media', ({ grafico }) => { graficoMedia = grafico; return opcionesMedia(); });
+document.querySelectorAll('#tablero-media [data-curva]').forEach(b => interruptor(b, activo => {
+  candidatas[b.dataset.curva] = activo;
+  if (b.dataset.curva === 'loglog') b.textContent = activo ? 'log log x' : 'Revelar';
+  refrescar(graficoMedia, opcionesMedia());
+}));
+
+/* ── Histogramas en SVG propio (secciones 4.1, 4.4 y 6) ──────────────── */
+function marcas(a, b, cuantas = 6) {
+  const bruto = (b - a) / cuantas, mag = 10 ** Math.floor(Math.log10(bruto));
+  const paso = [1, 2, 2.5, 5, 10].map(m => m * mag).find(p => p >= bruto) || bruto;
+  const lista = [];
+  for (let v = Math.ceil(a / paso - 1e-9) * paso; v <= b + 1e-9; v += paso) lista.push(Math.abs(v) < 1e-12 ? 0 : Number(v.toPrecision(12)));
+  return lista;
+}
+function Histograma(caja) {
+  caja.innerHTML = '<svg role="img" aria-label="Histograma"></svg><div class="hist__tip" hidden></div>';
+  const svg = caja.firstElementChild, tip = caja.lastElementChild;
+  const id = 'r' + Math.random().toString(36).slice(2, 8);
+  let s = null;
+  function pintar() {
+    if (!s) return;
+    const W = Math.max(280, caja.clientWidth || 600), H = Math.round(Math.max(250, Math.min(400, W * 0.56)));
+    const L = 54, R = 14, T = 34, B = 48;
+    const [x0, x1] = s.xr, [y0, y1] = s.yr;
+    const X = x => L + (x - x0) / (x1 - x0) * (W - L - R), Y = y => H - B - (y - y0) / (y1 - y0) * (H - T - B);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    let h = `<defs><clipPath id="${id}"><rect x="${L}" y="${T - 4}" width="${W - L - R}" height="${H - T - B + 4}"/></clipPath></defs>`;
+    marcas(y0, y1, 5).forEach(m => {
+      h += `<line class="cuadricula" x1="${L}" x2="${W - R}" y1="${Y(m)}" y2="${Y(m)}"/><text class="marca" x="${L - 8}" y="${Y(m) + 4}" text-anchor="end">${s.yfmt(m)}</text>`;
+    });
+    (s.xmarcas || marcas(x0, x1, Math.max(4, Math.floor(W / 70)))).forEach(m => {
+      if (m < x0 - 1e-9 || m > x1 + 1e-9) return;
+      h += `<text class="marca" x="${X(m)}" y="${H - B + 18}" text-anchor="middle">${String(m).replace('.', ',').replace('-', '−')}</text>`;
+    });
+    h += `<line class="eje" x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}"/>`;
+    h += `<g clip-path="url(#${id})">`;
+    s.barras.forEach((b, i) => {
+      const xa = X(b.c - b.w / 2), xb = X(b.c + b.w / 2), ya = Y(b.h);
+      h += `<rect class="barra" data-i="${i}" x="${xa.toFixed(1)}" y="${ya.toFixed(1)}" width="${Math.max(0, xb - xa).toFixed(1)}" height="${Math.max(0, Y(0) - ya).toFixed(1)}" rx="3" style="fill:var(--${b.color || 'morado'})"/>`;
+    });
+    (s.curvas || []).forEach(cv => {
+      if (cv.opacidad === 0) return;
+      let d = '';
+      for (let k = 0; k <= 240; k++) { const x = x0 + (x1 - x0) * k / 240; d += `${k ? 'L' : 'M'}${X(x).toFixed(1)} ${Y(cv.f(x)).toFixed(1)}`; }
+      h += `<path class="curva" d="${d}" style="stroke:var(--${cv.color});opacity:${cv.opacidad ?? 1}"${cv.punteada ? ' stroke-dasharray="7 6"' : ''}/>`;
+    });
+    (s.verticales || []).forEach(v => {
+      h += `<line class="vertical" x1="${X(v.x)}" x2="${X(v.x)}" y1="${T}" y2="${Y(0)}" style="stroke:var(--${v.color})" stroke-dasharray="6 5"/>` +
+           `<text class="rotulo-vertical" x="${X(v.x) + 6}" y="${T + 10}" style="fill:var(--${v.color}-fuerte)">${v.texto}</text>`;
+    });
+    h += '</g>';
+    s.barras.forEach((b, i) => {
+      const xa = X(b.c - 0.5 * (b.zona || b.w)), xb = X(b.c + 0.5 * (b.zona || b.w));
+      h += `<rect class="zona" data-i="${i}" x="${xa.toFixed(1)}" y="${T}" width="${Math.max(0, xb - xa).toFixed(1)}" height="${H - T - B}" fill="transparent"/>`;
+    });
+    h += `<text class="nombre-eje" x="${(L + W - R) / 2}" y="${H - 8}" text-anchor="middle">${s.xnombre}</text>`;
+    h += `<text class="nombre-eje" x="${L - 46}" y="14">${s.ynombre}</text>`;
+    svg.innerHTML = h;
+  }
+  const ocultar = () => { tip.hidden = true; svg.querySelectorAll('.barra.foco').forEach(r => r.classList.remove('foco')); };
+  svg.addEventListener('pointermove', e => {
+    const z = e.target.closest('rect.zona');
+    if (!z || !s) return ocultar();
+    const i = Number(z.dataset.i), b = s.barras[i];
+    svg.querySelectorAll('.barra').forEach(r => r.classList.toggle('foco', Number(r.dataset.i) === i));
+    tip.innerHTML = b.info;
+    tip.hidden = false;
+    const rc = caja.getBoundingClientRect();
+    let x = e.clientX - rc.left + 14, y = e.clientY - rc.top - tip.offsetHeight - 10;
+    if (x + tip.offsetWidth > rc.width) x = e.clientX - rc.left - tip.offsetWidth - 14;
+    if (y < 0) y = e.clientY - rc.top + 16;
+    tip.style.left = Math.max(0, x) + 'px'; tip.style.top = y + 'px';
+  });
+  svg.addEventListener('pointerleave', ocultar);
+  new ResizeObserver(() => pintar()).observe(caja);
+  return { dibujar(spec) { s = spec; ocultar(); pintar(); } };
+}
+
+/* Índices de la rejilla con 10^3 ≤ x ≤ 10^8 (deslizadores de 4.1 y 4.4) */
+const rango38 = D.xs.map((x, i) => i).filter(i => D.xs[i] >= 1e3 - 1e-6 && D.xs[i] <= 1e8 + 1e-6);
+const K = D.K, ks = [...Array(K).keys()];
+const yMaxForma = Math.max(...rango38.flatMap(pmf)) * 1.1;
+function prepararDeslizador(input, alCambiar) {
+  input.min = 0; input.max = rango38.length - 1; input.step = 1; input.value = rango38.length - 1;
+  input.addEventListener('input', () => alCambiar(rango38[Number(input.value)]));
+  alCambiar(rango38[Number(input.value)]);
+}
+
+/* ── 4.1 · Histograma sin estandarizar ───────────────────────────────── */
+const histForma = Histograma(document.getElementById('hist-forma'));
+prepararDeslizador(document.getElementById('forma-x'), i => {
+  const x = D.xs[i], p = pmf(i), mu = D.media[i];
+  document.getElementById('forma-x-salida').innerHTML = `x = ${nombreXLargo(x)}`;
+  histForma.dibujar({
+    xr: [-0.6, K - 0.4], yr: [0, yMaxForma], xmarcas: ks, yfmt: v => Math.round(100 * v) + ' %',
+    xnombre: 'ω(n)', ynombre: 'proporción de n ≤ x',
+    barras: ks.map(k => ({ c: k, w: 0.72, zona: 1, h: p[k], color: 'morado',
+      info: `<b>ω(n) = ${k}</b><br>${pct(p[k])} de los n ≤ ${nombreX(x)}<br>(${miles(D.conteo[i][k])} números)` })),
+    verticales: [{ x: mu, color: 'amarillo', texto: `media ${coma(mu, 2)}` }],
+  });
+  document.getElementById('forma-lectura').innerHTML =
+    `Para \\(x\\) = ${nombreX(x)}: media de \\(\\omega(n)\\) = <b class="amarillo">${coma(mu, 3)}</b>, varianza = <b>${coma(D.varianza[i], 3)}</b>, \\(\\log\\log x\\) = ${coma(LL(x), 3)}.`;
+  Plantilla.mates && Plantilla.mates(document.getElementById('forma-lectura'));
+});
+
+/* ── 4.3 · Varianza real contra la del modelo ────────────────────────── */
+let graficoVar = null;
+const varDif = document.getElementById('var-dif');
+function opcionesVar() {
+  const c = C(), xs = D.xs, dif = varDif.getAttribute('aria-pressed') === 'true';
+  const series = dif ? [
+    { name: 'varianza real − log log x', type: 'line', color: c.morado, symbolSize: 6, data: xs.map((x, i) => [x, D.varianza[i] - LL(x)]),
+      markLine: { symbol: 'none', silent: true, lineStyle: { color: c.tintaApagada, type: 'dashed', width: 1.4 },
+        label: { formatter: '−c ≈ −1,7', color: c.tintaApagada, fontFamily: 'JetBrains Mono, monospace', position: 'insideEndBottom' }, data: [{ yAxis: -1.7 }] } },
+    { name: 'modelo − log log x', type: 'line', color: c.amarillo, symbol: 'none', data: xs.map(x => [x, -0.19]) },
+  ] : [
+    { name: 'varianza real', type: 'line', color: c.morado, symbolSize: 6, data: xs.map((x, i) => [x, D.varianza[i]]) },
+    { name: 'modelo: log log x − 0,19', type: 'line', color: c.amarillo, symbol: 'none', data: xs.map(x => [x, LL(x) - 0.19]) },
+  ];
+  return {
+    legend: {},
+    tooltip: { trigger: 'axis', formatter: ps => {
+      const x = ps[0].value[0], i = D.xs.indexOf(x), v = D.varianza[i], ll = LL(x);
+      return `<b>x = ${nombreX(x)}</b><br>${marcador(c.morado)}varianza real: <b>${coma(v)}</b><br>${marcador(c.amarillo)}modelo log log x − 0,19: <b>${coma(ll - 0.19)}</b><br>real − log log x: ${coma(v - ll)}`;
+    } },
+    xAxis: ejeLog('x', { min: 100, max: 1e9 }),
+    yAxis: dif ? ejeValor({ name: 'diferencia', min: -2, max: 0 }) : ejeValor({ name: 'varianza', min: 0, max: 3 }),
+    series,
+  };
+}
+Plantilla.grafico('varianza', ({ grafico }) => { graficoVar = grafico; return opcionesVar(); });
+interruptor(varDif, () => { refrescar(graficoVar, opcionesVar()); });
+
+/* ── 4.4 · Estandarizar (animación) ──────────────────────────────────── */
+const histStd = Histograma(document.getElementById('hist-estandar'));
+const botonStd = document.getElementById('estandar-boton');
+let tStd = 0, iStd = rango38[rango38.length - 1], animStd = null;
+const yMaxStd = Math.max(0.45, ...rango38.map(i => Math.max(...pmf(i)) * Math.sqrt(LL(D.xs[i])))) * 1.08;
+const lerp = (a, b, t) => a + (b - a) * t;
+function dibujarStd() {
+  const x = D.xs[iStd], p = pmf(iStd), lam = LL(x), s = Math.sqrt(lam), t = tStd;
+  const est = t > 0.5;
+  histStd.dibujar({
+    xr: [lerp(-0.6, -3.5, t), lerp(K - 0.4, 4.5, t)], yr: [0, lerp(yMaxForma, yMaxStd, t)],
+    xmarcas: t === 0 ? ks : t === 1 ? [-3, -2, -1, 0, 1, 2, 3, 4] : null,
+    yfmt: est ? (v => coma(v, 1)) : (v => Math.round(100 * v) + ' %'),
+    xnombre: est ? '(ω(n) − log log x) / √(log log x)' : 'ω(n)',
+    ynombre: est ? 'densidad' : 'proporción de n ≤ x',
+    barras: ks.map(k => {
+      const z = (k - lam) / s;
+      return { c: lerp(k, z, t), w: lerp(0.72, 0.72 / s, t), zona: lerp(1, 1 / s, t), h: lerp(p[k], p[k] * s, t), color: 'morado',
+        info: `<b>ω(n) = ${k}</b><br>${pct(p[k])} de los n ≤ ${nombreX(x)}` + (est ? `<br>z = (${k} − ${coma(lam, 2)}) / ${coma(s, 2)} = <b>${coma(z, 2)}</b><br>densidad = ${coma(p[k] * s, 3)}; N(0,1) en z: ${coma(normal(z, 0, 1), 3)}` : '') };
+    }),
+    curvas: [{ f: z => normal(z, 0, 1), color: 'verde', opacidad: t < 0.75 ? 0 : (t - 0.75) / 0.25 }],
+  });
+}
+prepararDeslizador(document.getElementById('estandar-x'), i => {
+  iStd = i;
+  document.getElementById('estandar-x-salida').innerHTML = `x = ${nombreXLargo(D.xs[i])}`;
+  dibujarStd();
+});
+botonStd.addEventListener('click', () => {
+  cancelAnimationFrame(animStd);
+  const desde = tStd, hasta = tStd < 0.5 ? 1 : 0;
+  botonStd.textContent = hasta ? 'Volver a ω(n)' : 'Estandarizar';
+  const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dur = reducir ? 0 : 1400, t0 = performance.now();
+  const suave = u => u < 0.5 ? 4 * u ** 3 : 1 - (-2 * u + 2) ** 3 / 2;
+  const cuadro = ahora => {
+    const u = dur ? Math.min(1, (ahora - t0) / dur) : 1;
+    tStd = u >= 1 ? hasta : lerp(desde, hasta, suave(u));
+    dibujarStd();
+    if (u < 1) animStd = requestAnimationFrame(cuadro);
+  };
+  animStd = requestAnimationFrame(cuadro);
+});
+
+/* ── 4.5 · Distancia a la normal y cociente Var/log log x ────────────── */
+Plantilla.grafico('ks', ({ colores: c }) => ({
+  legend: {},
+  tooltip: { trigger: 'axis', formatter: ps => {
+    const x = ps[0].value[0], i = D.xs.indexOf(x), ll = LL(x);
+    return `<b>x = ${nombreX(x)}</b><br>${marcador(c.morado)}distancia KS: <b>${coma(D.D[i])}</b><br>${marcador(c.verde)}Var(ω)/log log x: <b>${coma(D.varianza[i] / ll)}</b><br>log log x = ${coma(ll)}`;
+  } },
+  xAxis: ejeLog('x', { min: 100, max: 1e9 }),
+  yAxis: { type: 'value', min: 0, max: 1.1, interval: 0.2, axisLabel: { formatter: v => coma(v, 1) } },
+  series: [
+    { name: 'distancia KS a N(0,1)', type: 'line', color: c.morado, symbolSize: 6, data: D.xs.map((x, i) => [x, D.D[i]]) },
+    { name: 'Var(ω) / log log x', type: 'line', color: c.verde, symbolSize: 6, data: D.xs.map((x, i) => [x, D.varianza[i] / LL(x)]),
+      markLine: { symbol: 'none', silent: true, lineStyle: { color: c.tintaApagada, type: 'dashed', width: 1.4 },
+        label: { formatter: 'límite del cociente: 1', color: c.tintaApagada, fontFamily: 'JetBrains Mono, monospace', position: 'insideStartTop' }, data: [{ yAxis: 1 }] } },
+  ],
+}));
+
+/* ── 6 · Enteros de 64 bits ──────────────────────────────────────────── */
+(() => {
+  const w = D.w64, n = w.n, frec = w.conteo.map(c => c / n);
+  const k64 = [...Array(12).keys()];
+  document.getElementById('leyenda-64').innerHTML =
+    `<span class="c-azul"><i></i>${miles(n)} enteros de 64 bits</span>` +
+    `<span class="c-morado"><i class="linea"></i>predicción: media ${coma(w.pred_media, 2)}, varianza ${coma(w.pred_var, 2)}</span>` +
+    `<span class="c-gris"><i class="punteada"></i>solo el teorema: N(log log x, log log x)</span>`;
+  Histograma(document.getElementById('hist-64')).dibujar({
+    xr: [-0.6, 11.6], yr: [0, 0.3], xmarcas: k64, yfmt: v => Math.round(100 * v) + ' %',
+    xnombre: 'ω(n)', ynombre: 'proporción',
+    barras: k64.map(k => ({ c: k, w: 0.72, zona: 1, h: frec[k], color: 'azul',
+      info: `<b>ω(n) = ${k}</b><br>${miles(w.conteo[k])} de ${miles(n)} (${pct(frec[k])})<br>predicción: ${pct(normal(k, w.pred_media, w.pred_var))}<br>solo el teorema: ${pct(normal(k, w.L, w.L))}` })),
+    curvas: [
+      { f: z => normal(z, w.L, w.L), color: 'tinta-tenue', punteada: true },
+      { f: z => normal(z, w.pred_media, w.pred_var), color: 'morado-fuerte' },
+    ],
+  });
+  const t = document.getElementById('tabla-64');
+  t.tBodies[0].innerHTML =
+    `<tr><td>media</td><td class="num">${coma(w.L)}</td><td class="num">${coma(w.pred_media)}</td><td class="num">${coma(w.media)}</td></tr>` +
+    `<tr><td>varianza</td><td class="num">${coma(w.L)}</td><td class="num">${coma(w.pred_var)}</td><td class="num">${coma(w.var)}</td></tr>`;
+  t.caption.innerHTML = `teorema: \\(\\log\\log 2^{64}\\). Corregida: media \\(\\log\\log 2^{64} + M\\); varianza \\(\\log\\log 2^{64}\\) más la diferencia varianza real \\(-\\log\\log x\\) medida con la criba en \\(x = 10^6\\) (${coma(D.c_var6)}). Observada: ${miles(n)} enteros de 64 bits al azar.`;
+})();
+</script>
+</body>
+</html>

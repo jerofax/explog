@@ -1,0 +1,234 @@
+<!doctype html>
+<!-- Catálogo de la plantilla en modo divulgación: una página continua.
+     Usa los mismos bloques que la presentación; aquí lo dinámico son los
+     interactivos. No hay vista del orador ni navegación por clic. -->
+<html lang="es" data-modo="divulgacion">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de la plantilla · divulgación</title>
+  <link rel="stylesheet" href="../core/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../core/css/plantilla.css">
+  <script src="../core/vendor/katex/katex.min.js"></script>
+  <script src="../core/vendor/katex/auto-render.min.js"></script>
+  <script src="../core/vendor/highlight/highlight.min.js"></script>
+  <script src="../core/vendor/echarts/echarts.min.js"></script>
+  <script src="../core/js/referencias.js"></script>
+  <script src="../core/js/contenido.js"></script>
+  <script src="../core/js/interactivos.js"></script>
+  <script src="../core/js/presentacion.js"></script>
+</head>
+<body>
+<main>
+
+  <header class="cabecera">
+    <p class="etiqueta">Plantilla · Modo divulgación</p>
+    <h1>La búsqueda binaria, <span class="morado">paso a paso</span></h1>
+    <p class="entrada">Una guía de ejemplo que muestra cómo se ven los bloques de la plantilla en una página continua, pensada para leer en el navegador o en el celular.</p>
+    <div class="puntos"><i class="c-morado"></i><i class="c-amarillo"></i><i class="c-verde"></i><i class="c-azul"></i></div>
+    <p class="datos"><span>Jerónimo Restrepo</span><span>Guía de estudio</span><span>8 min de lectura</span></p>
+  </header>
+
+  <p>El modo divulgación se activa con <code>data-modo="divulgacion"</code> en la etiqueta <code>&lt;html&gt;</code>. El contenido va dentro de un <code>&lt;main&gt;</code> y se escribe como un artículo: párrafos, títulos y bloques, uno debajo de otro. La columna de texto mide como máximo 68 caracteres, que es un ancho cómodo de lectura.</p>
+
+  <p class="etiqueta">01 — La idea</p>
+  <h2>Descartar la mitad en cada paso</h2>
+
+  <p>Buscar un valor en un arreglo desordenado obliga a mirar los elementos uno por uno. Si el arreglo está <b>ordenado</b>, se puede hacer algo mucho mejor: mirar el elemento del medio y descartar de un golpe la mitad que no puede contener lo buscado <cite data-ref="clrs2022"></cite>.</p>
+
+  <div class="bloque bloque--definicion" data-nombre="Búsqueda binaria">
+    <p>Dado un arreglo ordenado \(A[0..n-1]\) y un valor \(x\), la <b>búsqueda binaria</b> mantiene un intervalo \([izq, der]\) que contiene a \(x\) si \(x\) está en \(A\), y lo reduce a la mitad en cada iteración.</p>
+  </div>
+
+  <p class="idea">Cada comparación elimina <span class="verde">la mitad</span> de lo que queda.</p>
+
+  <p class="etiqueta">02 — El algoritmo</p>
+  <h2>Probalo con tus propios datos</h2>
+
+  <p>Avanzá con <b>Paso</b> o dejalo correr con <b>Reproducir</b>. La entrada es el valor buscado, luego dos puntos y el arreglo; si el arreglo no está ordenado, se ordena antes de empezar.</p>
+
+  <div class="ancho" data-algoritmo="binaria"></div>
+
+  <div class="bloque bloque--observacion">
+    <p>Los interactivos pueden salirse de la columna de texto con la clase <code>ancho</code>. En el celular vuelven a ocupar el ancho de la pantalla.</p>
+  </div>
+
+  <p class="etiqueta">03 — El costo</p>
+  <h2>¿Cuántas comparaciones hacen falta?</h2>
+
+  <div class="bloque bloque--teorema">
+    <p>La búsqueda binaria en un arreglo de \(n\) elementos hace a lo sumo \(\lfloor \log_2 n \rfloor + 1\) comparaciones.</p>
+  </div>
+  <div class="bloque bloque--demostracion">
+    <p>Después de cada comparación fallida, el intervalo tiene a lo sumo la mitad de los elementos que tenía.</p>
+    <p>Tras \(k\) comparaciones quedan a lo sumo \(n / 2^k\) elementos. El proceso termina cuando ese número es menor que 1, es decir, cuando \(k &gt; \log_2 n\).</p>
+  </div>
+
+  <p>La diferencia con la búsqueda lineal crece muy rápido. Movelo vos:</p>
+
+  <div class="ancho" data-explorador="costo"></div>
+
+  <div class="cifras">
+    <div class="cifra c-morado"><span class="cifra__numero">20</span><span class="cifra__texto">comparaciones para un millón de elementos</span></div>
+    <div class="cifra c-verde"><span class="cifra__numero">30</span><span class="cifra__texto">comparaciones para mil millones</span></div>
+  </div>
+
+  <div class="grafico ancho" data-grafico="crecimiento"></div>
+
+  <table>
+    <thead><tr><th>Elementos</th><th class="num">Búsqueda lineal</th><th class="num">Búsqueda binaria</th></tr></thead>
+    <tbody>
+      <tr><td>\(10^3\)</td><td class="num">1 000</td><td class="num">10</td></tr>
+      <tr><td>\(10^6\)</td><td class="num">1 000 000</td><td class="num">20</td></tr>
+      <tr class="destacada"><td>\(10^9\)</td><td class="num">1 000 000 000</td><td class="num">30</td></tr>
+    </tbody>
+  </table>
+
+  <p class="etiqueta">04 — En código</p>
+  <h2>Una implementación en Python</h2>
+
+  <pre data-numeros data-resaltar="4"><code class="language-python">
+    def busqueda_binaria(a, x):
+        izq, der = 0, len(a) - 1
+        while izq &lt;= der:
+            medio = (izq + der) // 2
+            if a[medio] == x:
+                return medio
+            if a[medio] &lt; x:
+                izq = medio + 1
+            else:
+                der = medio - 1
+        return -1
+  </code></pre>
+
+  <div class="bloque bloque--advertencia">
+    <p>En lenguajes con enteros de tamaño fijo, <code>(izq + der) // 2</code> puede desbordarse. La forma segura es <code>izq + (der - izq) // 2</code>.</p>
+  </div>
+
+  <div class="pestanas">
+    <section data-titulo="Iterativa"><p>La versión de arriba: un ciclo y dos índices. Usa memoria constante.</p></section>
+    <section data-titulo="Recursiva"><p>Se llama a sí misma sobre la mitad que queda. Es más cercana a la definición, pero usa \(O(\log n)\) de pila.</p></section>
+    <section data-titulo="En la biblioteca"><p>En Python, el módulo <code>bisect</code> ya la trae: <code>bisect.bisect_left(a, x)</code>.</p></section>
+  </div>
+
+  <p class="etiqueta">05 — Repaso</p>
+  <h2>Comprobá lo que entendiste</h2>
+
+  <div class="pregunta">
+    <p class="enunciado">¿Qué condición debe cumplir el arreglo para poder usar búsqueda binaria?</p>
+    <ul>
+      <li>Tener una cantidad par de elementos</li>
+      <li data-correcta>Estar ordenado</li>
+      <li>No tener elementos repetidos</li>
+    </ul>
+    <p class="explicacion">Solo si está ordenado se puede saber, mirando el elemento del medio, en qué mitad seguir buscando.</p>
+  </div>
+
+  <div class="tarjetas">
+    <div class="tarjeta"><div class="frente">¿Cuál es el costo de la búsqueda binaria?</div><div class="reverso">\(O(\log n)\) comparaciones.</div></div>
+    <div class="tarjeta"><div class="frente">¿Qué invariante mantiene el ciclo?</div><div class="reverso">Si \(x\) está en el arreglo, está entre \(izq\) y \(der\).</div></div>
+    <div class="tarjeta"><div class="frente">¿Cuándo termina sin encontrar el valor?</div><div class="reverso">Cuando \(izq &gt; der\): el intervalo quedó vacío.</div></div>
+  </div>
+
+  <details class="desplegable"><summary>Ejercicio: ¿cómo encontrar la primera aparición de un valor repetido?</summary>
+    <p>Al encontrar el valor, no devolver de inmediato: guardar la posición y seguir buscando en la mitad izquierda.</p>
+  </details>
+
+  <blockquote class="cita">
+    <p>Aunque la idea básica de la búsqueda binaria es comparativamente sencilla, los detalles pueden ser sorprendentemente difíciles.</p>
+    <footer>Donald Knuth <cite data-ref="knuth1998"></cite></footer>
+  </blockquote>
+
+  <p class="etiqueta">Referencias</p>
+  <section data-referencias></section>
+
+</main>
+
+<script type="application/json" id="referencias">
+{
+  "clrs2022": {
+    "autores": "Cormen, T. H., Leiserson, C. E., Rivest, R. L. y Stein, C.", "anio": 2022,
+    "titulo": "Introduction to Algorithms, 4.ª edición", "fuente": "MIT Press"
+  },
+  "knuth1998": {
+    "autores": "Knuth, D. E.", "anio": 1998,
+    "titulo": "The Art of Computer Programming, vol. 3: Sorting and Searching, 2.ª edición", "fuente": "Addison-Wesley"
+  }
+}
+</script>
+
+<script>
+/* Algoritmo con una entrada propia: "valor: arreglo". */
+Interactivos.algoritmo('binaria', {
+  lenguaje: 'python',
+  entrada: '23: 2, 5, 8, 12, 16, 23, 38, 56, 72, 91',
+  barras: false,
+  leer: texto => {
+    const [valor, resto] = texto.split(':');
+    const x = Number(valor), a = (resto || '').split(/[\s,;]+/).filter(Boolean).map(Number);
+    if (!resto || !Number.isFinite(x) || !a.length || a.some(n => !Number.isFinite(n))) throw new Error('Formato: valor: lista. Ejemplo: 23: 2, 5, 8, 23');
+    return { x, a: a.sort((p, q) => p - q) };
+  },
+  aleatoria: () => {
+    const a = [...new Set(Array.from({ length: 10 }, () => 1 + Math.floor(Math.random() * 60)))].sort((p, q) => p - q);
+    const x = Math.random() < 0.75 ? a[Math.floor(Math.random() * a.length)] : 1 + Math.floor(Math.random() * 60);
+    return `${x}: ${a.join(', ')}`;
+  },
+  codigo: `def busqueda_binaria(a, x):
+    izq, der = 0, len(a) - 1
+    while izq <= der:
+        medio = (izq + der) // 2
+        if a[medio] == x:
+            return medio
+        if a[medio] < x:
+            izq = medio + 1
+        else:
+            der = medio - 1
+    return -1`,
+  *pasos({ x, a }) {
+    let izq = 0, der = a.length - 1;
+    const fuera = () => a.map((_, k) => k).filter(k => k < izq || k > der);
+    const estado = (linea, extra) => ({ linea, arreglo: a, punteros: { izq, der }, variables: { x, izq, der }, ...extra });
+    yield estado(2, { nota: `Se busca ${x} en todo el arreglo.` });
+    while (izq <= der) {
+      const medio = Math.floor((izq + der) / 2);
+      yield estado(4, { activos: [medio], punteros: { izq, der, medio }, variables: { x, izq, der, medio }, nota: `El medio del intervalo es la posición ${medio}, con valor ${a[medio]}.` });
+      if (a[medio] === x) {
+        yield estado(6, { ordenados: [medio], punteros: { medio }, variables: { x, medio }, nota: `Encontrado: ${x} está en la posición ${medio}.` });
+        return;
+      }
+      if (a[medio] < x) { izq = medio + 1; yield estado(8, { comparados: [medio], nota: `${a[medio]} es menor que ${x}: se descarta la mitad izquierda.` }); }
+      else { der = medio - 1; yield estado(10, { comparados: [medio], nota: `${a[medio]} es mayor que ${x}: se descarta la mitad derecha.` }); }
+    }
+    yield estado(11, { nota: `El intervalo quedó vacío: ${x} no está en el arreglo.` });
+  },
+});
+
+Interactivos.explorador('costo', {
+  parametros: [{ id: 'n', tex: 'n', min: 2, max: 200, paso: 1, valor: 64 }],
+  x: [0, 200],
+  y: [0, 60],
+  curvas: () => [
+    { f: n => n / 2, color: 'amarillo' },
+    { f: n => (n >= 1 ? Math.log2(n) + 1 : NaN), color: 'morado' },
+  ],
+  puntos: p => [
+    { x: p.n, y: Math.min(p.n / 2, 60), color: 'amarillo' },
+    { x: p.n, y: Math.log2(p.n) + 1, color: 'morado' },
+  ],
+  formula: p => `\\lfloor \\log_2 ${p.n} \\rfloor + 1 = ${Math.floor(Math.log2(p.n)) + 1}`,
+  lectura: p => `Con \\(n = ${p.n}\\): la búsqueda lineal hace en promedio <b class="amarillo">${(p.n / 2).toFixed(0)}</b> comparaciones; la binaria, a lo sumo <b class="morado">${Math.floor(Math.log2(p.n)) + 1}</b>.`,
+});
+
+Plantilla.grafico('crecimiento', {
+  legend: {},
+  tooltip: { trigger: 'axis' },
+  xAxis: { type: 'category', name: 'elementos', data: ['10', '100', '1 000', '10 000', '100 000'] },
+  yAxis: { type: 'value', name: 'comparaciones en el peor caso', max: 20 },
+  series: [
+    { name: 'Búsqueda binaria', type: 'line', data: [4, 7, 10, 14, 17], areaStyle: { opacity: 0.12 } },
+  ],
+});
+</script>
+</body>
+</html>

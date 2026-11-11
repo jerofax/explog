@@ -1,0 +1,6 @@
+KaTeX 0.16.11
+highlight.js 11.9.0 (paquete comun de lenguajes)
+ECharts 5.5.1
+Newsreader variable 5.3.0 (fontsource), subconjunto latin, eje opsz
+JetBrains Mono variable 5.3.0 (fontsource), subconjunto latin
+Origen: cdn.jsdelivr.net/npm

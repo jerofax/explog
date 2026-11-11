@@ -1,0 +1,931 @@
+<!doctype html>
+<!-- Catálogo de la plantilla en modo presentación.
+     Cada diapositiva muestra un bloque, una variante o una animación, con una
+     franja "uso" que dice cómo escribirla. Las notas del orador amplían.
+     Este catálogo trae data-animacion="completa" para poder mostrar los
+     efectos; un documento nuevo empieza en "ninguna". -->
+<html lang="es" data-modo="presentacion" data-animacion="completa">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de la plantilla</title>
+  <link rel="stylesheet" href="../core/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../core/css/plantilla.css">
+  <script src="../core/vendor/katex/katex.min.js"></script>
+  <script src="../core/vendor/katex/auto-render.min.js"></script>
+  <script src="../core/vendor/highlight/highlight.min.js"></script>
+  <script src="../core/vendor/echarts/echarts.min.js"></script>
+  <script src="../core/js/referencias.js"></script>
+  <script src="../core/js/contenido.js"></script>
+  <script src="../core/js/interactivos.js"></script>
+  <script src="../core/js/presentacion.js"></script>
+  <script src="../core/js/orador.js"></script>
+</head>
+<body>
+
+<!-- ═══ PORTADA ═══════════════════════════════════════════════════════════ -->
+<section class="diapositiva portada">
+  <p class="etiqueta">Plantilla · Catálogo</p>
+  <h1>Catálogo de <span class="morado">bloques</span></h1>
+  <p class="subtitulo">Una diapositiva de ejemplo por cada bloque, variante y animación.</p>
+  <div class="puntos"><i class="c-morado"></i><i class="c-amarillo"></i><i class="c-verde"></i><i class="c-azul"></i></div>
+  <p class="datos"><span>Jerónimo Restrepo</span><span>Modo presentación</span><span>Tecla H: ayuda</span></p>
+  <aside class="notas">
+    <p><b>Portada.</b> Clase <code>diapositiva portada</code>. Lleva etiqueta, <code>h1</code>, subtítulo, los cuatro puntos de marca y una línea de datos.</p>
+    <p>Estas notas solo se ven en la vista del orador (tecla O).</p>
+  </aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Cómo leer este catálogo</p>
+  <h2>Cada diapositiva es un ejemplo copiable</h2>
+  <div class="columnas crece" data-proporcion="3-2">
+    <div>
+      <ul>
+        <li>Abrí este archivo en un editor: cada <code>&lt;section class="diapositiva"&gt;</code> es una página.</li>
+        <li>La franja punteada del pie dice <b>qué clase o atributo</b> produce lo que ves.</li>
+        <li>Las notas del orador traen la explicación larga. Se abren con <kbd>O</kbd>.</li>
+        <li>Con <kbd>A</kbd> cambiás el nivel de animación; con <kbd>H</kbd> ves todas las teclas.</li>
+      </ul>
+    </div>
+    <div class="bloque bloque--observacion">
+      <p>Un documento nuevo arranca <b>sin animaciones</b>. Este catálogo las trae activadas solo para mostrarlas.</p>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;section class="diapositiva"&gt; &lt;p class="etiqueta"&gt;…&lt;/p&gt; &lt;h2&gt;…&lt;/h2&gt; … &lt;/section&gt;</p>
+  <aside class="notas"><p>Estructura mínima: etiqueta, título y contenido. La diapositiva es una columna flexible; lo que lleve la clase <code>crece</code> ocupa el espacio que sobra.</p></aside>
+</section>
+
+<!-- ═══ 01 ESTRUCTURA Y TEXTO ═════════════════════════════════════════════ -->
+<section class="diapositiva seccion c-morado" data-transicion="acercar">
+  <p class="numero">01</p>
+  <h2>Estructura y texto</h2>
+  <p class="subtitulo">Portada, sección, índice, densidades, columnas, listas, citas.</p>
+  <aside class="notas"><p><b>Sección.</b> Clase <code>diapositiva seccion</code> más un color (<code>c-morado</code>, <code>c-verde</code>, <code>c-amarillo</code>, <code>c-azul</code>). El número va en <code>&lt;p class="numero"&gt;</code>.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Índice</p>
+  <h2>Contenido</h2>
+  <ol class="indice">
+    <li class="actual">Estructura y texto</li>
+    <li>Matemáticas</li>
+    <li>Código</li>
+    <li>Datos y visuales</li>
+    <li>Interactivos</li>
+    <li>Animaciones</li>
+    <li>Presentar y exportar</li>
+  </ol>
+  <p class="uso empuja"><b>uso</b> &lt;ol class="indice"&gt; &lt;li class="actual"&gt;…&lt;/li&gt; &lt;li&gt;…&lt;/li&gt; &lt;/ol&gt;</p>
+  <aside class="notas"><p>Se puede repetir el índice al inicio de cada sección moviendo la clase <code>actual</code>.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Densidad normal</p>
+  <h2>Título con texto: el caso base</h2>
+  <p>La densidad <b>normal</b> es la que se usa si no se indica nada. El cuerpo mide 36 unidades sobre un lienzo de 1920, que proyectado se lee sin esfuerzo desde el fondo de un salón.</p>
+  <p>Caben cómodos entre cinco y siete renglones de texto corrido, o un bloque y un par de frases. Si el contenido no entra, lo correcto es partirlo en dos diapositivas o pasar a densidad <b>densa</b>.</p>
+  <p class="uso empuja"><b>uso</b> sin atributo, o data-densidad="normal"</p>
+</section>
+
+<section class="diapositiva centrada" data-densidad="amplia">
+  <p class="etiqueta">Densidad amplia</p>
+  <h2>Poco texto, mucho aire</h2>
+  <p>Para una idea por diapositiva. El cuerpo sube a 48 unidades.</p>
+  <p class="uso"><b>uso</b> data-densidad="amplia" · la clase "centrada" centra el contenido en vertical</p>
+</section>
+
+<section class="diapositiva" data-densidad="densa">
+  <p class="etiqueta">Densidad densa</p>
+  <h2>Mucho texto en una sola diapositiva</h2>
+  <div class="columnas">
+    <div>
+      <p>La densidad <b>densa</b> baja el cuerpo a 28 unidades. Es para demostraciones largas, tablas grandes o material que el público va a leer después con calma.</p>
+      <p>Sigue siendo legible proyectado, pero exige más atención. Conviene acompañarla de revelado por pasos para no mostrar todo de golpe.</p>
+      <ul>
+        <li>Nada baja de 20 unidades: es el piso de legibilidad.</li>
+        <li>El código pasa a 24 unidades.</li>
+        <li>Los bloques se ajustan solos, porque miden en <code>em</code>.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="bloque bloque--definicion" data-nombre="Espacio métrico" data-sin-numero>
+        <p>Un <b>espacio métrico</b> es un par \((X, d)\) donde \(d : X \times X \to \mathbb{R}\) cumple, para todo \(x, y, z \in X\):</p>
+        <ol>
+          <li>\(d(x, y) \ge 0\), con igualdad si y solo si \(x = y\);</li>
+          <li>\(d(x, y) = d(y, x)\);</li>
+          <li>\(d(x, z) \le d(x, y) + d(y, z)\).</li>
+        </ol>
+      </div>
+      <p class="apagado">La misma diapositiva en densidad normal necesitaría dos páginas.</p>
+    </div>
+  </div>
+  <p class="uso empuja"><b>uso</b> data-densidad="densa"</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Dos columnas</p>
+  <h2>Texto a un lado, apoyo al otro</h2>
+  <div class="columnas crece" data-proporcion="3-2">
+    <div>
+      <p>La clase <code>columnas</code> reparte el espacio en partes iguales. Con <code>data-proporcion</code> se cambia el reparto.</p>
+      <ul>
+        <li><code>2-1</code>, <code>1-2</code>, <code>3-2</code></li>
+        <li><code>data-cols="3"</code> para tres columnas</li>
+      </ul>
+    </div>
+    <div class="medio">
+      <div class="bloque bloque--ejemplo" data-sin-numero>
+        <p>Esta columna tiene la clase <code>medio</code>, que centra su contenido en vertical.</p>
+      </div>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;div class="columnas" data-proporcion="3-2"&gt; &lt;div&gt;…&lt;/div&gt; &lt;div&gt;…&lt;/div&gt; &lt;/div&gt;</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Listas</p>
+  <h2>Viñetas y numeración</h2>
+  <div class="columnas crece">
+    <div>
+      <ul>
+        <li>Viñeta cuadrada del color de acento</li>
+        <li>Con un segundo nivel
+          <ul><li>más chico y apagado</li><li>para detalles</li></ul>
+        </li>
+        <li class="c-morado">Un ítem puede cambiar de color</li>
+      </ul>
+    </div>
+    <div>
+      <ol>
+        <li>Numeración en tipografía mono</li>
+        <li>Con cero a la izquierda</li>
+        <li>Útil para pasos de un método</li>
+      </ol>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;ul&gt; y &lt;ol&gt; normales · color por ítem con class="c-morado"</p>
+</section>
+
+<section class="diapositiva centrada">
+  <p class="etiqueta">Cita</p>
+  <blockquote class="cita">
+    <p>La matemática es el arte de dar el mismo nombre a cosas distintas.</p>
+    <footer>Henri Poincaré · Ciencia y método, 1908</footer>
+  </blockquote>
+  <p class="uso"><b>uso</b> &lt;blockquote class="cita"&gt; &lt;p&gt;…&lt;/p&gt; &lt;footer&gt;Autor · obra&lt;/footer&gt; &lt;/blockquote&gt;</p>
+</section>
+
+<section class="diapositiva centrada">
+  <p class="etiqueta">Idea destacada</p>
+  <p class="idea">La curvatura total no depende de la forma, <span class="morado">solo de la topología.</span></p>
+  <p class="uso"><b>uso</b> &lt;p class="idea"&gt;… &lt;span class="morado"&gt;…&lt;/span&gt;&lt;/p&gt; · colores de texto: morado, verde, amarillo, azul</p>
+  <aside class="notas"><p>Las clases de color de texto usan siempre el tono fuerte, que es el que se lee sobre el beige.</p></aside>
+</section>
+
+<!-- ═══ 02 MATEMÁTICAS ════════════════════════════════════════════════════ -->
+<section class="diapositiva seccion c-azul" data-transicion="acercar">
+  <p class="numero">02</p>
+  <h2>Matemáticas</h2>
+  <p class="subtitulo">Definición, teorema, demostración, ejemplo, observación.</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Definición y teorema</p>
+  <h2>El color dice qué tipo de bloque es</h2>
+  <div class="bloque bloque--definicion" data-nombre="Característica de Euler">
+    <p>Para una superficie triangulada con \(V\) vértices, \(A\) aristas y \(C\) caras, \(\chi = V - A + C\).</p>
+  </div>
+  <div class="bloque bloque--teorema" data-nombre="Gauss-Bonnet">
+    <p>Sea \(M\) una superficie compacta, orientable y sin borde, con curvatura gaussiana \(K\). Entonces <cite data-ref="docarmo1976"></cite></p>
+    <p>\[ \int_M K \, dA = 2\pi \, \chi(M). \]</p>
+  </div>
+  <p class="uso empuja"><b>uso</b> &lt;div class="bloque bloque--teorema" data-nombre="Gauss-Bonnet"&gt; · fórmulas: \( … \) en línea, \[ … \] centrada</p>
+  <aside class="notas">
+    <p>Azul para definiciones, morado para resultados. El rótulo y el número se generan solos.</p>
+    <p>Atributos: <code>data-nombre</code> (nombre propio), <code>data-sin-numero</code>, <code>data-numero="2.3"</code> para fijarlo a mano.</p>
+  </aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Variantes de resultado</p>
+  <h2>Lema, proposición, corolario</h2>
+  <div class="columnas" data-cols="3">
+    <div class="bloque bloque--lema"><p>Toda sucesión convergente en un espacio métrico es de Cauchy.</p></div>
+    <div class="bloque bloque--proposicion"><p>Un subconjunto cerrado de un espacio completo es completo.</p></div>
+    <div class="bloque bloque--corolario"><p>\([0,1]\) con la métrica usual es completo.</p></div>
+  </div>
+  <div class="columnas">
+    <div class="bloque bloque--teorema" data-color="verde" data-sin-numero><p>El mismo bloque con <code>data-color="verde"</code> para forzar otro color.</p></div>
+    <div class="bloque" data-rotulo="Conjetura" data-color="neutro"><p>Un rótulo propio con <code>data-rotulo="Conjetura"</code>.</p></div>
+  </div>
+  <p class="uso empuja"><b>uso</b> bloque--lema · bloque--proposicion · bloque--corolario comparten numeración con teorema</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Demostración por pasos</p>
+  <h2>Cada clic revela un paso</h2>
+  <div class="bloque bloque--proposicion" data-sin-numero>
+    <p>Si \(n\) es impar, entonces \(n^2\) es impar.</p>
+  </div>
+  <div class="bloque bloque--demostracion">
+    <p data-paso>Como \(n\) es impar, existe \(k \in \mathbb{Z}\) con \(n = 2k + 1\).</p>
+    <p data-paso>Entonces \(n^2 = (2k+1)^2 = 4k^2 + 4k + 1\).</p>
+    <p data-paso>Es decir, \(n^2 = 2(2k^2 + 2k) + 1\), que es de la forma \(2m + 1\).</p>
+    <p data-paso>Luego \(n^2\) es impar.</p>
+  </div>
+  <p class="uso empuja"><b>uso</b> &lt;div class="bloque bloque--demostracion"&gt; &lt;p data-paso&gt;…&lt;/p&gt; … &lt;/div&gt; · el cuadrado final se pone solo</p>
+  <aside class="notas"><p>El revelado por pasos funciona aunque las animaciones estén apagadas: los renglones aparecen de golpe. En el PDF salen todos.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Ejemplo, observación, advertencia</p>
+  <h2>Bloques de apoyo</h2>
+  <div class="bloque bloque--ejemplo">
+    <p>La esfera tiene \(\chi = 2\), así que su curvatura total es \(4\pi\), sin importar cómo se deforme.</p>
+  </div>
+  <div class="columnas">
+    <div class="bloque bloque--observacion"><p>El toro tiene \(\chi = 0\): la curvatura positiva y la negativa se cancelan.</p></div>
+    <div class="bloque bloque--advertencia"><p>El teorema exige que la superficie no tenga borde; con borde aparece un término adicional.</p></div>
+  </div>
+  <p class="uso empuja"><b>uso</b> bloque--ejemplo (verde) · bloque--observacion y bloque--advertencia (amarillo)</p>
+</section>
+
+<!-- ═══ 03 CÓDIGO ═════════════════════════════════════════════════════════ -->
+<section class="diapositiva seccion c-verde" data-transicion="acercar">
+  <p class="numero">03</p>
+  <h2>Código</h2>
+  <p class="subtitulo">Resaltado, líneas por pasos, salida y pseudocódigo.</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Código</p>
+  <h2>Resaltado de sintaxis con la paleta</h2>
+  <pre data-numeros data-resaltar="4-5"><code class="language-python">
+    import numpy as np
+
+    def curvatura_discreta(angulos):
+        """Defecto angular en un vértice: 2π menos la suma de ángulos."""
+        return 2 * np.pi - np.sum(angulos)
+
+    defectos = [curvatura_discreta(a) for a in angulos_por_vertice]
+    print(f"Curvatura total: {sum(defectos):.4f}")
+  </code></pre>
+  <p class="uso empuja"><b>uso</b> &lt;pre data-numeros data-resaltar="4-5"&gt;&lt;code class="language-python"&gt;…&lt;/code&gt;&lt;/pre&gt; · la sangría del HTML se quita sola</p>
+  <aside class="notas">
+    <p><code>data-numeros</code> muestra los números de línea. <code>data-resaltar="2,4-6"</code> marca líneas fijas.</p>
+    <p>Dentro del código hay que escribir <code>&amp;lt;</code> en lugar de &lt; y <code>&amp;amp;</code> en lugar de &amp;.</p>
+    <p>Lenguajes incluidos: Python, JavaScript, C, C++, Java, R, SQL, Bash, JSON y otros del paquete común de highlight.js.</p>
+  </aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Código con explicación</p>
+  <h2>Cada paso ilumina sus líneas</h2>
+  <div class="columnas crece" data-proporcion="3-2">
+    <pre data-numeros><code class="language-python">
+      def busqueda_binaria(a, x):
+          izq, der = 0, len(a) - 1
+          while izq &lt;= der:
+              medio = (izq + der) // 2
+              if a[medio] == x:
+                  return medio
+              if a[medio] &lt; x:
+                  izq = medio + 1
+              else:
+                  der = medio - 1
+          return -1
+    </code></pre>
+    <div>
+      <p data-paso data-lineas="2">El intervalo de búsqueda empieza siendo todo el arreglo.</p>
+      <p data-paso data-lineas="4-6">Se mira el elemento del medio; si es el buscado, se termina.</p>
+      <p data-paso data-lineas="7-10">Si no, se descarta la mitad que no puede contenerlo.</p>
+      <p data-paso data-lineas="11">Si el intervalo se vacía, el valor no está.</p>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;p data-paso data-lineas="4-6"&gt;…&lt;/p&gt; resalta esas líneas del código de la diapositiva cuando le toca</p>
+  <aside class="notas"><p>Si hay más de un código en la diapositiva, <code>data-codigo="#id"</code> indica a cuál apunta el paso.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Código con salida</p>
+  <h2>Lo que se ejecuta y lo que devuelve</h2>
+  <div class="columnas crece" data-proporcion="3-2">
+    <pre><code class="language-python">
+      from fractions import Fraction
+
+      def armonico(n):
+          return sum(Fraction(1, k) for k in range(1, n + 1))
+
+      for n in (1, 2, 5, 10):
+          print(n, armonico(n))
+    </code></pre>
+    <pre class="salida"><code>
+      1 1
+      2 3/2
+      5 137/60
+      10 7381/2520
+    </code></pre>
+  </div>
+  <p class="uso"><b>uso</b> &lt;pre class="salida"&gt;&lt;code&gt;…&lt;/code&gt;&lt;/pre&gt; junto al código, dentro de "columnas"</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Pseudocódigo</p>
+  <h2>Estilo de libro de algoritmos <cite data-ref="clrs2022"></cite></h2>
+  <pre class="pseudocodigo"><span class="nombre">Ordenar-Por-Inserción</span>(A)
+  <b>para</b> i = 2 <b>hasta</b> A.longitud
+      clave = A[i]
+      j = i − 1                         <i>// A[1..i−1] ya está ordenado</i>
+      <b>mientras</b> j &gt; 0 <b>y</b> A[j] &gt; clave
+          A[j + 1] = A[j]
+          j = j − 1
+      A[j + 1] = clave</pre>
+  <p class="uso empuja"><b>uso</b> &lt;pre class="pseudocodigo"&gt; con &lt;b&gt; para palabras clave, &lt;i&gt; para comentarios y &lt;span class="nombre"&gt;</p>
+  <aside class="notas"><p>El pseudocódigo no pasa por el resaltador: se escribe tal cual, respetando la sangría.</p></aside>
+</section>
+
+<!-- ═══ 04 DATOS Y VISUALES ═══════════════════════════════════════════════ -->
+<section class="diapositiva seccion c-amarillo" data-transicion="acercar">
+  <p class="numero">04</p>
+  <h2>Datos y visuales</h2>
+  <p class="subtitulo">Gráficos, tablas, cifras, comparaciones, diagramas, imágenes.</p>
+</section>
+
+<section class="diapositiva" data-densidad="visual">
+  <h2>Convergencia de tres métodos para hallar \(\sqrt{2}\)</h2>
+  <div class="grafico" data-grafico="convergencia"></div>
+  <aside class="notas">
+    <p><b>Gráfico a pantalla completa.</b> <code>data-densidad="visual"</code> reduce los márgenes y el título. El gráfico ocupa todo lo que sobra.</p>
+    <p>Se escribe <code>&lt;div class="grafico" data-grafico="nombre"&gt;</code> y se registra con <code>Plantilla.grafico("nombre", opciones)</code> al final del archivo. Las opciones son las de ECharts; los colores y las fuentes los pone el tema.</p>
+  </aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Gráfico con texto</p>
+  <h2>El gráfico manda, el texto acompaña</h2>
+  <div class="columnas crece estirar" data-proporcion="2-1">
+    <div class="grafico" data-grafico="comparaciones"></div>
+    <div class="medio">
+      <p>Con cuatro series o menos, cada una toma un color de marca en orden: morado, verde, amarillo, azul.</p>
+      <p class="apagado">Los datos de este ejemplo son ilustrativos.</p>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;div class="columnas crece estirar" data-proporcion="2-1"&gt; &lt;div class="grafico" data-grafico="…"&gt;&lt;/div&gt; &lt;div&gt;texto&lt;/div&gt;</p>
+  <aside class="notas"><p>Para gráficos simples, las opciones pueden ir como JSON dentro del propio div, en un <code>&lt;script type="application/json"&gt;</code>, sin registrar nada.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Tabla</p>
+  <h2>Complejidad de algoritmos de ordenamiento</h2>
+  <table>
+    <thead><tr><th>Algoritmo</th><th>Mejor caso</th><th>Caso promedio</th><th>Peor caso</th><th>Memoria</th></tr></thead>
+    <tbody>
+      <tr><td>Inserción</td><td>\(O(n)\)</td><td>\(O(n^2)\)</td><td>\(O(n^2)\)</td><td>\(O(1)\)</td></tr>
+      <tr class="destacada"><td>Mezcla</td><td>\(O(n \log n)\)</td><td>\(O(n \log n)\)</td><td>\(O(n \log n)\)</td><td>\(O(n)\)</td></tr>
+      <tr><td>Rápido</td><td>\(O(n \log n)\)</td><td>\(O(n \log n)\)</td><td>\(O(n^2)\)</td><td>\(O(\log n)\)</td></tr>
+      <tr><td>Montículo</td><td>\(O(n \log n)\)</td><td>\(O(n \log n)\)</td><td>\(O(n \log n)\)</td><td>\(O(1)\)</td></tr>
+    </tbody>
+  </table>
+  <p class="uso empuja"><b>uso</b> &lt;table&gt; normal · &lt;tr class="destacada"&gt; o &lt;td class="destacada"&gt; resaltan · class="num" alinea a la derecha</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Cifra destacada</p>
+  <h2>Un número que se lee desde lejos</h2>
+  <div class="cifras crece">
+    <div class="cifra c-morado"><span class="cifra__numero" data-efecto="contar">4,19</span><span class="cifra__texto">iteraciones promedio hasta converger</span></div>
+    <div class="cifra c-verde"><span class="cifra__numero" data-efecto="contar">98%</span><span class="cifra__texto">de los casos de prueba superados</span></div>
+    <div class="cifra c-azul"><span class="cifra__numero" data-efecto="contar">1024</span><span class="cifra__texto">nodos en la malla más fina</span></div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;div class="cifra c-morado"&gt; &lt;span class="cifra__numero"&gt;98%&lt;/span&gt; &lt;span class="cifra__texto"&gt;…&lt;/span&gt; &lt;/div&gt;</p>
+  <aside class="notas"><p>Con <code>data-efecto="contar"</code> el número sube hasta su valor al entrar a la diapositiva, si las animaciones están activas. Los valores de este ejemplo son inventados.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Comparación</p>
+  <h2>Dos o tres opciones enfrentadas</h2>
+  <div class="comparacion crece">
+    <div class="c-morado">
+      <h3>Método directo</h3>
+      <ul><li>Solución exacta salvo redondeo</li><li>Costo \(O(n^3)\)</li><li>Sufre con matrices grandes</li></ul>
+    </div>
+    <div class="c-verde">
+      <h3>Método iterativo</h3>
+      <ul><li>Solución aproximada</li><li>Costo por iteración \(O(n^2)\)</li><li>Aprovecha matrices dispersas</li></ul>
+    </div>
+    <div class="c-azul">
+      <h3>Método multimalla</h3>
+      <ul><li>Solución aproximada</li><li>Costo \(O(n)\) en casos favorables</li><li>Más difícil de implementar</li></ul>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;div class="comparacion"&gt; &lt;div class="c-morado"&gt; &lt;h3&gt;…&lt;/h3&gt; &lt;ul&gt;…&lt;/ul&gt; &lt;/div&gt; … &lt;/div&gt;</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Línea de tiempo</p>
+  <h2>Hitos en orden</h2>
+  <ol class="linea-tiempo crece" style="align-content: center">
+    <li class="c-morado"><span class="fecha">1827</span><h3>Gauss</h3><p>Curvatura intrínseca de una superficie.</p></li>
+    <li class="c-azul"><span class="fecha">1848</span><h3>Bonnet</h3><p>Versión con borde del teorema.</p></li>
+    <li class="c-amarillo"><span class="fecha">1982</span><h3>Hamilton</h3><p>Introduce el flujo de Ricci.</p></li>
+    <li class="c-verde actual"><span class="fecha">2003</span><h3>Chow y Luo</h3><p>Flujo de Ricci combinatorio <cite data-ref="chowluo2003"></cite>.</p></li>
+  </ol>
+  <p class="uso"><b>uso</b> &lt;ol class="linea-tiempo"&gt; &lt;li class="c-morado"&gt; &lt;span class="fecha"&gt;1827&lt;/span&gt; &lt;h3&gt;…&lt;/h3&gt; &lt;p&gt;…&lt;/p&gt; &lt;/li&gt;</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Diagrama</p>
+  <h2>SVG hecho a mano con la paleta</h2>
+  <svg class="diagrama" viewBox="0 0 1600 520" role="img" aria-label="Flujo: del PDF de investigación a la presentación y sus exportaciones">
+    <defs><marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4f5d70"/></marker></defs>
+    <rect class="caja f-morado" x="20" y="180" width="300" height="160" rx="18"/>
+    <text x="170" y="250" text-anchor="middle" font-size="38" font-weight="600">PDF</text>
+    <text class="mono" x="170" y="295" text-anchor="middle" font-size="22">investigación</text>
+    <rect class="caja f-azul" x="450" y="180" width="300" height="160" rx="18"/>
+    <text x="600" y="250" text-anchor="middle" font-size="38" font-weight="600">Estructura</text>
+    <text class="mono" x="600" y="295" text-anchor="middle" font-size="22">secciones y bloques</text>
+    <rect class="caja f-verde" x="880" y="180" width="300" height="160" rx="18"/>
+    <text x="1030" y="250" text-anchor="middle" font-size="38" font-weight="600">HTML</text>
+    <text class="mono" x="1030" y="295" text-anchor="middle" font-size="22">esta plantilla</text>
+    <rect class="caja f-amarillo" x="1310" y="60" width="270" height="130" rx="18"/>
+    <text x="1445" y="138" text-anchor="middle" font-size="34" font-weight="600">PDF final</text>
+    <rect class="caja f-amarillo" x="1310" y="330" width="270" height="130" rx="18"/>
+    <text x="1445" y="408" text-anchor="middle" font-size="34" font-weight="600">Archivo único</text>
+    <path class="trazo" d="M320 260H442" marker-end="url(#flecha)"/>
+    <path class="trazo" d="M750 260H872" marker-end="url(#flecha)"/>
+    <path class="trazo" d="M1180 230C1240 230 1240 125 1302 125" marker-end="url(#flecha)"/>
+    <path class="trazo" d="M1180 290C1240 290 1240 395 1302 395" marker-end="url(#flecha)"/>
+  </svg>
+  <p class="uso"><b>uso</b> &lt;svg class="diagrama" viewBox="…"&gt; · cajas: class="caja f-morado" · líneas: class="trazo t-verde" · texto chico: class="mono"</p>
+  <aside class="notas"><p>El SVG usa las variables de color de la plantilla, así que cambia con ella. El <code>viewBox</code> define las unidades internas; el tamaño real lo pone la diapositiva.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Imagen con pie</p>
+  <h2>Figuras generadas fuera de la plantilla</h2>
+  <div class="columnas crece" data-proporcion="2-1">
+    <figure>
+      <img src="img/ejemplo.svg" alt="Cuatro curvas con la paleta de la plantilla sobre fondo beige">
+      <figcaption><b>Figura 1.</b> Una figura con el mismo fondo y los mismos colores se funde con la diapositiva.</figcaption>
+    </figure>
+    <div class="medio">
+      <p>Las figuras de Python salen así usando el estilo de matplotlib incluido.</p>
+      <pre><code class="language-python">
+        plt.style.use(
+          "herramientas/jero.mplstyle")
+        plt.savefig("fig.svg")
+      </code></pre>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;figure&gt; &lt;img src="img/…" alt="…"&gt; &lt;figcaption&gt;&lt;b&gt;Figura 1.&lt;/b&gt; …&lt;/figcaption&gt; &lt;/figure&gt;</p>
+</section>
+
+<section class="diapositiva sangre">
+  <img src="img/ejemplo.svg" alt="La misma figura ocupando toda la diapositiva">
+  <p class="pie-imagen"><b>Imagen completa.</b> Clase <code>sangre</code>: sin márgenes ni número de página.</p>
+  <aside class="notas"><p><code>&lt;section class="diapositiva sangre"&gt;</code> con una imagen adentro. El pie superpuesto es opcional: <code>&lt;p class="pie-imagen"&gt;</code>.</p></aside>
+</section>
+
+<!-- ═══ 05 INTERACTIVOS ═══════════════════════════════════════════════════ -->
+<section class="diapositiva seccion c-morado" data-transicion="acercar">
+  <p class="numero">05</p>
+  <h2>Interactivos</h2>
+  <p class="subtitulo">Algoritmos paso a paso, exploradores, tarjetas, preguntas.</p>
+  <aside class="notas"><p>Dentro de un interactivo el clic no avanza la diapositiva. Para seguir, clic fuera del componente o flecha derecha.</p></aside>
+</section>
+
+<section class="diapositiva" data-densidad="densa">
+  <p class="etiqueta">Algoritmo paso a paso · arreglo</p>
+  <h2>Ordenamiento por inserción</h2>
+  <div class="crece" data-algoritmo="insercion"></div>
+  <aside class="notas">
+    <p><b>Paso</b> avanza una línea; <b>Reproducir</b> corre de corrido a la velocidad del deslizador. La entrada se escribe a mano (números separados por coma) o se genera con <b>Aleatoria</b>.</p>
+    <p>Colores: morado es el elemento activo, amarillo el comparado, verde la parte ya ordenada.</p>
+    <p>Se define con <code>Interactivos.algoritmo("nombre", {…})</code> al final del archivo: el código que se muestra y una función generadora que entrega un estado por paso.</p>
+  </aside>
+</section>
+
+<section class="diapositiva" data-densidad="densa">
+  <p class="etiqueta">Algoritmo paso a paso · grafo</p>
+  <h2>Búsqueda en anchura</h2>
+  <div class="crece" data-algoritmo="bfs"></div>
+  <aside class="notas"><p>El mismo componente con un grafo. La entrada es el nodo inicial (una letra de A a F). Bajo cada nodo aparece su distancia al origen.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Explorador con deslizador</p>
+  <h2>Mover un parámetro y ver qué cambia</h2>
+  <div class="crece" data-explorador="onda"></div>
+  <p class="uso"><b>uso</b> &lt;div data-explorador="onda"&gt;&lt;/div&gt; + Interactivos.explorador("onda", { parametros, x, y, curvas, formula, lectura })</p>
+  <aside class="notas"><p>La curva punteada es la referencia \(\sin x\). La fórmula y el texto se recalculan con cada movimiento.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Tarjetas de repaso</p>
+  <h2>Pregunta al frente, respuesta al voltear</h2>
+  <div class="tarjetas crece" style="align-content: center">
+    <div class="tarjeta"><div class="frente">¿Qué dice el teorema de Gauss-Bonnet?</div><div class="reverso">\(\displaystyle\int_M K\,dA = 2\pi\,\chi(M)\) para una superficie compacta sin borde.</div></div>
+    <div class="tarjeta"><div class="frente">¿Cuál es la característica de Euler del toro?</div><div class="reverso">\(\chi = 0\)</div></div>
+    <div class="tarjeta"><div class="frente">¿Cuánto cuesta la búsqueda binaria?</div><div class="reverso">\(O(\log n)\) comparaciones en un arreglo ordenado.</div></div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;div class="tarjetas"&gt; &lt;div class="tarjeta"&gt; &lt;div class="frente"&gt;…&lt;/div&gt; &lt;div class="reverso"&gt;…&lt;/div&gt; &lt;/div&gt; … &lt;/div&gt;</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Pregunta de opción múltiple</p>
+  <h2>Comprobar que se entendió</h2>
+  <div class="pregunta">
+    <p class="enunciado">¿Cuál es la curvatura total de una superficie con dos agujeros (género 2)?</p>
+    <ul>
+      <li>\(4\pi\)</li>
+      <li>\(0\)</li>
+      <li data-correcta>\(-4\pi\)</li>
+      <li>Depende de la forma</li>
+    </ul>
+    <p class="explicacion">Para género \(g\), \(\chi = 2 - 2g\). Con \(g = 2\), \(\chi = -2\) y la curvatura total es \(2\pi \cdot (-2) = -4\pi\).</p>
+  </div>
+  <p class="uso empuja"><b>uso</b> &lt;div class="pregunta"&gt; &lt;p class="enunciado"&gt; · &lt;li data-correcta&gt; marca la respuesta · &lt;p class="explicacion"&gt;</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Pestañas y desplegables</p>
+  <h2>Para organizar guías largas</h2>
+  <div class="columnas crece">
+    <div class="pestanas">
+      <section data-titulo="Idea"><p>Las pestañas muestran una parte a la vez.</p></section>
+      <section data-titulo="Fórmula"><p>\[ e^{i\pi} + 1 = 0 \]</p></section>
+      <section data-titulo="Código"><pre><code class="language-python">import cmath
+print(cmath.exp(1j * cmath.pi) + 1)</code></pre></section>
+    </div>
+    <div>
+      <details class="desplegable"><summary>Pista</summary><p>Usá la fórmula de Euler.</p></details>
+      <details class="desplegable"><summary>Solución</summary><p>\(e^{i\pi} = \cos\pi + i\sin\pi = -1\).</p></details>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;div class="pestanas"&gt; &lt;section data-titulo="Idea"&gt;…&lt;/section&gt; … · &lt;details class="desplegable"&gt;&lt;summary&gt;…</p>
+  <aside class="notas"><p>Están pensados sobre todo para el modo divulgación. En el PDF las pestañas salen todas, una debajo de otra.</p></aside>
+</section>
+
+<!-- ═══ 06 ANIMACIONES ════════════════════════════════════════════════════ -->
+<section class="diapositiva seccion c-verde" data-transicion="acercar">
+  <p class="numero">06</p>
+  <h2>Animaciones</h2>
+  <p class="subtitulo">Opcionales. Tecla A: ninguna, sutil, completa.</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Revelado por pasos</p>
+  <h2>Efectos de aparición</h2>
+  <ul>
+    <li data-paso><b>Subir</b> es el efecto por defecto: no hace falta indicarlo.</li>
+    <li data-paso data-efecto="aparecer"><b>Aparecer</b> es un fundido sin movimiento.</li>
+    <li data-paso="3">Dos elementos con el mismo número…</li>
+    <li data-paso="3" style="--orden: 2">…entran juntos, y con <code>--orden</code> se escalonan.</li>
+    <li>El texto puede <span data-paso data-efecto="resaltar">resaltarse en su lugar</span>, sin moverse.</li>
+    <li>Un número puede contar hasta su valor: <b class="morado" data-paso data-efecto="contar">1729</b></li>
+  </ul>
+  <p class="uso empuja"><b>uso</b> data-paso · data-paso="3" · data-efecto="aparecer | subir | resaltar | contar | dibujar" · style="--orden: 2"</p>
+  <aside class="notas"><p>Sin número, los pasos van en el orden en que están escritos. Con número se fija el orden y se agrupan.</p></aside>
+</section>
+
+<section class="diapositiva" data-atenuar>
+  <p class="etiqueta">Atenuar lo anterior</p>
+  <h2>La atención va al punto actual</h2>
+  <ol>
+    <li data-paso>Se plantea el problema de valores en la frontera.</li>
+    <li data-paso>Se discretiza el dominio con una malla.</li>
+    <li data-paso>Se arma el sistema lineal.</li>
+    <li data-paso>Se resuelve y se estima el error.</li>
+  </ol>
+  <p class="uso empuja"><b>uso</b> &lt;section class="diapositiva" data-atenuar&gt; · lo ya mostrado baja de intensidad</p>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Dibujar y mover</p>
+  <h2>Trazos que se dibujan, elementos que se desplazan</h2>
+  <svg class="diagrama" viewBox="0 0 1600 480" role="img" aria-label="Un triángulo que se dibuja lado por lado y un punto que se mueve">
+    <path class="trazo t-morado" style="stroke-width: 6" d="M260 400L560 80" data-paso data-efecto="dibujar"/>
+    <path class="trazo t-verde" style="stroke-width: 6" d="M560 80L860 400" data-paso data-efecto="dibujar"/>
+    <path class="trazo t-azul" style="stroke-width: 6" d="M860 400L260 400" data-paso data-efecto="dibujar"/>
+    <text x="560" y="300" text-anchor="middle" font-size="40" font-style="italic" data-paso data-efecto="aparecer">α + β + γ = π</text>
+    <g data-paso data-mover-a="330,-130">
+      <circle cx="1080" cy="320" r="34" class="caja f-amarillo" style="stroke-width: 4"/>
+      <text x="1080" y="332" text-anchor="middle" font-size="34" font-weight="600">p</text>
+    </g>
+    <text class="mono" x="1080" y="420" text-anchor="middle" font-size="22">data-mover-a="330,-130"</text>
+  </svg>
+  <p class="uso"><b>uso</b> &lt;path data-paso data-efecto="dibujar"&gt; · &lt;g data-paso data-mover-a="330,-130"&gt; (unidades del lienzo de 1920)</p>
+  <aside class="notas"><p>Cinco clics: tres lados, la fórmula y el punto que se desplaza. <code>data-mover-a</code> funciona con cualquier elemento, no solo SVG.</p></aside>
+</section>
+
+<section class="diapositiva centrada" data-densidad="amplia">
+  <p class="etiqueta">Movimiento entre diapositivas · 1 de 2</p>
+  <div class="bloque bloque--teorema" data-sin-numero data-enlace="formula" style="justify-self: center; align-self: center">
+    <p>\[ \int_M K \, dA = 2\pi \, \chi(M) \]</p>
+  </div>
+  <p class="apagado" style="text-align: center">Avanzá: la fórmula viaja a la diapositiva siguiente.</p>
+  <aside class="notas"><p>Los dos bloques llevan <code>data-enlace="formula"</code>. Solo funciona con animación completa y en Chrome, Edge o Safari; en otros casos es un fundido normal.</p></aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Movimiento entre diapositivas · 2 de 2</p>
+  <h2>La misma fórmula, ahora como punto de partida</h2>
+  <div class="columnas crece" data-proporcion="1-2">
+    <div class="bloque bloque--teorema" data-sin-numero data-enlace="formula">
+      <p>\[ \int_M K \, dA = 2\pi \, \chi(M) \]</p>
+    </div>
+    <div>
+      <ul>
+        <li>Esfera: \(\chi = 2\), curvatura total \(4\pi\)</li>
+        <li>Toro: \(\chi = 0\), curvatura total \(0\)</li>
+        <li>Género 2: \(\chi = -2\), curvatura total \(-4\pi\)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> el mismo data-enlace="nombre" en un elemento de dos diapositivas seguidas</p>
+</section>
+
+<section class="diapositiva centrada" data-transicion="deslizar" data-densidad="amplia">
+  <p class="etiqueta">Transiciones</p>
+  <h2>Esta diapositiva entró deslizando</h2>
+  <p>Cada diapositiva puede elegir cómo entra. Las secciones de este catálogo usan <b>acercar</b>.</p>
+  <p class="uso"><b>uso</b> data-transicion="fundido | deslizar | acercar | corte" en la &lt;section&gt;</p>
+  <aside class="notas"><p>Las transiciones propias solo se ven en nivel completa. En nivel sutil todo es fundido; en ninguna, corte seco.</p></aside>
+</section>
+
+<!-- ═══ 07 PRESENTAR Y EXPORTAR ═══════════════════════════════════════════ -->
+<section class="diapositiva seccion c-azul" data-transicion="acercar">
+  <p class="numero">07</p>
+  <h2>Presentar y exportar</h2>
+  <p class="subtitulo">Vista del orador, PDF, archivo único, prueba de proyector.</p>
+</section>
+
+<section class="diapositiva" data-densidad="densa">
+  <p class="etiqueta">Vista del orador</p>
+  <h2>Tus notas en tu pantalla, la diapositiva en la del público</h2>
+  <div class="columnas crece">
+    <div class="bloque bloque--ejemplo" data-rotulo="Con proyector o segundo monitor">
+      <ol>
+        <li>Conectá el HDMI y dejá la pantalla en modo <b>extender</b>, no duplicar.</li>
+        <li>Abrí la presentación y apretá <kbd>O</kbd>: se abre la ventana del orador.</li>
+        <li>Arrastrá la ventana de la presentación al proyector y apretá <kbd>F</kbd>.</li>
+        <li>Quedate con la ventana del orador en el portátil. Las flechas funcionan en cualquiera de las dos.</li>
+      </ol>
+    </div>
+    <div class="bloque bloque--definicion" data-rotulo="Compartiendo pantalla, un solo monitor">
+      <ol>
+        <li>Abrí la presentación y apretá <kbd>O</kbd>.</li>
+        <li>En la videollamada elegí compartir <b>una ventana</b>, no la pantalla entera, y elegí la de la presentación.</li>
+        <li>Poné la ventana del orador al lado. El público solo ve la que compartiste.</li>
+      </ol>
+    </div>
+  </div>
+  <p class="uso"><b>uso</b> &lt;aside class="notas"&gt;…&lt;/aside&gt; dentro de cada diapositiva · tecla O</p>
+  <aside class="notas">
+    <p>Esto es una nota del orador. Aquí va lo que querés recordar decir y no querés que se lea en pantalla.</p>
+    <p>El cronómetro arranca solo con el primer avance y se puede pausar o reiniciar.</p>
+  </aside>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">Exportar</p>
+  <h2>PDF y archivo único</h2>
+  <div class="comparacion crece">
+    <div class="c-amarillo">
+      <h3>PDF</h3>
+      <ul>
+        <li><kbd>Ctrl</kbd> <kbd>P</kbd> en Chrome o Edge</li>
+        <li>Destino: guardar como PDF</li>
+        <li>Márgenes: ninguno</li>
+        <li>Activar gráficos de fondo</li>
+      </ul>
+      <p class="apagado" style="font-size: 0.8em">Una diapositiva por página, con todos los pasos visibles y sin animación.</p>
+    </div>
+    <div class="c-verde">
+      <h3>Archivo único</h3>
+      <pre><code class="language-bash">python herramientas/exportar.py catalogo</code></pre>
+      <p class="apagado" style="font-size: 0.8em">Un solo .html con fuentes, librerías e imágenes adentro. Abre en cualquier computador, sin conexión.</p>
+    </div>
+  </div>
+</section>
+
+<section class="diapositiva" data-densidad="densa">
+  <p class="etiqueta">Prueba de proyector</p>
+  <h2>Mirá esta diapositiva en la sala antes de presentar</h2>
+  <div class="columnas crece" data-proporcion="3-2">
+    <table>
+      <thead><tr><th>Color</th><th>Base</th><th>Fuerte, como texto</th><th>Tinte</th></tr></thead>
+      <tbody>
+        <tr class="c-morado"><td>Morado</td><td><span class="muestra" style="background: var(--c)"></span></td><td style="color: var(--cf); font-weight: 600">Se lee con claridad</td><td><span class="muestra" style="background: var(--ct)"></span></td></tr>
+        <tr class="c-verde"><td>Verde</td><td><span class="muestra" style="background: var(--c)"></span></td><td style="color: var(--cf); font-weight: 600">Se lee con claridad</td><td><span class="muestra" style="background: var(--ct)"></span></td></tr>
+        <tr class="c-amarillo"><td>Amarillo</td><td><span class="muestra" style="background: var(--c)"></span></td><td style="color: var(--cf); font-weight: 600">Se lee con claridad</td><td><span class="muestra" style="background: var(--ct)"></span></td></tr>
+        <tr class="c-azul"><td>Azul</td><td><span class="muestra" style="background: var(--c)"></span></td><td style="color: var(--cf); font-weight: 600">Se lee con claridad</td><td><span class="muestra" style="background: var(--ct)"></span></td></tr>
+      </tbody>
+    </table>
+    <div>
+      <div class="bloque" data-rotulo="¿Se distingue el beige del blanco?" data-color="neutro">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5em">
+          <span class="muestra" style="background: var(--fondo); height: 3em; border: 1px solid var(--linea)"></span>
+          <span class="muestra" style="background: #fff; height: 3em; border: 1px solid var(--linea)"></span>
+        </div>
+        <p style="font-size: 0.8em">Izquierda: fondo de la plantilla. Derecha: blanco puro. Si se ven iguales, el proyector está lavando el beige.</p>
+      </div>
+      <p style="font-size: calc(20 * var(--u))" class="apagado">Este renglón mide 20 unidades, el mínimo permitido. Tiene que leerse desde la última fila.</p>
+    </div>
+  </div>
+  <p class="uso"><b>si falla</b> cambiar solo --fondo en core/css/tokens.css (por ejemplo a #f6f1e7)</p>
+  <aside class="notas"><p>Es la única verificación que no se puede hacer desde el computador: depende del proyector y de la luz de la sala.</p></aside>
+</section>
+
+<section class="diapositiva" data-referencias>
+  <p class="etiqueta">Referencias</p>
+  <h2>Bibliografía automática</h2>
+  <aside class="notas">
+    <p>Esta diapositiva solo lleva el atributo <code>data-referencias</code>; la lista se arma sola con lo citado, en orden de aparición, y se reparte en más diapositivas si no cabe.</p>
+    <p>Las citas se escriben <code>&lt;cite data-ref="clave"&gt;&lt;/cite&gt;</code> y los datos van una sola vez en el bloque JSON del final del archivo. <code>data-todas</code> incluye también las no citadas.</p>
+  </aside>
+</section>
+
+<section class="diapositiva cierre">
+  <p class="etiqueta">Fin del catálogo</p>
+  <h1>Gracias.</h1>
+  <p class="subtitulo">¿Preguntas?</p>
+  <div class="puntos"><i class="c-morado"></i><i class="c-amarillo"></i><i class="c-verde"></i><i class="c-azul"></i></div>
+  <p class="datos"><span>jerofax.github.io</span><span>Medellín, Colombia</span></p>
+  <aside class="notas"><p><b>Cierre.</b> Clase <code>diapositiva cierre</code>. Misma composición que la portada.</p></aside>
+</section>
+
+<style>
+  /* Solo para la diapositiva de prueba de proyector */
+  .muestra { display: block; height: 1.6em; min-width: 4em; border-radius: 0.4em; }
+</style>
+
+<!-- ═══ DATOS: referencias, gráficos e interactivos ═══════════════════════ -->
+<script type="application/json" id="referencias">
+{
+  "docarmo1976": {
+    "autores": "do Carmo, M. P.", "anio": 1976,
+    "titulo": "Differential Geometry of Curves and Surfaces",
+    "fuente": "Prentice-Hall", "corta": "do Carmo, 1976"
+  },
+  "clrs2022": {
+    "autores": "Cormen, T. H., Leiserson, C. E., Rivest, R. L. y Stein, C.", "anio": 2022,
+    "titulo": "Introduction to Algorithms, 4.ª edición",
+    "fuente": "MIT Press", "corta": "Cormen et al., 2022"
+  },
+  "chowluo2003": {
+    "autores": "Chow, B. y Luo, F.", "anio": 2003,
+    "titulo": "Combinatorial Ricci flows on surfaces",
+    "fuente": "Journal of Differential Geometry, 63(1), 97–129", "corta": "Chow y Luo, 2003"
+  }
+}
+</script>
+
+<script>
+/* ── Gráficos ────────────────────────────────────────────────────────────
+   Opciones de ECharts. El tema pone colores, fuentes y ejes. */
+Plantilla.grafico('convergencia', () => {
+  const raiz = Math.SQRT2, f = x => x * x - 2;
+  const biseccion = [], newton = [], secante = [];
+  let a = 1, b = 2;
+  for (let n = 0; n < 12; n++) { const m = (a + b) / 2; biseccion.push(Math.abs(m - raiz)); if (f(m) > 0) b = m; else a = m; }
+  let x = 2;
+  for (let n = 0; n < 12; n++) { newton.push(Math.abs(x - raiz)); x = x - f(x) / (2 * x); }
+  let p = 1, q = 2;
+  for (let n = 0; n < 12; n++) { secante.push(Math.abs(q - raiz)); const r = q - f(q) * (q - p) / (f(q) - f(p) || 1e-300); p = q; q = r; }
+  // Se grafica log10 del error en un eje lineal: es más estable que el eje logarítmico.
+  const log = v => v.map(e => Math.log10(Math.max(e, 1e-16)));
+  return {
+    legend: {},
+    tooltip: { trigger: 'axis', valueFormatter: v => 'error ≈ 1e' + v.toFixed(1) },
+    xAxis: { type: 'category', name: 'iteración', data: biseccion.map((_, n) => n) },
+    yAxis: { type: 'value', name: 'error absoluto', min: -16, max: 0, interval: 4, axisLabel: { formatter: v => (v === 0 ? '1' : '1e' + v) } },
+    series: [
+      { name: 'Bisección', type: 'line', data: log(biseccion) },
+      { name: 'Secante', type: 'line', data: log(secante) },
+      { name: 'Newton', type: 'line', data: log(newton) },
+    ],
+  };
+});
+
+Plantilla.grafico('comparaciones', {
+  legend: {},
+  tooltip: { trigger: 'axis' },
+  xAxis: { type: 'category', data: ['n = 100', 'n = 200', 'n = 400', 'n = 800'] },
+  yAxis: { type: 'value', name: 'comparaciones (miles)' },
+  series: [
+    { name: 'Inserción', type: 'bar', data: [2.5, 10, 40, 160] },
+    { name: 'Mezcla', type: 'bar', data: [0.55, 1.3, 3.0, 6.7] },
+    { name: 'Rápido', type: 'bar', data: [0.65, 1.5, 3.5, 7.8] },
+  ],
+});
+
+/* ── Algoritmo: ordenamiento por inserción ───────────────────────────────
+   "pasos" es una función generadora: cada yield es un estado que se muestra.
+   Campos: linea, variables, nota, arreglo, activos, comparados, ordenados, punteros. */
+Interactivos.algoritmo('insercion', {
+  lenguaje: 'python',
+  entrada: [5, 2, 9, 1, 6, 3],
+  codigo: `def ordenar_por_insercion(a):
+    for i in range(1, len(a)):
+        clave = a[i]
+        j = i - 1
+        while j >= 0 and a[j] > clave:
+            a[j + 1] = a[j]
+            j -= 1
+        a[j + 1] = clave
+    return a`,
+  *pasos(entrada) {
+    const a = [...entrada];
+    const hasta = n => Array.from({ length: n }, (_, k) => k);
+    const estado = (linea, extra) => ({ linea, arreglo: [...a], ...extra });
+    yield estado(1, { nota: 'Arreglo de entrada.' });
+    for (let i = 1; i < a.length; i++) {
+      const clave = a[i];
+      yield estado(3, { variables: { i, clave }, activos: [i], ordenados: hasta(i), punteros: { i }, nota: `Se toma la clave ${clave}. Lo que está a su izquierda ya está ordenado.` });
+      let j = i - 1;
+      while (j >= 0 && a[j] > clave) {
+        yield estado(5, { variables: { i, j, clave }, comparados: [j], activos: [j + 1], ordenados: hasta(i), punteros: { i, j }, nota: `${a[j]} es mayor que ${clave}: hay que correrlo.` });
+        a[j + 1] = a[j];
+        yield estado(6, { variables: { i, j, clave }, activos: [j + 1], ordenados: hasta(i), punteros: { i, j }, nota: `Se corre ${a[j]} una posición a la derecha.` });
+        j--;
+      }
+      if (j >= 0) yield estado(5, { variables: { i, j, clave }, comparados: [j], ordenados: hasta(i), punteros: { i, j }, nota: `${a[j]} no es mayor que ${clave}: se detiene el ciclo.` });
+      a[j + 1] = clave;
+      yield estado(8, { variables: { i, j, clave }, activos: [j + 1], ordenados: hasta(i + 1), punteros: { i }, nota: `La clave ${clave} queda en la posición ${j + 1}.` });
+    }
+    yield estado(9, { ordenados: hasta(a.length), nota: 'Arreglo ordenado.' });
+  },
+});
+
+/* ── Algoritmo: búsqueda en anchura ──────────────────────────────────────
+   Con grafo: nodos con posición (x de 0 a 100, y de 0 a 60) y aristas.
+   "leer" convierte el texto de la entrada; "aleatoria" propone una. */
+const GRAFO = {
+  nodos: [{ id: 'A', x: 12, y: 30 }, { id: 'B', x: 34, y: 11 }, { id: 'C', x: 34, y: 46 }, { id: 'D', x: 60, y: 11 }, { id: 'E', x: 60, y: 46 }, { id: 'F', x: 86, y: 28 }],
+  aristas: [['A', 'B'], ['A', 'C'], ['B', 'C'], ['B', 'D'], ['C', 'E'], ['D', 'E'], ['D', 'F'], ['E', 'F']],
+};
+Interactivos.algoritmo('bfs', {
+  lenguaje: 'python',
+  entrada: 'A',
+  grafo: GRAFO,
+  leer: texto => {
+    const id = texto.trim().toUpperCase();
+    if (!GRAFO.nodos.some(n => n.id === id)) throw new Error('El nodo inicial debe ser una letra de A a F.');
+    return id;
+  },
+  aleatoria: () => GRAFO.nodos[Math.floor(Math.random() * GRAFO.nodos.length)].id,
+  codigo: `def bfs(grafo, inicio):
+    distancia = {inicio: 0}
+    cola = [inicio]
+    while cola:
+        u = cola.pop(0)
+        for v in grafo[u]:
+            if v not in distancia:
+                distancia[v] = distancia[u] + 1
+                cola.append(v)
+    return distancia`,
+  *pasos(inicio) {
+    const vecinos = id => GRAFO.aristas.filter(a => a.includes(id)).map(a => (a[0] === id ? a[1] : a[0])).sort();
+    const distancia = { [inicio]: 0 }, cola = [inicio], arbol = [];
+    const estado = (linea, extra) => ({ linea, visitados: Object.keys(distancia), etiquetas: Object.fromEntries(Object.entries(distancia).map(([n, d]) => [n, 'd=' + d])), aristasVisitadas: [...arbol], variables: { cola: `[${cola.join(', ')}]` }, ...extra });
+    yield estado(3, { activos: [inicio], nota: `Se empieza en ${inicio}, a distancia 0.` });
+    while (cola.length) {
+      const u = cola.shift();
+      yield estado(5, { activos: [u], variables: { u, cola: `[${cola.join(', ')}]` }, nota: `Se saca ${u} de la cola.` });
+      for (const v of vecinos(u)) {
+        if (!(v in distancia)) {
+          distancia[v] = distancia[u] + 1;
+          cola.push(v);
+          arbol.push([u, v]);
+          yield estado(9, { activos: [u], comparados: [v], aristasActivas: [[u, v]], variables: { u, v, cola: `[${cola.join(', ')}]` }, nota: `${v} es nuevo: queda a distancia ${distancia[v]} y entra a la cola.` });
+        } else {
+          yield estado(7, { activos: [u], aristasActivas: [[u, v]], variables: { u, v, cola: `[${cola.join(', ')}]` }, nota: `${v} ya fue visitado: se ignora.` });
+        }
+      }
+    }
+    yield estado(10, { nota: 'La cola quedó vacía: todos los nodos alcanzables tienen su distancia.' });
+  },
+});
+
+/* ── Explorador ──────────────────────────────────────────────────────────
+   parametros: los deslizadores. curvas, formula y lectura reciben sus valores. */
+Interactivos.explorador('onda', {
+  parametros: [
+    { id: 'a', tex: 'A', min: 0, max: 3, paso: 0.1, valor: 1.5 },
+    { id: 'w', tex: '\\omega', min: 0.5, max: 4, paso: 0.1, valor: 2 },
+    { id: 'f', tex: '\\varphi', min: -3.1, max: 3.1, paso: 0.1, valor: 0 },
+  ],
+  x: [-6.5, 6.5],
+  y: [-3.2, 3.2],
+  curvas: p => [
+    { f: x => Math.sin(x), color: 'tinta-tenue', punteada: true, ancho: 2 },
+    { f: x => p.a * Math.sin(p.w * x + p.f), color: 'morado' },
+  ],
+  formula: p => `y = ${p.a.toFixed(1)}\\,\\sin\\!\\left(${p.w.toFixed(1)}\\,x ${p.f < 0 ? '-' : '+'} ${Math.abs(p.f).toFixed(1)}\\right)`,
+  lectura: p => `Amplitud \\(${p.a.toFixed(1)}\\), período \\(2\\pi/\\omega \\approx ${(2 * Math.PI / p.w).toFixed(2)}\\). La línea punteada es \\(\\sin x\\).`,
+});
+</script>
+</body>
+</html>
