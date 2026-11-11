@@ -1,0 +1,74 @@
+# jero.mplstyle — estilo de matplotlib con la identidad de la plantilla.
+#
+# Uso:
+#   import matplotlib.pyplot as plt
+#   plt.style.use("herramientas/jero.mplstyle")
+#   ...
+#   plt.savefig("presentaciones/mi-charla/img/figura.svg")
+#
+# Los colores van sin "#" porque en este formato "#" inicia un comentario.
+# Para que el texto salga en Newsreader, la fuente debe estar instalada en el
+# sistema; si no, matplotlib usa la siguiente de la lista.
+
+# Fondo: el mismo beige de la diapositiva, para que la figura se funda con ella
+figure.facecolor: faf6ee
+axes.facecolor: faf6ee
+savefig.facecolor: faf6ee
+savefig.edgecolor: faf6ee
+
+# Colores de marca, en el mismo orden que los gráficos de la plantilla
+axes.prop_cycle: cycler('color', ['8b5cf6', '22c55e', 'eab308', '3b82f6', '6d28d9', '15803d', 'a16207', '1d4ed8'])
+
+# Tipografía
+font.family: serif
+font.serif: Newsreader, Georgia, Times New Roman, DejaVu Serif
+font.size: 14
+mathtext.fontset: cm
+axes.titlesize: 18
+axes.titleweight: semibold
+axes.titlelocation: left
+axes.titlepad: 14
+axes.labelsize: 14
+xtick.labelsize: 12
+ytick.labelsize: 12
+legend.fontsize: 13
+
+# Texto y ejes
+text.color: 0b1220
+axes.titlecolor: 0b1220
+axes.labelcolor: 4f5d70
+xtick.color: 4f5d70
+ytick.color: 4f5d70
+axes.edgecolor: 7a8698
+axes.linewidth: 1.0
+axes.spines.top: False
+axes.spines.right: False
+xtick.major.size: 0
+ytick.major.size: 0
+xtick.major.pad: 8
+ytick.major.pad: 8
+
+# Cuadrícula tenue
+axes.grid: True
+axes.axisbelow: True
+grid.color: 0f172a
+grid.alpha: 0.10
+grid.linewidth: 1.0
+
+# Trazos
+lines.linewidth: 2.6
+lines.markersize: 7
+lines.solid_capstyle: round
+patch.linewidth: 0
+scatter.edgecolors: none
+
+# Leyenda
+legend.frameon: False
+
+# Tamaño 16:9 y salida vectorial
+figure.figsize: 9.6, 5.4
+figure.dpi: 100
+savefig.format: svg
+savefig.bbox: tight
+savefig.pad_inches: 0.2
+savefig.dpi: 200

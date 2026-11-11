@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- Punto de partida de una presentación.
+     1. Copiá esta carpeta con otro nombre dentro de presentaciones/.
+     2. Reemplazá el contenido. Los bloques disponibles están en catalogo/index.html.
+     3. data-animacion: "ninguna" (por defecto), "sutil" o "completa". -->
+<html lang="es" data-modo="presentacion" data-animacion="ninguna">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Título de la presentación</title>
+  <link rel="stylesheet" href="../../core/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../core/css/plantilla.css">
+  <script src="../../core/vendor/katex/katex.min.js"></script>
+  <script src="../../core/vendor/katex/auto-render.min.js"></script>
+  <script src="../../core/vendor/highlight/highlight.min.js"></script>
+  <script src="../../core/vendor/echarts/echarts.min.js"></script>
+  <script src="../../core/js/referencias.js"></script>
+  <script src="../../core/js/contenido.js"></script>
+  <script src="../../core/js/interactivos.js"></script>
+  <script src="../../core/js/presentacion.js"></script>
+  <script src="../../core/js/orador.js"></script>
+</head>
+<body>
+
+<section class="diapositiva portada">
+  <p class="etiqueta">Evento o curso</p>
+  <h1>Título de la presentación</h1>
+  <p class="subtitulo">Subtítulo en una línea.</p>
+  <div class="puntos"><i class="c-morado"></i><i class="c-amarillo"></i><i class="c-verde"></i><i class="c-azul"></i></div>
+  <p class="datos"><span>Jerónimo Restrepo</span><span>Lugar</span><span>Fecha</span></p>
+  <aside class="notas"><p>Notas del orador de la portada.</p></aside>
+</section>
+
+<section class="diapositiva seccion c-morado">
+  <p class="numero">01</p>
+  <h2>Primera sección</h2>
+</section>
+
+<section class="diapositiva">
+  <p class="etiqueta">01 — Primera sección</p>
+  <h2>Título de la diapositiva</h2>
+  <p>Texto de la diapositiva, con una cita <cite data-ref="clave2025"></cite> y una fórmula \(a^2 + b^2 = c^2\).</p>
+  <ul>
+    <li data-paso>Un punto que aparece con un clic.</li>
+    <li data-paso>Otro punto.</li>
+  </ul>
+  <aside class="notas"><p>Notas del orador.</p></aside>
+</section>
+
+<section class="diapositiva" data-referencias>
+  <p class="etiqueta">Referencias</p>
+  <h2>Referencias</h2>
+</section>
+
+<section class="diapositiva cierre">
+  <p class="etiqueta">Fin</p>
+  <h1>Gracias.</h1>
+  <p class="subtitulo">¿Preguntas?</p>
+  <div class="puntos"><i class="c-morado"></i><i class="c-amarillo"></i><i class="c-verde"></i><i class="c-azul"></i></div>
+  <p class="datos"><span>jerofax.github.io</span></p>
+</section>
+
+<script type="application/json" id="referencias">
+{
+  "clave2025": {
+    "autores": "Apellido, N.", "anio": 2025,
+    "titulo": "Título del trabajo",
+    "fuente": "Revista o editorial", "corta": "Apellido, 2025"
+  }
+}
+</script>
+
+<script>
+/* Aquí van las definiciones de gráficos e interactivos, si los hay:
+   Plantilla.grafico("nombre", { ...opciones de ECharts... });
+   Interactivos.algoritmo("nombre", { codigo, *pasos(entrada) { ... } });
+   Interactivos.explorador("nombre", { parametros, x, y, curvas, formula }); */
+</script>
+</body>
+</html>

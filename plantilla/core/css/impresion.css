@@ -1,0 +1,50 @@
+/* impresion.css — reglas del PDF.
+   El JS agrega la clase "imprimiendo" a <html> justo antes de imprimir
+   (o con ?imprimir en la dirección) y quita las vistas de pantalla. */
+
+@page { margin: 16mm; }
+@page diapositiva { size: 1920px 1080px; margin: 0; }
+
+.imprimiendo, .imprimiendo body { background: var(--fondo); }
+.imprimiendo * { animation: none !important; transition: none !important; }
+.imprimiendo, .imprimiendo * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+/* Presentación: una diapositiva por página, en su estado final */
+.imprimiendo[data-modo="presentacion"] body { overflow: visible; height: auto; padding: 0; margin: 0; }
+.imprimiendo .diapositiva {
+  --u: 1px; page: diapositiva;
+  position: relative; left: auto; top: auto; translate: none;
+  display: flex; margin: 0; border: 0; border-radius: 0; box-shadow: none; opacity: 1;
+  break-after: page; break-inside: avoid;
+}
+.imprimiendo .diapositiva:last-of-type { break-after: auto; }
+.imprimiendo [data-paso] { visibility: visible !important; opacity: 1 !important; }
+.imprimiendo [data-efecto="resaltar"] {
+  background: color-mix(in srgb, var(--c, var(--amarillo)) 30%, transparent); border-radius: 0.2em;
+}
+.imprimiendo [data-mover-a] { transform: translate(calc(var(--mx, 0) * var(--u)), calc(var(--my, 0) * var(--u))); }
+.imprimiendo .progreso, .imprimiendo .aviso, .imprimiendo .panel, .imprimiendo .boton-presentar, .imprimiendo .orador { display: none !important; }
+
+/* Interactivos: sin controles; las tarjetas muestran las dos caras */
+.imprimiendo .interactivo .controles, .imprimiendo .interactivo .entrada { display: none !important; }
+.imprimiendo .tarjetas__pista, .imprimiendo .tarjetas__nav { display: none !important; }
+.imprimiendo .tarjetas { justify-items: stretch; }
+.imprimiendo .tarjetas__pila { display: grid; gap: 0.4em; width: 100%; height: auto; perspective: none; }
+.imprimiendo .tarjeta { display: grid !important; grid-template-columns: 1fr 1fr; gap: 0.4em; position: static; transform: none !important; height: auto; }
+.imprimiendo .tarjeta .frente, .imprimiendo .tarjeta .reverso {
+  position: static; transform: none; backface-visibility: visible; box-shadow: none;
+  padding: 0.5em 0.9em; font-size: 0.8em; border-radius: var(--radio);
+}
+.imprimiendo .pestanas > section { display: grid !important; }
+.imprimiendo details.desplegable > :not(summary) { display: block; }
+
+.imprimiendo .grafico--fluido { height: auto !important; min-height: 0; }
+.imprimiendo .grafico--fluido .grafico__lienzo, .imprimiendo .grafico--fluido .grafico__lienzo > div { position: static; width: 100% !important; height: auto !important; }
+.imprimiendo .grafico--fluido svg { display: block; position: static !important; width: 100% !important; height: auto !important; }
+
+/* Divulgación: texto corrido en página normal */
+.imprimiendo[data-modo="divulgacion"] body { padding: 0; font-size: 11pt; }
+.imprimiendo[data-modo="divulgacion"] .bloque, .imprimiendo[data-modo="divulgacion"] pre,
+.imprimiendo[data-modo="divulgacion"] figure, .imprimiendo[data-modo="divulgacion"] .interactivo { break-inside: avoid; }
+.imprimiendo[data-modo="divulgacion"] h2, .imprimiendo[data-modo="divulgacion"] h3 { break-after: avoid; }
+.imprimiendo[data-modo="divulgacion"] .ancho { width: 100%; margin-left: 0; transform: none; }

@@ -1,0 +1,96 @@
+/* base.css — tipografía y elementos comunes a los dos modos.
+   Dentro de un bloque todo se mide en em, así escala con la densidad. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body { margin: 0; background: var(--fondo); }
+
+h1, h2, h3, h4 { margin: 0; color: var(--tinta); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--azul-fuerte); text-underline-offset: 0.15em; }
+strong, b { font-weight: 700; }
+em, i { font-style: italic; }
+img, svg, video { max-width: 100%; }
+code, kbd, pre, samp { font-family: var(--mono); font-variant-ligatures: none; }
+
+/* Utilidades de color de texto: siempre el tono fuerte, que sí se lee. */
+.morado { color: var(--morado-fuerte); }
+.verde { color: var(--verde-fuerte); }
+.amarillo { color: var(--amarillo-fuerte); }
+.azul { color: var(--azul-fuerte); }
+.apagado { color: var(--tinta-apagada); }
+
+/* Etiqueta superior: mono, mayúsculas, con una línea corta delante. */
+.etiqueta {
+  display: flex; align-items: center; gap: 0.8em;
+  font-family: var(--mono); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.22em; color: var(--tinta-apagada);
+}
+.etiqueta::before { content: ""; width: 2.6em; height: 0.1em; min-height: 1px; background: var(--c, var(--acento)); flex: none; }
+
+/* Código en línea y teclas */
+:not(pre) > code {
+  font-size: 0.82em; padding: 0.1em 0.35em; border-radius: 0.3em;
+  background: var(--superficie-hundida); color: var(--tinta-suave);
+}
+kbd {
+  font-size: 0.72em; font-weight: 600; padding: 0.15em 0.5em; border-radius: 0.35em;
+  background: var(--superficie); border: 1px solid var(--linea-fuerte); border-bottom-width: 0.18em;
+  color: var(--tinta-suave); white-space: nowrap;
+}
+
+/* Resaltado de una palabra o de un término */
+mark, .resaltado {
+  background: color-mix(in srgb, var(--c, var(--amarillo)) 30%, transparent);
+  color: inherit; padding: 0.02em 0.18em; border-radius: 0.2em;
+}
+
+/* Listas: viñeta cuadrada del color de acento, numeración en mono. */
+ul, ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.45em; }
+ul > li, ol > li { position: relative; padding-left: 1.3em; }
+ul > li::before {
+  content: ""; position: absolute; left: 0.15em; top: 0.52em;
+  width: 0.36em; height: 0.36em; border-radius: 0.08em; background: var(--c, var(--acento));
+}
+ol { counter-reset: lista; }
+ol > li { counter-increment: lista; padding-left: 1.7em; }
+ol > li::before {
+  content: counter(lista, decimal-leading-zero); position: absolute; left: 0; top: 0.32em;
+  font-family: var(--mono); font-size: 0.6em; font-weight: 600; color: var(--cf, var(--acento-fuerte));
+}
+li > ul, li > ol { margin-top: 0.4em; font-size: 0.88em; color: var(--tinta-apagada); }
+
+/* Tabla */
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th {
+  font-family: var(--mono); font-size: 0.6em; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--tinta-apagada); text-align: left;
+  padding: 0.9em 1.2em; border-bottom: 2px solid var(--linea-fuerte);
+}
+td { padding: 0.5em 0.72em; border-bottom: 1px solid var(--linea); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { text-align: right; }
+td.num { white-space: nowrap; }
+td.destacada, tr.destacada td { background: var(--ct, var(--verde-tinte)); font-weight: 600; }
+
+/* Figuras */
+figure { margin: 0; display: grid; gap: 0.5em; }
+figure img, figure svg { display: block; width: 100%; height: auto; border-radius: var(--radio-s); }
+figcaption { font-size: 0.62em; color: var(--tinta-apagada); }
+figcaption b { font-family: var(--mono); font-size: 0.85em; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* KaTeX: un poco más chico que su 1.21em por defecto, para igualar a Newsreader. */
+.katex { font-size: 1.08em; }
+.katex-display { margin: 0.4em 0; }
+.katex-display > .katex { max-width: 100%; }
+
+/* Solo para lectores de pantalla */
+.oculto-visual { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

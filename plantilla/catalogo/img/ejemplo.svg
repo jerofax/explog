@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Figura de ejemplo: cuatro curvas con la paleta de la plantilla">
+  <rect width="1600" height="900" fill="#faf6ee"/>
+  <g stroke="#0f172a" stroke-opacity="0.1" stroke-width="2">
+    <path d="M120 150H1500M120 300H1500M120 450H1500M120 600H1500M120 750H1500"/>
+    <path d="M120 100V800M396 100V800M672 100V800M948 100V800M1224 100V800M1500 100V800"/>
+  </g>
+  <path d="M120 450H1500" stroke="#0f172a" stroke-opacity="0.22" stroke-width="2"/>
+  <g fill="none" stroke-width="7" stroke-linecap="round">
+    <path stroke="#8b5cf6" d="M120 450C258 150 396 150 534 450S810 750 948 450S1224 150 1362 450S1500 650 1500 620"/>
+    <path stroke="#22c55e" d="M120 450C258 250 396 250 534 450S810 650 948 450S1224 250 1362 450S1500 580 1500 560"/>
+    <path stroke="#eab308" d="M120 450C258 350 396 350 534 450S810 550 948 450S1224 350 1362 450S1500 515 1500 505"/>
+    <path stroke="#3b82f6" stroke-dasharray="4 18" d="M120 700C500 690 900 520 1500 160"/>
+  </g>
+  <g font-family="JetBrains Mono, monospace" font-size="26" fill="#4f5d70">
+    <text x="120" y="845">0</text><text x="660" y="845">2π</text><text x="1212" y="845">4π</text>
+    <text x="70" y="158">1</text><text x="70" y="458">0</text><text x="56" y="758">−1</text>
+  </g>
+</svg>

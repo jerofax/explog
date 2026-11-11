@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- Punto de partida de una página de divulgación o guía de estudio.
+     1. Copiá esta carpeta con otro nombre dentro de divulgacion/.
+     2. Reemplazá el contenido. Los bloques disponibles están en catalogo/divulgacion.html. -->
+<html lang="es" data-modo="divulgacion">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Título de la página</title>
+  <link rel="stylesheet" href="../../core/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../core/css/plantilla.css">
+  <script src="../../core/vendor/katex/katex.min.js"></script>
+  <script src="../../core/vendor/katex/auto-render.min.js"></script>
+  <script src="../../core/vendor/highlight/highlight.min.js"></script>
+  <script src="../../core/vendor/echarts/echarts.min.js"></script>
+  <script src="../../core/js/referencias.js"></script>
+  <script src="../../core/js/contenido.js"></script>
+  <script src="../../core/js/interactivos.js"></script>
+  <script src="../../core/js/presentacion.js"></script>
+</head>
+<body>
+<main>
+
+  <header class="cabecera">
+    <p class="etiqueta">Tema o curso</p>
+    <h1>Título de la página</h1>
+    <p class="entrada">Un párrafo de entrada que dice de qué trata y para quién es.</p>
+    <div class="puntos"><i class="c-morado"></i><i class="c-amarillo"></i><i class="c-verde"></i><i class="c-azul"></i></div>
+    <p class="datos"><span>Jerónimo Restrepo</span><span>Fecha</span></p>
+  </header>
+
+  <p class="etiqueta">01 — Primera parte</p>
+  <h2>Título de la sección</h2>
+  <p>Texto corrido, con una cita <cite data-ref="clave2025"></cite> y una fórmula \(a^2 + b^2 = c^2\).</p>
+
+  <div class="bloque bloque--definicion" data-nombre="Nombre">
+    <p>Contenido del bloque.</p>
+  </div>
+
+  <p class="etiqueta">Referencias</p>
+  <section data-referencias></section>
+
+</main>
+
+<script type="application/json" id="referencias">
+{
+  "clave2025": {
+    "autores": "Apellido, N.", "anio": 2025,
+    "titulo": "Título del trabajo",
+    "fuente": "Revista o editorial"
+  }
+}
+</script>
+
+<script>
+/* Aquí van las definiciones de gráficos e interactivos, si los hay. */
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* plantilla.css — punto de entrada. Un documento solo enlaza este archivo
+   (más el CSS de KaTeX). El orden importa: las últimas reglas ganan. */
+@import "tokens.css";
+@import "base.css";
+@import "bloques.css";
+@import "interactivos.css";
+@import "presentacion.css";
+@import "divulgacion.css";
+@import "animaciones.css";
+@import "impresion.css";
